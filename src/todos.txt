@@ -1,1 +1,7 @@
 After dark - dark mode
+
+-- oklch . com
+-- css colors 
+-- color mix visualizer
+-- gradient, box shadow generators ?
+-- contrast checker
