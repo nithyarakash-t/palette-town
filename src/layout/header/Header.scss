@@ -1,0 +1,26 @@
+.app-header {
+    &__logo {
+        font-family: "Yesteryear", monospace;
+        text-decoration: none;
+        font-size: 1.5rem;
+        color: light-dark(#a41b27, #fff);
+        &:hover,
+        &:focus-visible {
+            color: light-dark(#a41b27, #fff);
+            text-decoration: none;
+        }
+    }
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__wrap {
+        position: sticky;
+        background-color: transparent;
+        inset: 0 0 auto 0;
+        z-index: 99;
+        padding: 1rem 0;
+        height: var(--header-height, 4.25rem);
+    }
+}

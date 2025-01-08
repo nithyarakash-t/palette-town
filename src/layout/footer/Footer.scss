@@ -1,0 +1,23 @@
+.app-footer {
+    &__right {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-left: auto;
+        @media (max-width: 300px) {
+            margin-left: 0;
+        }
+    }
+    &__inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+        // justify-content: space-between;
+        padding-top: 1rem;
+    }
+    &__wrap {
+        padding: 0 0 1rem;
+        border-top: 1px solid var(--app-color-border-primary);
+    }
+}

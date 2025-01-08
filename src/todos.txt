@@ -1,7 +1,17 @@
 After dark - dark mode
 
+-- css colors - https://yoksel.github.io/handy-colors/ - tema
 -- oklch . com
--- css colors 
 -- color mix visualizer
 -- gradient, box shadow generators ?
 -- contrast checker
+-- https://color-guesser.fauxtrots.com/
+
+
+other ideas
+
+-- Easing visualizer - https://cubic-bezier.com/ - https://linear-easing-generator.netlify.app/
+-- Custom SVG Path Editor, 
+-- CSS Clip-Path Generator, 
+-- clip path converter - yoksel
+-- Performance Checklist Generator

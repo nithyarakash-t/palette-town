@@ -14,7 +14,7 @@
 
   //Note: Fallback values not used, be mindful when deleting colors above
   --color-default: light-dark(var(--color-base-black), var(--color-base-white));
-  --color-contrast: light-dark( var(--color-base-white), var(--color-base-black) );
+  --color-contrast: light-dark(var(--color-base-white), var(--color-base-black));
   --color-overlay: light-dark(rgba(0, 0, 0, 0.6), rgba(255, 255, 255, 0.6));
   --color-base-background: var(--color-contrast);
   
@@ -28,18 +28,21 @@
 }
 
 :root {
-  color-scheme: light dark;
   @include base-theme();
-
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
-  &:has(body[data-theme="dark"]) {
-    color-scheme: dark;
-  }
 
   // Ability to provide smooth scroll behavior on supported browsers only.
   @media (prefers-reduced-motion: no-preference) {
     scroll-behavior: smooth;
+  }
+}
+
+html {
+  color-scheme: light dark;
+  
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+  }
+  &[data-theme="dark"] {
+    color-scheme: dark;
   }
 }
