@@ -3,7 +3,7 @@ import './App.scss'
 import { ReleaseNotes } from './layout/releasenotes/Releasenotes'
 import { Header } from './layout/header/Header'
 import { Footer } from './layout/footer/Footer'
-import { CssColors } from './css-colors/csscolors'
+import { CssColors } from './css-colors/Csscolors'
 
 function App() {
 

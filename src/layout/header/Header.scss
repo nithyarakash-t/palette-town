@@ -1,6 +1,11 @@
+@font-face {
+    font-family: Yesteryear;
+    src: url('./yesteryear/Yesteryear-Regular.ttf');
+}
+
 .app-header {
     &__logo {
-        font-family: "Yesteryear", monospace;
+        font-family: Yesteryear, cursive, monospace;
         text-decoration: none;
         font-size: 1.5rem;
         color: light-dark(#a41b27, #fff);
