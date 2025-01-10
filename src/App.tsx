@@ -1,4 +1,4 @@
-import { Route, BrowserRouter, Routes } from 'react-router-dom'
+import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom'
 import './App.scss'
 import { ReleaseNotes } from './layout/releasenotes/Releasenotes'
 import { Header } from './layout/header/Header'
@@ -13,8 +13,9 @@ function App() {
         <Header/>
         <main className="app-wrap" id="main">
             <Routes>
-              <Route path='/' element={<CssColors/>}></Route>
+              <Route path='/csscolors' element={<CssColors/>}></Route>
               <Route path='/releasenotes' element={<ReleaseNotes/>}></Route>
+              <Route path='*' element={<Navigate to='/csscolors' />} />
             </Routes>
         </main>
         <Footer/>

@@ -1,0 +1,127 @@
+@mixin slider-thumb {
+    appearance: none;
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(120deg, #444 30%, #111 100%);
+    box-shadow: 0 0 0 2px white, 0 0 2px 3px #444;
+}
+  
+@mixin non-mono-slider-thumb-focus {
+    background: linear-gradient(120deg, hsl(calc(var(--pos) * 360), 90%, 50% ) 30%, hsl( calc(var(--pos) * 360), 100%, 40% ) 100%);
+    box-shadow: 0 0 0 3px white, 0 0 2px 4px hsl(calc(var(--pos) * 360), 100%, 50%);
+}
+
+
+@keyframes appear {
+    to {
+      transform: scale(1, 1);
+      opacity: 1;
+    }
+}
+
+.cc-slider {
+    &__toggle {
+        // appearance: none;
+        // position: relative;
+        // width: 1.5rem;
+        // height: 1.5rem;
+        // cursor: pointer;
+        // border-radius: 50%;
+        // border: 1px solid #000;
+        
+        // transform: scale(.7, .6);
+        // opacity: 0;
+        // animation: appear .3s .1s forwards cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    &__label {
+        input {
+            --pos: 0;
+            flex: 1;
+            appearance: none;
+            outline: none;
+            position: relative;
+            height: 0.5rem;
+            margin-left: 2vmin;
+            border-radius: 0.3125rem;
+            transition: all .3s;
+            background: linear-gradient(
+                to right,
+                hsl(0, 80%, 70%) 0%,
+                hsl(30, 80%, 70%) 8.3%,
+                hsl(60, 80%, 70%) 16.6%,
+                hsl(90, 80%, 70%) 25%,
+                hsl(120, 80%, 70%) 33.3%,
+                hsl(150, 80%, 70%) 41.6%,
+                hsl(180, 80%, 70%) 50%,
+                hsl(210, 80%, 70%) 58.3%,
+                hsl(240, 80%, 70%) 66.6%,
+                hsl(270, 80%, 70%) 75%,
+                hsl(300, 80%, 70%) 83.3%,
+                hsl(330, 80%, 70%) 91.6%,
+                hsl(360, 80%, 70%) 100%
+            );
+            // transform: scale(.7, .6);
+            // opacity: .1;
+            // animation: appear .3s forwards;
+
+            &::-webkit-slider-thumb {
+                @include slider-thumb;
+            }
+            
+            &::-moz-range-thumb {
+                @include slider-thumb;
+            }
+            
+            &:not(.-mono):focus {
+                &::-moz-range-thumb {
+                    @include non-mono-slider-thumb-focus;
+                }
+                &::-webkit-slider-thumb {
+                    @include non-mono-slider-thumb-focus;
+                }
+                & {
+                    height: 0.625rem;
+                    background: linear-gradient(
+                        to right,
+                        hsl(0, 100%, 50%) 0%,
+                        hsl(30, 100%, 50%) 8.3%,
+                        hsl(60, 100%, 50%) 16.6%,
+                        hsl(90, 100%, 50%) 25%,
+                        hsl(120, 100%, 50%) 33.3%,
+                        hsl(150, 100%, 50%) 41.6%,
+                        hsl(180, 100%, 50%) 50%,
+                        hsl(210, 100%, 50%) 58.3%,
+                        hsl(240, 100%, 50%) 66.6%,
+                        hsl(270, 100%, 50%) 75%,
+                        hsl(300, 100%, 50%) 83.3%,
+                        hsl(330, 100%, 50%) 91.6%,
+                        hsl(360, 100%, 50%) 100%
+                    );
+                }
+            }
+            
+            &.-mono {
+                background: linear-gradient(to bottom, #444 0%, #111 100%);
+            }
+        }
+        & {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+        }
+    }
+    &__flex {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    &__wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
