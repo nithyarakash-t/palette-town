@@ -15,3 +15,4 @@ other ideas
 -- CSS Clip-Path Generator, 
 -- clip path converter - yoksel
 -- Performance Checklist Generator
+-- Font visualizer, downloader
