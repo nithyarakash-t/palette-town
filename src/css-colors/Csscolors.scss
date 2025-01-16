@@ -1,12 +1,13 @@
 .cc-main {
     &__inner {
-        width: max(21.25rem, min(80vmin, 50rem));
+        width: var(--_content-width);
         display: flex;
         flex-direction: column;
         gap: 2rem;
         // font-size: max(0.875rem, min(3vmin, 1.25rem));
     }
     &__wrap {
+        --_content-width:  max(21.25rem, min(80vmin, 50rem));
         place-items: center;
     }
 }

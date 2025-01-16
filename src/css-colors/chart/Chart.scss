@@ -1,0 +1,15 @@
+.cc-chart {
+    &__row {
+        display: grid;
+        grid-auto-flow: column;
+    }
+    &__container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    &__wrap {
+        width: var(--_content-width);
+        height: var(--_content-width);
+    }
+}
