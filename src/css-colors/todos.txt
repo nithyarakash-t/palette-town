@@ -4,3 +4,4 @@
 3 -- Add color to thumb in the non-focused state
 4 -- Add tolerance
 5 -- Rework toggle appearance
+6 -- Random

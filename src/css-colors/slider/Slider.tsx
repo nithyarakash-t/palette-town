@@ -1,10 +1,11 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent } from 'react';
 import './Slider.scss';
+import { Tolerance } from '../Csscolors';
 
-export function Slider() {
-    const [hueValue, setHueValue] = useState(0);
-    const [toggle, setToggle]= useState(false);
-    const tolerance = 5;
+export function Slider({hueValue, setHueValue, toggle, setToggle, tolerance}
+:{readonly hueValue:number, readonly setHueValue:(hue:number)=>void, 
+    readonly toggle:boolean,  readonly setToggle:(toggle:boolean)=>void
+    readonly tolerance:Tolerance}) {
 
     function handleInput(e:FormEvent) {
         setHueValue(+(e.currentTarget as HTMLInputElement).value);
@@ -22,7 +23,7 @@ export function Slider() {
                 aria-label='Toggle between monochrome and hsl color range'
                 value={`${toggle}`} onInput={()=>{setToggle(!toggle)}}/>
             </div>
-            <p className='cc-slider__tolerance'>Hue Tolerance: {tolerance}</p>
+            <p className='cc-slider__tolerance'>Hue Tolerance: {tolerance.val}</p>
         </div>
     )
 }
