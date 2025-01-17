@@ -1,4 +1,36 @@
 .cc-chart {
+    &__axis {
+        &.-lightness {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            transform-origin: top right;
+            transform: rotate(-90deg) translateY(200%) rotate(180deg) translateX(100%);
+        }
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 33%;
+            height: 1px;
+            background: light-dark(#aaa, #fff);
+        }
+        &::before {
+            left: 0;
+        }
+        &::after {
+            right: 0;
+        }
+        & {
+            position: relative;
+            font-size: var(--_axis-fs); //.5em;
+            letter-spacing: .25em;
+            text-align: center;
+        }
+    }
     &__row {
         display: grid;
         grid-auto-flow: column;
@@ -9,7 +41,14 @@
         height: 100%;
     }
     &__wrap {
+        --_axis-fs: 0.625rem;
+        --_axis-padding: 0.5rem;
+        --_addition-space: calc(var(--_axis-fs) + (var(--_axis-padding) * 2));
+        position: relative;
         width: var(--_content-width);
         height: var(--_content-width);
+        margin-bottom: 10vh;
+        // padding-right: var(--_addition-space);
+        // padding-bottom: var(--_addition-space);
     }
 }

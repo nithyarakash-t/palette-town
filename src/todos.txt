@@ -1,6 +1,6 @@
 After dark - dark mode
 
--- css colors - https://yoksel.github.io/handy-colors/ - tema
+-- css colors -- Add https://yoksel.github.io/handy-colors/ - tema
 -- oklch . com
 -- color mix visualizer
 -- gradient, box shadow generators ?
@@ -16,3 +16,5 @@ other ideas
 -- clip path converter - yoksel
 -- Performance Checklist Generator
 -- Font visualizer, downloader
+-- Css shapes
+-- Web dev utils

@@ -4,10 +4,10 @@ export function Chart() {
     return (
         <div className='cc-chart__wrap'>
             <div className='cc-chart__container'>
-                <div className='cc-chart__row'>
-                    
-                </div>
+                
             </div>
+            <p className='cc-chart__axis -lightness'>LIGHTNESS</p>
+            <p className='cc-chart__axis -saturation'>SATURATION</p>
         </div>
     )
 }

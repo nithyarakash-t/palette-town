@@ -13,7 +13,6 @@
     box-shadow: 0 0 0 3px white, 0 0 2px 4px hsl(calc(var(--pos) * 360), 100%, 50%);
 }
 
-
 @keyframes appear {
     to {
       transform: scale(1, 1);
@@ -23,17 +22,39 @@
 
 .cc-slider {
     &__toggle {
-        // appearance: none;
-        // position: relative;
-        // width: 1.5rem;
-        // height: 1.5rem;
-        // cursor: pointer;
-        // border-radius: 50%;
-        // border: 1px solid #000;
-        
-        // transform: scale(.7, .6);
-        // opacity: 0;
-        // animation: appear .3s .1s forwards cubic-bezier(0.34, 1.56, 0.64, 1);
+        // &::before {
+        //     content: '';
+        //     position: absolute;
+        //     inset: 50% auto auto 50%;
+        //     transform: translate(-50%, -50%);
+        //     height: 80%;
+        //     width: 80%;
+        //     border-radius: 50%;
+        //     transition: background-position .2s ease;
+        // }
+
+        // & {
+        //     --_color: #777;
+        //     appearance: none;
+        //     position: relative;
+        //     width: 1.5rem;
+        //     height: 1.5rem;
+        //     cursor: pointer;
+        //     border-radius: 50%;
+        //     border: 1px solid var(--_color);
+
+        //      // transform: scale(.7, .6);
+        //     // opacity: 0;
+        //     // animation: appear .3s .1s forwards cubic-bezier(0.34, 1.56, 0.64, 1);
+        // }
+
+        // &:focus-visible,
+        // &:hover {
+        //     --_color: #000;
+        // }
+    }
+    &__tolerance {
+        font-size: 0.625rem;
     }
     &__label {
         input {
