@@ -4,15 +4,15 @@ export const references = [
         site: "https://enes.in/sorted-colors"
     },
     {
-        name: "",
+        name: "meyerweb.com/eric/css/colors/",
         site: "https://meyerweb.com/eric/css/colors/"
     },
     {
-        name: "",
+        name: "drafts.csswg.org/css-color/",
         site: "https://drafts.csswg.org/css-color/#named-colors"
     },
     {
-        name: "",
+        name: "w3.org/TR/SVG/types.html",
         site: "https://www.w3.org/TR/SVG/types.html#ColorKeywords",
     },
     {

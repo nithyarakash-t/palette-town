@@ -13,8 +13,8 @@ function App() {
         <Header/>
         <main className="app-wrap" id="main">
             <Routes>
-              <Route path='/csscolors' element={<CssColors/>}></Route>
-              <Route path='/releasenotes' element={<ReleaseNotes/>}></Route>
+              <Route path='/csscolors/*' element={<CssColors/>}></Route>
+              <Route path='/releasenotes/*' element={<ReleaseNotes/>}></Route>
               <Route path='*' element={<Navigate to='/csscolors' />} />
             </Routes>
         </main>

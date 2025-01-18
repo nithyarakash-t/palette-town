@@ -8,6 +8,9 @@ After dark - dark mode
 -- https://color-guesser.fauxtrots.com/
 -- hsl picker . com
 
+-- landing page, hero
+-- dropdown / island in header with options to choose diff pages
+
 other ideas
 
 -- Easing visualizer - https://cubic-bezier.com/ - https://linear-easing-generator.netlify.app/

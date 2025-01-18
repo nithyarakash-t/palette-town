@@ -3,7 +3,7 @@ import './Chart.scss';
 import { groupColors } from '../utils/groupColors';
 import { Tolerance } from '../Csscolors';
 import { ColorListItem } from '../data/parsedUniqueColors';
-import { ColorInfo } from '../colorinfo/colorInfo';
+import { ColorInfo } from '../colorinfo/Colorinfo';
 
 export function Chart({hue, tolerance, setTolerance, mono}
     :{readonly hue:number, 
@@ -41,7 +41,7 @@ export function Chart({hue, tolerance, setTolerance, mono}
     }
     return (
         <div className='cc-chart__wrap'>
-            <ul className='cc-chart__container'>
+            <ul className={`cc-chart__container ${selectedColor && '-clip'}`}>
                 {
                     colorList.map((item, index)=>
                     <li className='cc-chart__row' key={index}>
