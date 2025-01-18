@@ -36,13 +36,30 @@
     }
     &__button {
         --_bg: transparent;
+        --_outline: #000;
         border: none;
         padding: 0;
         height: 100%;
         background-color: var(--_bg);
         color: #000;
+        transition: scale .6s ease;
         &.-dark {
+            --_outline: #fff;
             color: #fff;
+        }
+        &:hover,
+        &:focus-visible {
+            scale: 1.04;
+            box-shadow: 0 2px 11px rgba(0,0,0,0.15);
+        }
+        &:focus-visible {
+            outline: none; // 1px solid var(--_outline);
+            outline-offset: -0.5rem;
+        }
+        &.-selected {
+            scale: 16;
+            color: transparent;
+            pointer-events: none;
         }
     }
     &__row {
@@ -55,6 +72,10 @@
         height: 100%;
         display: grid;
         grid-auto-flow: row;
+        overflow: hidden;
+        @supports(overflow: clip) {
+            overflow: clip;
+        }
     }
     &__wrap {
         --_axis-fs: 0.625rem;

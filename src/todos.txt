@@ -18,3 +18,6 @@ other ideas
 -- Font visualizer, downloader
 -- Css shapes
 -- Web dev utils
+
+Mini games kit
+--

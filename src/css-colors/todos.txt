@@ -5,3 +5,5 @@
 4 -- Add tolerance
 5 -- Rework toggle appearance
 6 -- Random
+7 -- Copy to clipboard
+8 -- Clean up unused utils
