@@ -1,15 +1,22 @@
-After dark - dark mode
-
+COMPLETED
 -- css colors -- Add https://yoksel.github.io/handy-colors/ - tema
+
+INPROGRESS
+-- https://color-guesser.fauxtrots.com/
+
+YTD
+After dark - dark mode
+landing page, hero
+dropdown / island in header with options to choose diff pages
+
 -- oklch . com
 -- color mix visualizer
 -- gradient, box shadow generators ?
--- contrast checker
--- https://color-guesser.fauxtrots.com/
+-- contrast checker -- https://coolors.co/contrast-checker
 -- hsl picker . com
+-- color converter -- RGB, hex, HSL, HWB, OKLCH
+-- upload pic and get colours / wrapper to create art
 
--- landing page, hero
--- dropdown / island in header with options to choose diff pages
 
 other ideas
 

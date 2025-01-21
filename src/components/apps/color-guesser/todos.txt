@@ -1,0 +1,17 @@
+-- give user option to choose between a rgb picker, hsl picker and color selector
+-- cookie
+-- local storage
+-- set up 1v1 game ?!
+
+-- https://color-guesser.fauxtrots.com/ 
+
+-- https://www.geotests.net/couleurs/frequences_en.html
+-- https://colordesigner.io/compare-colors
+-- https://www.geotests.net/couleurs/frequences_en.html
+-- https://embed.plnkr.co/plunk/ERaf37
+
+
+-- https://colorpicker.fr/
+-- https://ant.design/components/color-picker
+-- https://leonardocolor.io/tools.html#
+-- https://www.sessions.edu/color-calculator/

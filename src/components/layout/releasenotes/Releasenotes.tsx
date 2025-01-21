@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { releaseNotes } from './release-notes';
 import './Releasenotes.scss';
 
 export function ReleaseNotes() {
@@ -13,14 +14,18 @@ export function ReleaseNotes() {
                     <h2 className="app-releasenotes__title">Release Notes</h2>
                 </div>
                 <ol className="app-releasenotes__list">
-                    <li>
-                        <div className="app-releasenotes__group" role="group" aria-labelledby="releasenote_v_1.1">
-                            <h3 id='releasenote_v_0.0'>Version 0.0 - (date)</h3>
-                            <ul>
-                                <li>MVP deployed</li>
-                            </ul>
-                        </div>
-                    </li>
+                    {releaseNotes.map((item,index)=>{
+                        return <li key={index}>
+                            <div className="app-releasenotes__group" role="group" aria-labelledby={"releasenote_v_" + item.version}>
+                                <h3 id={"releasenote_v_" + item.version}>Version {item.version} - {item.date}</h3>
+                                <ul>
+                                    {item.desc.map((cont, ind)=>{
+                                        return <li key={ind}>{cont}</li>
+                                    })}
+                                </ul>
+                            </div>
+                        </li>
+                    })}
                 </ol>
             </div>
         </section>

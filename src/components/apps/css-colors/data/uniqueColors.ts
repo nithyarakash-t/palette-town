@@ -1,4 +1,13 @@
-export const uniqueColors = [
+export interface UniqueColor {
+    type: 'light' | 'dark',
+    name: string,
+    rgb: string,
+    hsl: string,
+    hex: string,
+    alternativeName?:string
+}
+
+export const uniqueColors:UniqueColor[] = [
     {
         "type": "light",
         "name": "aliceblue",

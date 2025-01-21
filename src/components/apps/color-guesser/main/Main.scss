@@ -1,0 +1,17 @@
+.cg-main {
+    &__reset {
+        width: fit-content;
+    }
+    &__btngroup {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    &__wrap {
+        display: grid;
+        place-content: center;
+        place-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+}
