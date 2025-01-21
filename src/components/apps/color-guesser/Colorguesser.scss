@@ -1,0 +1,12 @@
+.cg-app {
+    &__refcont {
+        margin: 1rem 0 3rem 0;
+        display: flex;
+        justify-content: center;
+    }
+    &__title {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
+}
