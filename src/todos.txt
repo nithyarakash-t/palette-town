@@ -16,7 +16,7 @@ dropdown / island in header with options to choose diff pages
 -- hsl picker . com
 -- color converter -- RGB, hex, HSL, HWB, OKLCH
 -- upload pic and get colours / wrapper to create art
-
+-- https://stevehanov.ca/blog/index.php?id=116
 
 other ideas
 
