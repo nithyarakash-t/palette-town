@@ -1,7 +1,8 @@
 import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import './Colorguesser.scss';
 import { Main } from './main/Main';
-import { References } from './references/References';
+import { References } from '../css-colors/references/References';
+import { references } from './references/references';
 
 export function ColorGuesser() {
     return(
@@ -17,7 +18,7 @@ export function ColorGuesser() {
                         </div>
                     </>
                 }></Route>
-                <Route path="/references" element={<References />}></Route>
+                <Route path="/references" element={<References references={references} appname="Color Guesser" />}></Route>
                 <Route path='*' element={<Navigate to='/' />} />
             </Routes>
         </section>

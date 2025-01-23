@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate, Link } from "react-router-dom";
 import { Main } from "./main/Main";
 import { References } from "./references/References";
+import { references } from "./references/references-list";
 export type Tolerance = {
     min: number;
     val: number;
@@ -19,7 +20,7 @@ export function CssColors() {
                         </div>
                     </>
                 }></Route>
-                <Route path="/references" element={<References />}></Route>
+                <Route path="/references" element={<References references={references} appname="Css Colors"/>}></Route>
                 <Route path='*' element={<Navigate to='/' />} />
             </Routes>
         </div>

@@ -3,7 +3,10 @@ import { data, UniqueColorItem } from '../data/data';
 import { FormEvent, useEffect, useState } from 'react';
 import { ColorHEX, ColorRGB, colorSimilarity, getRandomIntInclusive, hexToRGB } from '../utils';
 
+type Difficulty =  'easy' | 'assisted' | 'challenging';
+
 export function Main() {
+    const [difficulty, setDifficulty] = useState<Difficulty>('challenging');
     const [color, setColor] = useState<UniqueColorItem>(getRandomColor());
     const [inputColor, setInputColor] = useState<ColorHEX>(getRandomColor().hex as ColorHEX);
     const [similarity, setSimilarity] = useState<number | null>(null);
@@ -34,11 +37,43 @@ export function Main() {
 
     return (
         <section className='cg-main__wrap'>
+            <fieldset className='cg-difficulty__group'>
+                <legend>Choose your difficulty: </legend>
+
+                <label className='cg-difficulty__rdo'>
+                    <input type="radio" id="cg-difficulty" name="cg-diff-easy" value="easy"
+                    checked={difficulty==='easy'} onInput={()=>setDifficulty('easy')}/>
+                    <span>Easy</span>
+                </label>
+                <label className='cg-difficulty__rdo'>
+                    <input type="radio" id="cg-difficulty" name="cg-diff-assisted" value="assisted"
+                    checked={difficulty==='assisted'} onInput={()=>setDifficulty('assisted')}/>
+                    <span>Assisted</span>
+                </label>
+                <label className='cg-difficulty__rdo'>
+                    <input type="radio" id="cg-difficulty" name="cg-diff-challenging" value="challenging"
+                    checked={difficulty==='challenging'} onInput={()=>setDifficulty('challenging')}/>
+                    <span>Challenging</span>
+                </label>
+            </fieldset>
             <label className='cg-main__input'>
                 <input type='color' aria-label='Choose color' name='cg-input' id='cg-input'
                 value={inputColor} onInput={(e)=>handleColorInput(e)}/>
             </label>
-            <p className='cg-main__color'>{color ? `${color.name}` : 'Choose new color'}</p>
+
+            {difficulty === 'easy' &&
+            <p>If the colour's are same, intersection would be black - #000</p>}
+
+            <div className={`cg-main__venn ${difficulty === 'easy' && '-easy'}`}>
+                <div className={`cg-main__vennitem -selected ${difficulty === 'easy' && '-easy'}`} style={{backgroundColor: inputColor}}>
+
+                </div>
+                {
+                    (difficulty === 'assisted' || difficulty === 'easy') &&
+                    <div className={`cg-main__vennitem -question ${difficulty === 'easy' && '-easy'}`} style={{backgroundColor: color.hex}}></div>
+                }
+            </div>
+            <p className='cg-main__color'>{color ? `Color to find: ${color.name} ${color.alternativeName ? "/" + color.alternativeName: ''}` : 'Reset to choose new color'}</p>
 
             <div className='cg-main__btngroup'>
                 <button type='button' className='cg-main__submit' aria-label='Submit your guess' onClick={handleSubmit}>
