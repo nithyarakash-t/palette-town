@@ -42,17 +42,17 @@ export function Main() {
 
                 <label className='cg-difficulty__rdo'>
                     <input type="radio" id="cg-difficulty" name="cg-diff-easy" value="easy"
-                    checked={difficulty==='easy'} onInput={()=>setDifficulty('easy')}/>
+                    checked={difficulty==='easy'} onChange={()=>setDifficulty('easy')}/>
                     <span>Easy</span>
                 </label>
                 <label className='cg-difficulty__rdo'>
                     <input type="radio" id="cg-difficulty" name="cg-diff-assisted" value="assisted"
-                    checked={difficulty==='assisted'} onInput={()=>setDifficulty('assisted')}/>
+                    checked={difficulty==='assisted'} onChange={()=>setDifficulty('assisted')}/>
                     <span>Assisted</span>
                 </label>
                 <label className='cg-difficulty__rdo'>
                     <input type="radio" id="cg-difficulty" name="cg-diff-challenging" value="challenging"
-                    checked={difficulty==='challenging'} onInput={()=>setDifficulty('challenging')}/>
+                    checked={difficulty==='challenging'} onChange={()=>setDifficulty('challenging')}/>
                     <span>Challenging</span>
                 </label>
             </fieldset>

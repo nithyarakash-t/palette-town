@@ -5,6 +5,7 @@ import { Header } from './components/layout/header/Header'
 import { Footer } from './components/layout/footer/Footer'
 import { CssColors } from './components/apps/css-colors/Csscolors'
 import { ColorGuesser } from './components/apps/color-guesser/Colorguesser'
+import { Home } from './components/layout/home/Home'
 
 function App() {
 
@@ -14,10 +15,17 @@ function App() {
         <Header/>
         <main className="app-wrap" id="main">
             <Routes>
+              {
+                ['/home'].map((item, index)=>{
+                  return (
+                    <Route key={index} path={item} element={<Home/>}></Route>
+                  )
+                })
+              }
               <Route path='/csscolors/*' element={<CssColors/>}></Route>
               <Route path='/colorguesser/*' element={<ColorGuesser/>}></Route>
               <Route path='/releasenotes/*' element={<ReleaseNotes/>}></Route>
-              <Route path='*' element={<Navigate to='/colorguesser' />} />
+              <Route path='*' element={<Navigate to='/home' />} />
             </Routes>
         </main>
         <Footer/>
