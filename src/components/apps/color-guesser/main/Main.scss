@@ -1,3 +1,21 @@
+@keyframes slidein-from-left {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: var(--_final-translate-x) 0;
+  }
+}
+
+@keyframes slidein-from-right {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: var(--_final-translate-x) 0;
+  }
+}
+
 .cg {
   &-difficulty {
     &__rdo {
@@ -6,13 +24,18 @@
       gap: 0.5rem;
     }
     &__group {
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: 1fr 1fr;
-      text-align: left;
       > legend {
         float: inline-start;
         grid-column: 1/-1;
+      }
+      & {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 1fr 1fr 1fr;
+        text-align: left;
+        @media (max-width: 400px) {
+          grid-template-columns: 1fr 1fr;
+        }
       }
     }
   }
@@ -27,17 +50,22 @@
     }
     &__venn {
       &item {
+        --_animation-duration: 0.5s;
+        --_final-translate-x: calc(var(--_gap) * 2);
         height: 6.25rem;
         width: 6.25rem;
         border-radius: 50%;
         border: 1px solid light-dark(#000, #fff);
 
+        &.-question {
+          --_final-translate-x: calc(var(--_gap) * -2);
+        }
         &.-easy {
           &.-selected {
-            translate: calc(var(--_gap) * 2) 0;
+            animation: slidein-from-left var(--_animation-duration) ease-in-out forwards;
           }
           &.-question {
-            translate: calc(var(--_gap) * -2) 0;
+            animation: slidein-from-right var(--_animation-duration) ease-in-out forwards;
             mix-blend-mode: difference;
           }
         }

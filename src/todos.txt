@@ -1,8 +1,9 @@
 COMPLETED
 -- css colors -- Add https://yoksel.github.io/handy-colors/ - tema
+-- color guesser
 
 INPROGRESS
--- https://color-guesser.fauxtrots.com/
+
 
 YTD
 After dark - dark mode
@@ -10,13 +11,14 @@ landing page, hero
 dropdown / island in header with options to choose diff pages
 
 -- oklch . com
+-- mix blend mode deepdive
 -- color mix visualizer
--- gradient, box shadow generators ?
+-- gradient, box shadow, drop shadow generators ?
 -- contrast checker -- https://coolors.co/contrast-checker
 -- hsl picker . com
 -- color converter -- RGB, hex, HSL, HWB, OKLCH
 -- upload pic and get colours / wrapper to create art
--- https://stevehanov.ca/blog/index.php?id=116
+-- color picker drop on header (web only)
 
 other ideas
 
@@ -30,4 +32,7 @@ other ideas
 -- Web dev utils
 
 Mini games kit
---
+-- tic tac toe
+-- wordle like (refreshes everyday)
+-- title takedown
+-- mewtru inspired pages

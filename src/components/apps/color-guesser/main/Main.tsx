@@ -75,6 +75,7 @@ export function Main() {
             </div>
             <p className='cg-main__color'>{color ? `Color to find: ${color.name} ${color.alternativeName ? "/" + color.alternativeName: ''}` : 'Reset to choose new color'}</p>
 
+            {/* Use Gsap pricing button animation */}
             <div className='cg-main__btngroup'>
                 <button type='button' className='cg-main__submit' aria-label='Submit your guess' onClick={handleSubmit}>
                     Submit
