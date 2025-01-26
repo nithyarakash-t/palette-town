@@ -3,7 +3,7 @@ COMPLETED
 -- color guesser
 
 INPROGRESS
-
+-- CSS MPA / SPA transitions (Bramus)
 
 YTD
 After dark - dark mode
@@ -30,6 +30,8 @@ other ideas
 -- Font visualizer, downloader
 -- Css shapes
 -- Web dev utils
+-- boardgame io
+-- https://emilkowal.ski/ui/the-magic-of-clip-path
 
 Mini games kit
 -- tic tac toe
