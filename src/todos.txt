@@ -5,6 +5,12 @@ COMPLETED
 INPROGRESS
 -- CSS MPA / SPA transitions (Bramus)
 
+inspirations
+-- https://x.com/KadriJibraan/status/1887281802546757740?t=hwL-2sVsq6d9STXRmjUfiQ&s=19
+-- https://21st.dev/?tab=components&sort=recommended&s=09
+-- https://gsap.com/community/forums/topic/39639-gsap-wrapper-for-disabling-animations/
+
+
 YTD
 After dark - dark mode
 landing page, hero
@@ -23,6 +29,7 @@ dropdown / island in header with options to choose diff pages
 other ideas
 
 -- Easing visualizer - https://cubic-bezier.com/ - https://linear-easing-generator.netlify.app/
+Easing wizard
 -- Custom SVG Path Editor, 
 -- CSS Clip-Path Generator, 
 -- clip path converter - yoksel
