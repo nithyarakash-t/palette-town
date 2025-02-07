@@ -39,7 +39,8 @@ Easing wizard
 --https://noamr.github.io/squircle-testbed/?s=09
 -- Web dev utils
 -- boardgame io
--- https://emilkowal.ski/ui/the-magic-of-clip-path
+-- https://learning-axis.com/tools/
+-- https://flatlogic.com/templates https://emilkowal.ski/ui/the-magic-of-clip-path
 
 Mini games kit
 -- tic tac toe
