@@ -5,6 +5,12 @@ COMPLETED
 INPROGRESS
 -- CSS MPA / SPA transitions (Bramus)
 
+inspirations
+-- https://x.com/KadriJibraan/status/1887281802546757740?t=hwL-2sVsq6d9STXRmjUfiQ&s=19
+-- https://21st.dev/?tab=components&sort=recommended&s=09
+-- https://gsap.com/community/forums/topic/39639-gsap-wrapper-for-disabling-animations/
+
+
 YTD
 UI - add the color picker logo
 After dark - dark mode
@@ -27,15 +33,18 @@ other ideas
     - https://cubic-bezier.com/ 
     - https://linear-easing-generator.netlify.app/
     - https://originui.com/easings
+    - Easing wizard
 -- Custom SVG Path Editor, 
 -- CSS Clip-Path Generator, 
 -- clip path converter - yoksel
 -- Performance Checklist Generator
 -- Font visualizer, downloader
 -- Css shapes
+--https://noamr.github.io/squircle-testbed/?s=09
 -- Web dev utils
 -- boardgame io
--- https://emilkowal.ski/ui/the-magic-of-clip-path
+-- https://learning-axis.com/tools/
+-- https://flatlogic.com/templates https://emilkowal.ski/ui/the-magic-of-clip-path
 
 Mini games kit
 -- tic tac toe
