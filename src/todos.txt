@@ -6,6 +6,7 @@ INPROGRESS
 -- CSS MPA / SPA transitions (Bramus)
 
 YTD
+UI - add the color picker logo
 After dark - dark mode
 landing page, hero
 dropdown / island in header with options to choose diff pages
@@ -13,7 +14,7 @@ dropdown / island in header with options to choose diff pages
 -- oklch . com
 -- mix blend mode deepdive
 -- color mix visualizer
--- gradient, box shadow, drop shadow generators ?
+-- gradient, box shadow, drop shadow generators ? -- gradient.style
 -- contrast checker -- https://coolors.co/contrast-checker
 -- hsl picker . com
 -- color converter -- RGB, hex, HSL, HWB, OKLCH
@@ -22,7 +23,10 @@ dropdown / island in header with options to choose diff pages
 
 other ideas
 
--- Easing visualizer - https://cubic-bezier.com/ - https://linear-easing-generator.netlify.app/
+-- Easing visualizer 
+    - https://cubic-bezier.com/ 
+    - https://linear-easing-generator.netlify.app/
+    - https://originui.com/easings
 -- Custom SVG Path Editor, 
 -- CSS Clip-Path Generator, 
 -- clip path converter - yoksel
