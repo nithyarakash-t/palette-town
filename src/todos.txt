@@ -1,6 +1,8 @@
 COMPLETED
 -- css colors -- Add https://yoksel.github.io/handy-colors/ - tema
 -- color guesser
+-- dropdown / island in header with options to choose diff pages
+
 
 INPROGRESS
 -- CSS MPA / SPA transitions (Bramus)
@@ -15,11 +17,11 @@ YTD
 UI - add the color picker logo
 After dark - dark mode
 landing page, hero
-dropdown / island in header with options to choose diff pages
 
 -- oklch . com
 -- mix blend mode deepdive
 -- color mix visualizer
+-- palette generator
 -- gradient, box shadow, drop shadow generators ? -- gradient.style
 -- contrast checker -- https://coolors.co/contrast-checker
 -- hsl picker . com
