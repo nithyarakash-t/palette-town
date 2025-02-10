@@ -6,30 +6,33 @@ import { Footer } from './components/layout/footer/Footer'
 import { CssColors } from './components/apps/css-colors/Csscolors'
 import { ColorGuesser } from './components/apps/color-guesser/Colorguesser'
 import { Home } from './components/layout/home/Home'
+import { ThemeContextProvider } from './components/layout/themeSwitch/Themecontext'
 
 function App() {
 
   return (
     <BrowserRouter>
-      <div className="app-wrapper">
-        <Header/>
-        <main className="app-wrap" id="main">
-            <Routes>
-              {
-                ['/home'].map((item, index)=>{
-                  return (
-                    <Route key={index} path={item} element={<Home/>}></Route>
-                  )
-                })
-              }
-              <Route path='/csscolors/*' element={<CssColors/>}></Route>
-              <Route path='/colorguesser/*' element={<ColorGuesser/>}></Route>
-              <Route path='/releasenotes/*' element={<ReleaseNotes/>}></Route>
-              <Route path='*' element={<Navigate to='/home' />} />
-            </Routes>
-        </main>
-        <Footer/>
-      </div>
+      <ThemeContextProvider>
+        <div className="app-wrapper">
+          <Header/>
+          <main className="app-wrap" id="main">
+              <Routes>
+                {
+                  ['/home'].map((item, index)=>{
+                    return (
+                      <Route key={index} path={item} element={<Home/>}></Route>
+                    )
+                  })
+                }
+                <Route path='/csscolors/*' element={<CssColors/>}></Route>
+                <Route path='/colorguesser/*' element={<ColorGuesser/>}></Route>
+                <Route path='/releasenotes/*' element={<ReleaseNotes/>}></Route>
+                <Route path='*' element={<Navigate to='/home' />} />
+              </Routes>
+          </main>
+          <Footer/>
+        </div>
+      </ThemeContextProvider>
     </BrowserRouter>
   )
 }

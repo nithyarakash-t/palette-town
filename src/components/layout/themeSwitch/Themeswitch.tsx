@@ -1,34 +1,12 @@
-import { useEffect, useState } from 'react';
 import './Themeswitch.scss';
+import { Theme, useTheme } from './Themecontext';
 
 // Cookie popup - add
 export function Themeswitch() {
-    const storageKey = 'theme-preference';
-    const [theme, setTheme] = useState(getColorPreference() ?? 'light');
-
-    useEffect(()=>{
-      localStorage.setItem(storageKey, theme);
-      document.documentElement.setAttribute('data-theme', theme);
-
-      window
-      .matchMedia('(prefers-color-scheme: dark)')
-      .addEventListener('change', ({matches:isDark}) => {
-        setTheme(isDark ? 'dark' : 'light');
-      });
-
-    },[theme])
-    
-    // get color preference on page load
-    function getColorPreference() {
-      if (localStorage.getItem(storageKey)) {
-        return localStorage.getItem(storageKey);
-      }
-      else
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
+    const {theme, setTheme} = useTheme();
 
     // flip current value on click
-    function handleClick(theme:string) {
+    function handleClick(theme:Theme) {
       setTheme(theme);
     }
             
