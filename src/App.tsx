@@ -6,13 +6,13 @@ import { Footer } from './components/layout/footer/Footer'
 import { CssColors } from './components/apps/css-colors/Csscolors'
 import { ColorGuesser } from './components/apps/color-guesser/Colorguesser'
 import { Home } from './components/layout/home/Home'
-import { ThemeContextProvider } from './components/layout/themeSwitch/Themecontext'
+import { ThemeProvider } from './components/layout/themeSwitch/Themecontext'
 
 function App() {
 
   return (
     <BrowserRouter>
-      <ThemeContextProvider>
+      <ThemeProvider>
         <div className="app-wrapper">
           <Header/>
           <main className="app-wrap" id="main">
@@ -32,7 +32,7 @@ function App() {
           </main>
           <Footer/>
         </div>
-      </ThemeContextProvider>
+      </ThemeProvider>
     </BrowserRouter>
   )
 }

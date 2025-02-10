@@ -8,7 +8,7 @@ type ThemeContextType = {
 const STORAGE_KEY = "theme-preference";
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeContextProvider: React.FC<{ children: React.ReactNode }> = ({children}) => {
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({children}) => {
     const [theme, setTheme] = useState<Theme>(getColorPreference() ?? 'light');
 
     useEffect(()=>{
@@ -41,7 +41,7 @@ export const ThemeContextProvider: React.FC<{ children: React.ReactNode }> = ({c
 export const useTheme = () => {
     const context = useContext(ThemeContext);
     if (!context) {
-      throw new Error("useStorage must be used within a StorageProvider");
+      throw new Error("useTheme must be used within a ThemeProvider");
     }
     return context;
 };
