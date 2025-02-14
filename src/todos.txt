@@ -17,6 +17,7 @@ YTD
 UI - add the color picker logo
 After dark - dark mode
 landing page, hero
+gSap + kill switch
 
 -- oklch . com
 -- mix blend mode deepdive
@@ -25,6 +26,7 @@ landing page, hero
 -- gradient, box shadow, drop shadow generators ? -- gradient.style
 -- contrast checker -- https://coolors.co/contrast-checker
 -- hsl picker . com
+-- colorpicker.fr
 -- color converter -- RGB, hex, HSL, HWB, OKLCH
 -- upload pic and get colours / wrapper to create art
 -- color picker drop on header (web only)
