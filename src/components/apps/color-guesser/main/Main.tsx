@@ -38,7 +38,7 @@ export function Main() {
     return (
         <section className='cg-main__wrap'>
             <fieldset className='cg-difficulty__group'>
-                <legend>Choose your difficulty: </legend>
+                <legend>Choose your difficulty </legend>
 
                 <label className='cg-difficulty__rdo'>
                     <input type="radio" id="cg-difficulty" name="cg-diff-easy" value="easy"

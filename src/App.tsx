@@ -8,6 +8,7 @@ import { ColorGuesser } from './components/apps/color-guesser/Colorguesser'
 import { Home } from './components/layout/home/Home'
 import { ThemeProvider } from './components/layout/themeSwitch/Themecontext'
 import { MetaColorContextProvider } from './components/layout/metacolor/metacolorcontext/MetaColorContext'
+import { ContrastChecker } from './components/apps/contrast-checker/Contrastchecker'
 
 export function App() {
 
@@ -28,6 +29,7 @@ export function App() {
                   }
                   <Route path='/csscolors/*' element={<CssColors/>}></Route>
                   <Route path='/colorguesser/*' element={<ColorGuesser/>}></Route>
+                  <Route path='/contrastchecker/*' element={<ContrastChecker/>}></Route>
                   <Route path='/releasenotes/*' element={<ReleaseNotes/>}></Route>
                   <Route path='*' element={<Navigate to='/home' />} />
                 </Routes>

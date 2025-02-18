@@ -22,6 +22,7 @@ export function Navmenu() {
             <option value="home" defaultValue={'true'}>Home</option>
             <option value="colorguesser">Color Guesser</option>
             <option value="csscolors">CSS Colours</option>
+            <option value="contrastchecker">Contrast Checker</option>
         </select>
     )
 }

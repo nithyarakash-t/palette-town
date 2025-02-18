@@ -34,5 +34,6 @@
         z-index: 99;
         padding: 1rem 0;
         height: var(--header-height, 4.25rem);
+        border-bottom: 1px solid light-dark(#000, #fff);
     }
 }

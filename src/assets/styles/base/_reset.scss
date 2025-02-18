@@ -48,6 +48,7 @@ body {
   border-color: var(--app-color-border-primary, #000);
   color: var(--app-color-text-primary, #000);
   background-color: var(--color-base-background, #fff);
+  // background-color: light-dark(#f9f7ee, #130a44);
   outline-color: var(--app-color-border-primary, #000);
   position: relative;
   text-rendering: optimizeSpeed; // look up kerning and ligature
