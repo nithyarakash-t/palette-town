@@ -38,6 +38,6 @@ export const references:Reference[] = [
  * Reverse
  * 
  * Click to enhance from coolors
- * Use figma + coolors layout with quote section, link section, 
+ * Use figma + coolors layout with machete quote section, link section, 
  * Simulations for diff visibility disorders like Protanopia, Deutranopia, Tritanopia, Achromatopsia
  */

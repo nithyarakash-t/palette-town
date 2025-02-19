@@ -24,7 +24,7 @@ gSap + kill switch
 -- gradient, box shadow, drop shadow generators ? -- gradient.style
 -- contrast checker -- https://coolors.co/contrast-checker / webaim
 -- hsl picker . com
--- color converter -- RGB, hex, HSL, HWB, OKLCH
+-- color converter -- RGB, hex, HSL, HWB, OKLCH, CMK
 
 -- color picker drop on header (web only)
 -- colorpicker - colorpicker.fr / https://coolors.co/
