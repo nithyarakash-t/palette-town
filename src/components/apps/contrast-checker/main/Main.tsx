@@ -4,8 +4,14 @@ import './Main.scss';
 export function Main() {
     const [foreground, setForeground] = useState("#000000");
     const [background, setBackground] = useState("#ffffff");
-    const [link, setLink] = useState("#0000ee");
+    const [link, setLink] = useState("#345acb");
     const [linkActive, setLinkActive] = useState("#a100ff");
+
+    //Handle swap b/w foreground and background
+    function handleSwap() {
+        setForeground(background);
+        setBackground(foreground);
+    }
 
     // Function to calculate relative luminance
     const getLuminance = (color: string) => {
@@ -22,21 +28,35 @@ export function Main() {
     };
 
     // Function to evaluate contrast against WCAG thresholds
-    const evaluateContrast = (ratio: number, aa: number, aaa: number) => {
+    const evaluateContrast = (foreground: string, background: string, aa: number = 4.5, aaa: number = 7) => {
+        const colorToBackground = getContrastRatio(foreground, background);
         return {
-        ratio: ratio.toFixed(2),
-        AA: ratio >= aa ? "Pass" : "Fail",
-        AAA: ratio >= aaa ? "Pass" : "Fail",
+            ratio: colorToBackground.toFixed(1),
+            AA: colorToBackground >= aa,
+            AAA: colorToBackground >= aaa,
         };
     };
 
+    //Function to evaluate link contrasts
+    const evaluateLinkContrast = (link: string, foreground: string, background : string, aa:number = 4.5, aaa:number = 7 ) => {
+        const linkToBackground = getContrastRatio(link, background);
+        const linkToForeground = getContrastRatio(link, foreground);
+        const colorToBackground = getContrastRatio(foreground, background);
+        return {
+            ratio: linkToBackground.toFixed(1),
+            ratio2: linkToForeground.toFixed(1),
+            AA: (linkToBackground > aa) && (colorToBackground > aa) && (linkToForeground > 3),
+            AAA: (linkToBackground > aaa) && (colorToBackground > aaa) && (linkToForeground > 3)
+        }
+    }
+
     // Compute contrast results for various elements
     const results = {
-        text: evaluateContrast(getContrastRatio(foreground, background), 4.5, 7),
-        largeText: evaluateContrast(getContrastRatio(foreground, background), 3, 4.5),
-        icons: evaluateContrast(getContrastRatio(foreground, background), 3, 3),
-        link: evaluateContrast(getContrastRatio(link, background), 4.5, 7),
-        linkActive: evaluateContrast(getContrastRatio(linkActive, background), 4.5, 7),
+        text: evaluateContrast(foreground, background),
+        largeText: evaluateContrast(foreground, background, 3, 4.5),
+        link: evaluateLinkContrast(link, foreground, background),
+        linkActive: evaluateLinkContrast(link, foreground, background),
+        icons: evaluateContrast(foreground, background, 3, 3),
     };
 
     return (
@@ -50,7 +70,7 @@ export function Main() {
                 {/* Preview Section: Displays text and links with chosen colors */}
                 <div className="cxc-main__preview">
                     <div className="cxc-main__preview-head">
-                        <h3>Preview</h3>
+                        <h2>Preview</h2>
                         {/* Color simulation + tooltip */}
                     </div>
                     <div className="cxc-main__preview-body">
@@ -63,10 +83,11 @@ export function Main() {
                                     </svg>
                                 </div>
                                 <div className="cxc-main__player-title">
-                                    <h4>Awesome Mix</h4>
+                                    <h3>Awesome Mix</h3>
                                     <p>Playlist by yours truly</p>
                                 </div>
-                                <button type="button" className="cxc-main__player-control" disabled aria-label="Play button"></button>
+                                <button type="button" className="--shuffle" aria-label="Shuffle button"></button>
+                                <button type="button" className="--control" disabled aria-label="Play button"></button>
                             </div>
                             <div className="cxc-main__player-body">
                                 <ul className="cxc-main__player-list">
@@ -95,56 +116,104 @@ export function Main() {
                 </div>
                 {/* Control Section: Inputs for user to select colors */}
                 <div className="cxc-main__setup">
+                    <div className="cxc-main__setup-peak">
+                       <div></div>
+                       <div></div>
+                    </div>
                     <div className="cxc-main__setup-head">
-                       
+                        <p data-clears={results.text.AAA ? 'aaa' : (results.text.AA) ? 'aa' : ''}>Contrast: <span>{results.text.ratio}</span></p>
+                        <button type="button" aria-label="Swap" onClick={handleSwap}>Swap</button>
                     </div>
                     <div className="cxc-main__setup-body">
-
+                        <fieldset className="cxc-main__setup-field">
+                            <legend>Foreground</legend>
+                            <p>{foreground}</p>
+                            <input type="color" value={foreground} onChange={(e) => setForeground(e.target.value)} />
+                        </fieldset>
+                        <fieldset className="cxc-main__setup-field">
+                            <legend>Background</legend>
+                            <p>{background}</p>
+                            <input type="color" value={background} onChange={(e) => setBackground(e.target.value)} />
+                        </fieldset>
+                        <fieldset className="cxc-main__setup-field">
+                            <legend>Link</legend>
+                            <p>{link}</p>
+                            <input type="color" value={link} onChange={(e) => setLink(e.target.value)} />
+                        </fieldset>
+                        <fieldset className="cxc-main__setup-field">
+                            <legend>Link Active</legend>
+                            <p>{linkActive}</p>
+                            <input type="color" value={linkActive} onChange={(e) => setLinkActive(e.target.value)} />
+                        </fieldset>
                     </div>
-                    <label style={{display: 'block'}}>Foreground: <input type="color" value={foreground} onChange={(e) => setForeground(e.target.value)} /></label>
-                    <label style={{display: 'block'}}>Background: <input type="color" value={background} onChange={(e) => setBackground(e.target.value)} /></label>
-                    <label style={{display: 'block'}}>Link: <input type="color" value={link} onChange={(e) => setLink(e.target.value)} /></label>
-                    <label style={{display: 'block'}}>Link Active: <input type="color" value={linkActive} onChange={(e) => setLinkActive(e.target.value)} /></label>
+                    <div className="cxc-main__tablewrap">
+                        <div className="cxc-main__tableresponsive">
+                        <table className="cxc-main__table">
+                            <caption className="sr-only">Results</caption>
+                            <thead>
+                            <tr>
+                                <th>Element</th>
+                                {/* <th>Benchmark</th> */}
+                                <th>Contrast Ratio</th>
+                                <th>AA</th>
+                                <th>AAA</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope='row'>Normal Text</th>{/* <td>4.5</td> */}<td>{results.text.ratio}:1</td>
+                                    <td data-pass={results.text.AA}>{results.text.AA ? 'Pass' : 'Fail'}</td><td data-pass={results.text.AAA}>{results.text.AAA ? 'Pass' : 'Fail'}</td>
+                                </tr>
+                                <tr>
+                                    <th scope='row'>Large Text</th>{/* <td>3</td> */}<td>{results.largeText.ratio}:1</td>
+                                    <td data-pass={results.largeText.AA}>{results.largeText.AA ? 'Pass' : 'Fail'}</td><td data-pass={results.largeText.AAA}>{results.largeText.AAA ? 'Pass' : 'Fail'}</td>
+                                </tr>
+                                <tr>
+                                    <th scope='row'>Icons/Graphics</th>{/* <td>3</td> */}<td>{results.icons.ratio}:1</td>
+                                    <td data-pass={results.icons.AA}>{results.icons.AA ? 'Pass' : 'Fail'}</td><td data-pass={results.icons.AAA}>{results.icons.AAA ? 'Pass' : 'Fail'}</td>
+                                </tr>
+                                <tr>
+                                    <th scope='row'>Link</th>{/* <td>3</td> */}<td>{results.link.ratio}:1, {results.link.ratio2}:1</td>
+                                    <td data-pass={results.link.AA}>{results.link.AA ? 'Pass' : 'Fail'}</td><td data-pass={results.link.AAA}>{results.link.AAA ? 'Pass' : 'Fail'}</td>
+                                </tr>
+                                <tr>
+                                    <th scope='row'>Active Link</th>{/* <td>3</td> */}<td>{results.linkActive.ratio}:1, {results.link.ratio2}:1</td>
+                                    <td data-pass={results.linkActive.AA}>{results.linkActive.AA ? 'Pass' : 'Fail'}</td><td data-pass={results.linkActive.AAA}>{results.linkActive.AAA ? 'Pass' : 'Fail'}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            {/* Results Table: Displays contrast ratios and pass/fail results */}
-            <table>
-                <thead>
-                <tr>
-                    <th>Element</th>
-                    <th>Contrast Ratio</th>
-                    <th>AA</th>
-                    <th>AAA</th>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Normal Text</td><td>{results.text.ratio}</td><td>{results.text.AA}</td><td>{results.text.AAA}</td></tr>
-                    <tr><td>Large Text</td><td>{results.largeText.ratio}</td><td>{results.largeText.AA}</td><td>{results.largeText.AAA}</td></tr>
-                    <tr><td>Icons/Graphics</td><td>{results.icons.ratio}</td><td>{results.icons.AA}</td><td>{results.icons.AAA}</td></tr>
-                    <tr><td>Link</td><td>{results.link.ratio}</td><td>{results.link.AA}</td><td>{results.link.AAA}</td></tr>
-                    <tr><td>Active Link</td><td>{results.linkActive.ratio}</td><td>{results.linkActive.AA}</td><td>{results.linkActive.AAA}</td></tr>
-                </tbody>
-            </table>
+            </div>            
         </section>
     )
 }
 
-const tracklist = [
+type Track = {
+    name: string,
+    artist: string,
+    length: string
+}
+const tracklist:Track[] = [
     {
         name: 'Killer Queen',
+        artist: 'Queen',
         length: '4.11'
     },
     {
         name: 'Time in a bottle',
+        artist: 'Jim Croce',
         length: '5.10'
     },
     {
         name: 'Cult of personality',
+        artist: 'Living Color',
         length: '4.05'
     },
     {
         name: 'Boogie Wonderland',
+        artist: 'Earth, Wind & Fire',
         length: '4.05'
     }
 ]

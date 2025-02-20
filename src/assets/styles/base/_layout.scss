@@ -1,8 +1,8 @@
 /* Layout classes */
 :root {
   --content-padding: 4.75rem;
-  --content-maxwidth: 56.25rem;
-  --content-breakout-maxwidth: 80rem;
+  --content-maxwidth: 80rem;
+  --content-breakout-maxwidth: 96.875rem;
   @media (max-width: 720px) {
     --content-padding: 2rem;
   }

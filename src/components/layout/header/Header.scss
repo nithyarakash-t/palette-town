@@ -29,7 +29,7 @@
     }
     &__wrap {
         position: sticky;
-        background-color: transparent;
+        background-color: light-dark(#fff, #000);
         inset: 0 0 auto 0;
         z-index: 99;
         padding: 1rem 0;
