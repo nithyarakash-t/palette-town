@@ -19,6 +19,7 @@
   --color-base-background: var(--color-contrast);
   
   --app-color-text-primary: var(--color-default);
+  --app-color-text-secondary: light-dark(var(--color-grey-700), var(--color-grey-200))
   --app-color-border-primary: var(--color-default);
   --app-color-border-secondary: light-dark(#ccc, #737373);
   --anchor-color-text-primary: light-dark(#000, #fff);

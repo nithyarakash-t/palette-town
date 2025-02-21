@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { tracklist } from "./songs";
 import './Main.scss';
 
 export function Main() {
@@ -6,6 +7,25 @@ export function Main() {
     const [background, setBackground] = useState("#ffffff");
     const [link, setLink] = useState("#345acb");
     const [linkActive, setLinkActive] = useState("#a100ff");
+
+    //Marquee
+    useEffect(() => {
+        const checkOverflow = () => {
+            const elements = document.querySelectorAll('.cxc-main__player-list > li > div > p:first-of-type');
+            
+            elements.forEach(element => {
+                if (element instanceof HTMLElement) {
+                    const isOverflow = element.offsetWidth < element.scrollWidth;
+                    element.setAttribute('is-marquee', isOverflow ? 'true' : 'false');
+                }
+            });
+        };
+
+        checkOverflow();
+        window.addEventListener('resize', checkOverflow);
+        
+        return () => window.removeEventListener('resize', checkOverflow);
+    }, []); 
 
     //Handle swap b/w foreground and background
     function handleSwap() {
@@ -94,7 +114,10 @@ export function Main() {
                                     {
                                         tracklist.map((item)=>
                                         <li key={item.name}>
-                                            <p>{item.name}</p>
+                                            <div>
+                                                <p data-content={item.name}>{item.name}</p>
+                                                <p>{item.artist}</p>
+                                            </div>
                                            
                                             <svg aria-hidden='true' xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
                                                 <circle cx="7" cy="13.5" r="1.5" fill="currentColor"></circle>
@@ -111,6 +134,11 @@ export function Main() {
                                     }
                                 </ul>
                             </div>
+                        </div>
+                        <div className="cxc-main__pv-cont">
+                            <h3>Quote</h3>
+                            <p>A Man who sleeps with a machete by his side is a fool on all days but one</p>
+                            <a href="https://www.youtube.com/watch?v=j5a0jTc9S10" target="_blank">Don't believe me ?</a>
                         </div>
                     </div>
                 </div>
@@ -141,7 +169,7 @@ export function Main() {
                             <input type="color" value={link} onChange={(e) => setLink(e.target.value)} />
                         </fieldset>
                         <fieldset className="cxc-main__setup-field">
-                            <legend>Link Active</legend>
+                            <legend>Link Alternate</legend>
                             <p>{linkActive}</p>
                             <input type="color" value={linkActive} onChange={(e) => setLinkActive(e.target.value)} />
                         </fieldset>
@@ -177,7 +205,7 @@ export function Main() {
                                     <td data-pass={results.link.AA}>{results.link.AA ? 'Pass' : 'Fail'}</td><td data-pass={results.link.AAA}>{results.link.AAA ? 'Pass' : 'Fail'}</td>
                                 </tr>
                                 <tr>
-                                    <th scope='row'>Active Link</th>{/* <td>3</td> */}<td>{results.linkActive.ratio}:1, {results.link.ratio2}:1</td>
+                                    <th scope='row'>Link Alternate</th>{/* <td>3</td> */}<td>{results.linkActive.ratio}:1, {results.link.ratio2}:1</td>
                                     <td data-pass={results.linkActive.AA}>{results.linkActive.AA ? 'Pass' : 'Fail'}</td><td data-pass={results.linkActive.AAA}>{results.linkActive.AAA ? 'Pass' : 'Fail'}</td>
                                 </tr>
                             </tbody>
@@ -189,37 +217,3 @@ export function Main() {
         </section>
     )
 }
-
-type Track = {
-    name: string,
-    artist: string,
-    length: string
-}
-const tracklist:Track[] = [
-    {
-        name: 'Killer Queen',
-        artist: 'Queen',
-        length: '4.11'
-    },
-    {
-        name: 'Time in a bottle',
-        artist: 'Jim Croce',
-        length: '5.10'
-    },
-    {
-        name: 'Cult of personality',
-        artist: 'Living Color',
-        length: '4.05'
-    },
-    {
-        name: 'Boogie Wonderland',
-        artist: 'Earth, Wind & Fire',
-        length: '4.05'
-    }
-]
-{/* <div className="cxc-main__preview" style={{ background: "var(--_background)", padding: "10px", color: "var(--_foreground)" }}>
-                    <p>Sample text with foreground color.</p>
-                    <p>
-                        <a href="#" style={{ color: "var(--_link)" }}>Link</a> | <a href="#" style={{ color: "var(--_link-active)" }}>Active Link</a>
-                    </p>
-                </div> */}

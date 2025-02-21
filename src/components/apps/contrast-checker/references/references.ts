@@ -2,6 +2,18 @@ import { Reference } from "../../css-colors/references/references-list";
 
 export const references:Reference[] = [
     {
+        name: 'WCAG AA',
+        link: 'https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html'
+    },
+    {
+        name: 'WCAG AAA',
+        link: 'https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced.html'
+    },
+    {
+        name: 'WCAG non-text',
+        link: 'https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html'
+    },
+    {
         name: "WebAIM",
         link: "https://webaim.org/resources/contrastchecker/", //https://webaim.org/resources/linkcontrastchecker/
     },
@@ -35,7 +47,7 @@ export const references:Reference[] = [
  * Inputs - hex text and color picker default
  * Brief about WCAG guidelines below the tool
  * Link and text
- * Reverse
+ * 
  * 
  * Click to enhance from coolors
  * Use figma + coolors layout with machete quote section, link section, 

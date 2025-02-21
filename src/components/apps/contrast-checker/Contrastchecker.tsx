@@ -3,6 +3,7 @@ import './Contrastchecker.scss';
 import { Main } from './main/Main';
 import { References } from '../css-colors/references/References';
 import { references } from './references/references';
+import { Faq } from './faq/Faq';
 
 export function ContrastChecker() {
     return(
@@ -12,6 +13,7 @@ export function ContrastChecker() {
                 <Route path="/" element={
                     <>
                         <Main/>
+                        <Faq />
                         <div className='cxc-app__refcont'>
                             <Link to={'./references'} aria-label="References for Css colors"
                                 >References</Link>

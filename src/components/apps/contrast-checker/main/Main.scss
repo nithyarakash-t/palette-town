@@ -1,7 +1,66 @@
 .cxc-main {
+    &__pv {
+        &-cont {
+            > a {
+                color: var(--_link);
+                &:hover,
+                &:focus-visible {
+                    color: var(--_link-active);
+                }
+            }
+            > p {
+                font-size: 0.875rem;
+            }
+            > h3 {
+                font-size: 2rem;
+            }
+            & {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+                margin-top: 1rem;
+                color: var(--_foreground);
+            }
+        }
+    }
     &__player {
         &-list {
             > li {
+                > div {
+                    display: flex;
+                    flex-direction: column;
+                    max-width: 100%;
+                    overflow: hidden;
+                    p {
+                        &:nth-of-type(1) {
+                            white-space: nowrap;
+                            will-change: transform;
+                            &[is-marquee='true'] {
+                                display: flex;
+                                gap: 1rem;
+                                animation: scroll 10s forwards linear infinite;
+                                animation-delay: 1s;
+                                width: max-content; //IMPORTANT
+                                &:hover {
+                                    animation-play-state: paused;
+                                }
+                                &::after {
+                                    content: attr(data-content);
+                                    display: inline-block;
+                                }
+                            }
+                            @keyframes scroll {
+                                to {
+                                    transform: translate(calc(-50% - 0.5rem));
+                                }
+                            }
+                        }
+                        &:nth-of-type(2) {
+                            font-size: 0.875rem;
+                            // color: var(--_link);
+                        }
+                    }
+                }
                 &::before {
                     content: '0' counter(tracknumber);
                 }
@@ -9,8 +68,8 @@
                     counter-increment: tracknumber 1;
                     display: grid;
                     grid-template-columns: auto 1fr auto auto auto;
-                    align-items: center;
-                    gap: 1rem;
+                    align-items: start;
+                    gap: 0.25rem 1rem;
                     font-size: 1.25rem;
                 }
                 &:not(:first-child) {
@@ -298,7 +357,7 @@
     }
     &__content {
         --_padding: 1.5rem;
-        --_border-radius: 2.25rem;
+        --_border-radius: 1.25rem;
         --_child-border-radius: calc(var(--_border-radius) - var(--_padding-h));
         display: grid;
         grid-template-columns: 1fr 1fr;
