@@ -39,7 +39,7 @@
                                 display: flex;
                                 gap: 1rem;
                                 animation: scroll 10s forwards linear infinite;
-                                animation-delay: 1s;
+                                // animation-delay: 1s;
                                 width: max-content; //IMPORTANT
                                 &:hover {
                                     animation-play-state: paused;
