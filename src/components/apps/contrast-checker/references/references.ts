@@ -44,12 +44,7 @@ export const references:Reference[] = [
  * AA, AAA - normal text, small text, icons, links
  * 
  * Todos
- * Inputs - hex text and color picker default
- * Brief about WCAG guidelines below the tool
- * Link and text
- * 
- * 
- * Click to enhance from coolors
- * Use figma + coolors layout with machete quote section, link section, 
+ * Inputs - add hsl, rgb and maybe oklch as well
+ * Click to enhance from coolors ?!
  * Simulations for diff visibility disorders like Protanopia, Deutranopia, Tritanopia, Achromatopsia
  */
