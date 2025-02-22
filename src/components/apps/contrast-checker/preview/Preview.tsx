@@ -80,6 +80,36 @@ export function Player({simulation}:{simulation:ColorDeficiencyEnum}) {
 export function Simulation({simulation, setSimulation}:{simulation:ColorDeficiencyEnum ,setSimulation:React.Dispatch<React.SetStateAction<ColorDeficiencyEnum>>}) {
     return (
         <div className="cxc-simulation__wrap">
+            <svg className='sr-only' aria-hidden="true">
+    <defs>
+      <filter id="protanopia">
+        <feColorMatrix
+          type="matrix"
+          values="0.567, 0.433, 0,     0, 0
+                  0.558, 0.442, 0,     0, 0
+                  0,     0.242, 0.758, 0, 0
+                  0,     0,     0,     1, 0"/>
+      </filter>
+      
+      <filter id="deutranopia">
+        <feColorMatrix
+          type="matrix"
+          values="0.625, 0.375, 0,   0, 0
+                  0.7,   0.3,   0,   0, 0
+                  0,     0.3,   0.7, 0, 0
+                  0,     0,     0,   1, 0"/>
+      </filter>
+      
+      <filter id="tritanopia">
+        <feColorMatrix
+          type="matrix"
+          values="0.95, 0.05,  0,     0, 0
+                  0,    0.433, 0.567, 0, 0
+                  0,    0.475, 0.525, 0, 0
+                  0,    0,     0,     1, 0"/>
+      </filter>
+    </defs>
+            </svg>
             <label className="cxc-simulation__select">
                 <span>Color Simulation</span>
                 <select name="color-deficiency-simulation" id="color-deficiency-simulation" 
@@ -94,7 +124,7 @@ export function Simulation({simulation, setSimulation}:{simulation:ColorDeficien
             </label>
 
             <button type="button"  className='cxc-simulation__info' aria-label="Color simulations show an approximation of how selected colors might appear to users with different forms of color visual deficiency.">
-                <svg aria-hidden='true' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg aria-hidden='true' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
                 </svg>
             </button>
@@ -112,11 +142,12 @@ export function Quote({simulation}:{simulation:ColorDeficiencyEnum}) {
         <div className="cxc-main__pv-quote" data-simulation={simulation}>
             <div>
             <h3>Quote</h3>
-            <button type="button" aria-label="Choose a different quote" onClick={handleShuffle}></button>
+            <button type="button" aria-label="Choose a different quote" title='Choose a different quote' onClick={handleShuffle}></button>
             </div>  
             <p>{quote.quote}</p>
             <p>-{quote.by}</p>
-            <a href="https://www.youtube.com/watch?v=j5a0jTc9S10" target="_blank">Don't believe me ?</a>
+            <a href='https://youtube.com/shorts/6gt5E-jWDpg?si=AFliOYtR76uefNXc' target='_blank'>In case you're bored</a>
+            {/* <a href="https://www.youtube.com/watch?v=j5a0jTc9S10" target="_blank">Don't believe me ?</a> */}
         </div>
     )
 }

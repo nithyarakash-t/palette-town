@@ -45,6 +45,6 @@ export const references:Reference[] = [
  * 
  * Todos
  * Inputs - add hsl, rgb and maybe oklch as well
- * Click to enhance from coolors ?!
+ * Click to enhance ?!
  * Simulations for diff visibility disorders like Protanopia, Deutranopia, Tritanopia, Achromatopsia
  */

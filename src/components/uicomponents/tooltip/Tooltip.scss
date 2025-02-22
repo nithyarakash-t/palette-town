@@ -1,0 +1,86 @@
+.c-tooltip {
+    &__wrapper {
+        position: relative;
+        display: inline-block;
+    }
+
+    &__inner {
+        --_bg: light-dark(#000, #fff);
+        --_color: light-dark(#fff, #000);
+        position: absolute;
+        padding: 0.75rem 1rem;
+        border-radius: 0.25rem;
+        background-color: var(--_bg);
+        color: var(--_color);
+        font-size: 0.875rem;
+        line-height: 1.5;
+        z-index: 1000;
+        width: min(15rem, 50vw);
+        
+        // arrow
+        &::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: 0.375rem solid transparent;
+        }
+        
+        // positions
+        &[data-position="top"] {
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-0.5rem);
+            
+            &::before {
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                border-top-color: var(--_bg);
+                border-bottom: 0;
+            }
+        }
+        
+        &[data-position="bottom"] {
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(0.5rem);
+            
+            &::before {
+                bottom: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                border-bottom-color: var(--_bg);
+                border-top: 0;
+            }
+        }
+        
+        &[data-position="left"] {
+            right: 100%;
+            top: 50%;
+            transform: translateY(-50%) translateX(-0.5rem);
+            
+            &::before {
+                left: 100%;
+                top: 50%;
+                transform: translateY(-50%);
+                border-left-color: var(--_bg);
+                border-right: 0;
+            }
+        }
+        
+        &[data-position="right"] {
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%) translateX(0.5rem);
+            
+            &::before {
+                right: 100%;
+                top: 50%;
+                transform: translateY(-50%);
+                border-right-color: var(--_bg);
+                border-left: 0;
+            }
+        }
+    }
+}

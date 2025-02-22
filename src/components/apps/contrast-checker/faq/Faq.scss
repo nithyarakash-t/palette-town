@@ -53,7 +53,7 @@
             width: min(100%, 950px);
 
             &:not(:last-child) {
-                border-bottom: 1px solid var(--app-color-border-primary);
+                border-bottom: 1px solid var(--app-color-border-secondary);
             }
 
             &[data-open='true'] {

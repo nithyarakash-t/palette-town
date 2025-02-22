@@ -1,3 +1,4 @@
+import { Tooltip } from '../../../uicomponents/tooltip/Tooltip';
 import './Controls.scss';
 
 type ControlProps = {
@@ -101,7 +102,7 @@ export function ControlsAndResult({foreground, setForeground, background, setBac
                         <caption className="sr-only">Results</caption>
                         <thead>
                             <tr>
-                                <th>Element</th>
+                                <th>Category</th>
                                 {/* <th>Benchmark</th> */}
                                 <th>Contrast Ratio</th>
                                 <th>AA</th>
@@ -110,23 +111,48 @@ export function ControlsAndResult({foreground, setForeground, background, setBac
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope='row'>Normal Text</th>{/* <td>4.5</td> */}<td>{results.text.ratio}:1</td>
+                                <th scope='row'> 
+                                    <Tooltip content="Normal text is defined as non-bold font less than 14 point (typically 18.66 pixels)." position="top" delay={300}> 
+                                        <button type='button' className='cxc-main__table-tltipcont'>Normal Text</button>
+                                    </Tooltip>
+                                </th>
+                                {/* <td>4.5</td> */}<td>{results.text.ratio}:1</td>
                                 <td data-pass={results.text.AA}>{results.text.AA ? 'Pass' : 'Fail'}</td><td data-pass={results.text.AAA}>{results.text.AAA ? 'Pass' : 'Fail'}</td>
                             </tr>
                             <tr>
-                                <th scope='row'>Large Text</th>{/* <td>3</td> */}<td>{results.largeText.ratio}:1</td>
+                                <th scope='row'> 
+                                    <Tooltip content="Large text is defined as at least 18 point (typically 24 pixels) or 14 point (typically 18.66 pixels) bold font." position="top" delay={300}> 
+                                        <button type='button' className='cxc-main__table-tltipcont'>Large Text</button>
+                                    </Tooltip>
+                                </th>
+                                {/* <td>3</td> */}<td>{results.largeText.ratio}:1</td>
                                 <td data-pass={results.largeText.AA}>{results.largeText.AA ? 'Pass' : 'Fail'}</td><td data-pass={results.largeText.AAA}>{results.largeText.AAA ? 'Pass' : 'Fail'}</td>
                             </tr>
                             <tr>
-                                <th scope='row'>Icons/Graphics</th>{/* <td>3</td> */}<td>{results.icons.ratio}:1</td>
+                                <th scope='row'> 
+                                    <Tooltip content="UI elements include user interface components and graphics such as buttons, links, and icons." position="top" delay={300}> 
+                                        <button type='button' className='cxc-main__table-tltipcont'>Icons/Graphics</button>
+                                    </Tooltip>
+                                </th>
+                                {/* <td>3</td> */}<td>{results.icons.ratio}:1</td>
                                 <td data-pass={results.icons.AA}>{results.icons.AA ? 'Pass' : 'Fail'}</td><td data-pass={results.icons.AAA}>{results.icons.AAA ? 'Pass' : 'Fail'}</td>
                             </tr>
                             <tr>
-                                <th scope='row'>Link</th>{/* <td>3</td> */}<td>{results.link.ratio}:1, {results.link.ratio2}:1</td>
+                                <th scope='row'> 
+                                    <Tooltip content="Links that can only be differentiated by color from foreground, have multiple passing criterias. Both links and foreground should have sufficient contrast compared to Background (4.5 for AA and 7 for AAA). Links should also have 3:1 contrast to foreground." position="top" delay={300}> 
+                                        <button type='button' className='cxc-main__table-tltipcont'>Link</button>
+                                    </Tooltip>
+                                </th>
+                                <td>{results.link.ratio}:1, {results.link.ratio2}:1</td>
                                 <td data-pass={results.link.AA}>{results.link.AA ? 'Pass' : 'Fail'}</td><td data-pass={results.link.AAA}>{results.link.AAA ? 'Pass' : 'Fail'}</td>
                             </tr>
                             <tr>
-                                <th scope='row'>Link Alternate</th>{/* <td>3</td> */}<td>{results.linkActive.ratio}:1, {results.link.ratio2}:1</td>
+                                <th scope='row'> 
+                                    <Tooltip content="Links that can only be differentiated by color from foreground, have multiple passing criterias. Both links and foreground should have sufficient contrast compared to Background (4.5 for AA and 7 for AAA). Links should also have 3:1 contrast to foreground." position="top" delay={300}> 
+                                        <button type='button' className='cxc-main__table-tltipcont'>Link Alternative</button>
+                                    </Tooltip>
+                                </th>
+                                {/* <td>3</td> */}<td>{results.linkActive.ratio}:1, {results.link.ratio2}:1</td>
                                 <td data-pass={results.linkActive.AA}>{results.linkActive.AA ? 'Pass' : 'Fail'}</td><td data-pass={results.linkActive.AAA}>{results.linkActive.AAA ? 'Pass' : 'Fail'}</td>
                             </tr>
                         </tbody>

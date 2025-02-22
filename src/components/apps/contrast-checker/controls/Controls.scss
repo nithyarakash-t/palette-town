@@ -1,5 +1,15 @@
 .cxc-main {
     &__table {
+        &-tltipcont {
+            background-color: transparent;
+            border: none;
+            text-decoration: underline;
+            text-decoration-style: dashed;
+            text-underline-offset: 0.25rem;
+            padding: 0;
+            display: inline-block;
+            text-align: inherit;
+        }
         tr {
             &:not(:last-child) {
                 border: var(--_border);
