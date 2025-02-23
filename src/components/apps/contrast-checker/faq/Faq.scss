@@ -1,0 +1,73 @@
+.cxc-faq {
+    &__details {
+        > button {
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            border: none;
+            padding: 0;
+            background-color: transparent;
+            padding: 0.125rem 0;
+            text-align: left;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            font-size: 1.125rem;
+
+            &::after {
+                content: '';
+                height: 1rem;
+                width: 1rem;
+                background-color: currentColor;
+                mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' %3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat center;
+                mask-size: 1rem;
+                display: block;
+                transition: rotate 0.2s ease;
+            }
+
+            &[aria-expanded=true] {
+                &::after {
+                    rotate: 180deg;
+                }
+            }
+        }
+        
+        > div {
+            width: 100%;
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.2s ease;
+
+            > div {
+                overflow: hidden;
+
+                > p {
+                    padding-top: 0.875rem;
+                    max-width: none;
+                }
+            }
+        }
+        & {
+            display: block;
+            padding: 0.875rem 0;
+            width: min(100%, 950px);
+
+            &:not(:last-child) {
+                border-bottom: 1px solid var(--app-color-border-secondary);
+            }
+
+            &[data-open='true'] {
+                > div {
+                    grid-template-rows: 1fr;
+                }
+            }
+
+        }
+       
+    }
+    &__container {
+        margin-top: 3rem;
+        display: grid;
+        place-items: center;
+    }
+}

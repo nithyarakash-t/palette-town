@@ -1,0 +1,9 @@
+1 -- Change chart wrap to grid
+    and remove position absolute / translate from axes
+2 -- Update monochrome checkbox css
+3 -- Add color to thumb in the non-focused state
+4 -- Add tolerance
+5 -- Rework toggle appearance
+6 -- Random
+7 -- Copy to clipboard
+8 -- Clean up unused utils

@@ -1,0 +1,39 @@
+@font-face {
+    font-family: Yesteryear;
+    src: url('./yesteryear/Yesteryear-Regular.ttf');
+}
+
+.app-header {
+    &__logo {
+        font-family: Yesteryear, cursive, monospace;
+        text-decoration: none;
+        font-size: 1.5rem;
+        color: light-dark(#a41b27, #fff);
+        &:hover,
+        &:focus-visible {
+            color: light-dark(#a41b27, #fff);
+            text-decoration: none;
+        }
+    }
+    &__right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    &__wrap {
+        position: sticky;
+        background-color: light-dark(#fff, #000);
+        inset: 0 0 auto 0;
+        z-index: 99;
+        padding: 1rem 0;
+        height: var(--header-height, 4.25rem);
+        border-bottom: 1px solid light-dark(#000, #fff);
+    }
+}

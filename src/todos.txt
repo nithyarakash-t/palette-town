@@ -1,1 +1,33 @@
-After dark - dark mode
+---------------COMPLETED PAGES--------------
+-- css colors -- Add https://yoksel.github.io/handy-colors/ - tema
+-- color guesser
+-- dropdown / island in header with options to choose diff pages
+-- contrast checker - webaim
+
+------------IN PROGRESS---------------------
+-- CSS MPA / SPA transitions (Bramus)
+-- UI for v1.0.0
+-- landing page, hero
+
+-------------------potential inspirations-------------------------
+-- https://x.com/KadriJibraan/status/1887281802546757740?t=hwL-2sVsq6d9STXRmjUfiQ&s=19
+-- https://21st.dev/?tab=components&sort=recommended&s=09
+-- https://gsap.com/community/forums/topic/39639-gsap-wrapper-for-disabling-animations/
+
+------------------YTD-------------------
+— UI - add the color picker logo
+— After dark - dark mode
+— gSap + kill switch
+- color picker drop on header (web only)
+
+
+--------------Other pages----------------
+oklch . com
+palette generator - connect to contrast checker, visualizer, css colours
+gradient, box shadow, drop shadow generators ? -- gradient.style
+color converter and visualizer -- RGB, hex, HSL, HWB, OKLCH, CMK -- -- hsl picker . com
+
+colorpicker - [colorpicker.fr](http://colorpicker.fr/) / https://coolors.co/
+color mix visualizer
+mix blend mode deepdive
+upload pic and get colours / wrapper to create art

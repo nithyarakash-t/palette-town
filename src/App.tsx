@@ -1,52 +1,44 @@
+import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom'
 import './App.scss'
+import { ReleaseNotes } from './components/layout/releasenotes/Releasenotes'
+import { Header } from './components/layout/header/Header'
+import { Footer } from './components/layout/footer/Footer'
+import { CssColors } from './components/apps/css-colors/Csscolors'
+import { ColorGuesser } from './components/apps/color-guesser/Colorguesser'
+import { Home } from './components/layout/home/Home'
+import { ThemeProvider } from './components/layout/themeSwitch/Themecontext'
+import { MetaColorContextProvider } from './components/layout/metacolor/metacolorcontext/MetaColorContext'
+import { ContrastChecker } from './components/apps/contrast-checker/Contrastchecker'
 
-function App() {
+export function App() {
 
   return (
-    <>
-      {/* Grid */}
-      {/* Advantages less HTML tags */}
-      {/* Cons need to specify app-fullwidth as an additional class wherever necessary
-      , which might go against the BEM coding principles */}
-      <div className='app-grid'>
-        <h1 style={{fontSize: '2.5rem', fontWeight: '500'}}>Grid based layout</h1>
-      </div>
-      <header className='app-grid'>
-        <p>Sample Header</p>
-      </header>
-      <main className='app-grid'>
-        <p>Sample Content -- Needs a little optimizing as for some values such as --content-maxwidth of 900px, doesnt match with app-container</p>
-        <p className='app-breakout'>Breakout -- works on screen width of 1600px and above (due to max-width applied)</p>
-        <p className='app-fullwidth'>Fullwidth</p>
-      </main>
-      <footer className='app-grid'>
-        <p>Sample Footer</p>
-      </footer>
-
-
-      {/* Container  */}
-      <div className='app-wrapper' style={{ marginTop: '2rem' }}>
-        <div className='app-container'>
-          <h1 style={{fontSize: '2.5rem', fontWeight: '500'}}>Container based Layout</h1>
-        </div>
-        <header>
-          <div className='app-container'>
-            <p>Sample Header</p>
+    <BrowserRouter>
+      <MetaColorContextProvider>
+        <ThemeProvider>
+          <div className="app-wrapper">
+            <Header/>
+            <main className="app-wrap" id="main">
+                <Routes>
+                  {
+                    ['/home'].map((item, index)=>{
+                      return (
+                        <Route key={index} path={item} element={<Home/>}></Route>
+                      )
+                    })
+                  }
+                  <Route path='/csscolors/*' element={<CssColors/>}></Route>
+                  <Route path='/colorguesser/*' element={<ColorGuesser/>}></Route>
+                  <Route path='/contrastchecker/*' element={<ContrastChecker/>}></Route>
+                  <Route path='/releasenotes/*' element={<ReleaseNotes/>}></Route>
+                  <Route path='*' element={<Navigate to='/home' />} />
+                </Routes>
+            </main>
+            <Footer/>
           </div>
-        </header>
-        <main id='app-main'>
-          <div className='app-container'>
-            <p>Sample Content</p>
-          </div>
-          <p>Full width</p>
-        </main>
-        <footer>
-          <div className='app-container'>
-            <p>Sample Footer</p>
-          </div>
-        </footer>
-      </div>
-    </>
+        </ThemeProvider>
+      </MetaColorContextProvider>
+    </BrowserRouter>
   )
 }
 
