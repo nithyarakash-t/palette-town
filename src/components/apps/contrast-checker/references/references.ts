@@ -15,28 +15,36 @@ export const references:Reference[] = [
     },
     {
         name: "WebAIM",
-        link: "https://webaim.org/resources/contrastchecker/", //https://webaim.org/resources/linkcontrastchecker/
+        link: "https://webaim.org/resources/contrastchecker", //https://webaim.org/resources/linkcontrastchecker/
+    },
+    {
+        name: "Chrome for developers",
+        link: "https://developer.chrome.com/docs/chromium/cvd"
+    },
+    {
+        name: "Firefox source docs",
+        link: "https://firefox-source-docs.mozilla.org/devtools-user/accessibility_inspector/simulation/index.html"
     },
     {
         name: 'Coolors.co',
-        link: 'https://coolors.co/contrast-checker/'
+        link: 'https://coolors.co/contrast-checker'
     },
     {
         name: 'Figma',
-        link: 'https://www.figma.com/color-contrast-checker/'
+        link: 'https://www.figma.com/color-contrast-checker'
     },
-    {
-        name: 'Colorcontast (dot) cc',
-        link: 'https://colourcontrast.cc/'
-    },
-    {
-        name: 'Accessible web',
-        link: 'https://accessibleweb.com/color-contrast-checker/'
-    },
-    {
-        name: 'Polypane',
-        link: 'https://colorcontrast.app'
-    }
+    // {
+    //     name: 'Colorcontast (dot) cc',
+    //     link: 'https://colourcontrast.cc/'
+    // },
+    // {
+    //     name: 'Accessible web',
+    //     link: 'https://accessibleweb.com/color-contrast-checker/'
+    // },
+    // {
+    //     name: 'Polypane',
+    //     link: 'https://colorcontrast.app'
+    // }
 ]
 
 /**
