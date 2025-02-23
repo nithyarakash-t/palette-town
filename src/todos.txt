@@ -1,58 +1,33 @@
-COMPLETED
+---------------COMPLETED PAGES--------------
 -- css colors -- Add https://yoksel.github.io/handy-colors/ - tema
 -- color guesser
 -- dropdown / island in header with options to choose diff pages
--- contrast checker -- https://coolors.co/contrast-checker / webaim
+-- contrast checker - webaim
 
-
-INPROGRESS
+------------IN PROGRESS---------------------
 -- CSS MPA / SPA transitions (Bramus)
 -- UI for v1.0.0
 -- landing page, hero
 
-potential inspirations
+-------------------potential inspirations-------------------------
 -- https://x.com/KadriJibraan/status/1887281802546757740?t=hwL-2sVsq6d9STXRmjUfiQ&s=19
 -- https://21st.dev/?tab=components&sort=recommended&s=09
 -- https://gsap.com/community/forums/topic/39639-gsap-wrapper-for-disabling-animations/
 
+------------------YTD-------------------
+— UI - add the color picker logo
+— After dark - dark mode
+— gSap + kill switch
+- color picker drop on header (web only)
 
-YTD
-UI - add the color picker logo
-After dark - dark mode
-gSap + kill switch
 
--- oklch . com
--- palette generator - connect to contrast checker, visualizer, css colours
--- gradient, box shadow, drop shadow generators ? -- gradient.style
--- color converter and visualizer -- RGB, hex, HSL, HWB, OKLCH, CMK -- -- hsl picker . com
+--------------Other pages----------------
+oklch . com
+palette generator - connect to contrast checker, visualizer, css colours
+gradient, box shadow, drop shadow generators ? -- gradient.style
+color converter and visualizer -- RGB, hex, HSL, HWB, OKLCH, CMK -- -- hsl picker . com
 
--- color picker drop on header (web only)
--- colorpicker - colorpicker.fr / https://coolors.co/
--- color mix visualizer
--- mix blend mode deepdive
--- upload pic and get colours / wrapper to create art
-
-other ideas----------------------------------------------------------------------------------
-
--- Easing visualizer 
-    - https://cubic-bezier.com/ 
-    - https://linear-easing-generator.netlify.app/
-    - https://originui.com/easings
-    - Easing wizard
--- Custom SVG Path Editor, 
--- CSS Clip-Path Generator, 
--- clip path converter - yoksel
--- Performance Checklist Generator
--- Font visualizer, downloader
--- Css shapes
--- https://noamr.github.io/squircle-testbed/?s=09
--- Web dev utils
--- https://learning-axis.com/tools/
--- https://flatlogic.com/templates https://emilkowal.ski/ui/the-magic-of-clip-path
-
-Mini games kit
--- tic tac toe
--- boardgame io
--- wordle like (refreshes everyday)
--- title takedown
--- mewtru inspired pages
+colorpicker - [colorpicker.fr](http://colorpicker.fr/) / https://coolors.co/
+color mix visualizer
+mix blend mode deepdive
+upload pic and get colours / wrapper to create art

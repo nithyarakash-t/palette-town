@@ -77,6 +77,8 @@
                     outline: none;
                     background-color: transparent;
                     text-transform: uppercase;
+                    width: 100%;
+                    min-width: 0;
                 }
                 &::before {
                     content: 'HEX';

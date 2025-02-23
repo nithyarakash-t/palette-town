@@ -52,7 +52,12 @@ export const references:Reference[] = [
  * AA, AAA - normal text, small text, icons, links
  * 
  * Todos
+ * Playlist
  * Inputs - add hsl, rgb and maybe oklch as well
- * Click to enhance ?!
- * Simulations for diff visibility disorders like Protanopia, Deutranopia, Tritanopia, Achromatopsia
+ * Click to enhance ?! - https://coolors.co/contrast-checker
+ */
+
+/**
+ * Completed
+ * Simulation
  */
