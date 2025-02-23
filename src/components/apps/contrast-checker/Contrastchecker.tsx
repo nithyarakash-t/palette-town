@@ -16,7 +16,7 @@ export function ContrastChecker() {
                         <Faq />
                         <div className='cxc-app__refcont'>
                             <Link to={'./references'} aria-label="References for Css colors"
-                                >References</Link>
+                               >References</Link>
                         </div>
                     </>
                 }></Route>

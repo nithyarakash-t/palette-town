@@ -55,6 +55,9 @@ export const references:Reference[] = [
  * Playlist
  * Inputs - add hsl, rgb and maybe oklch as well
  * Click to enhance ?! - https://coolors.co/contrast-checker
+ * https://www.digitalocean.com/community/tutorials/css-hex-code-colors-alpha-values
+ * https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4
+ * 
  */
 
 /**

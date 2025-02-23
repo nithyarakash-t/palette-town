@@ -18,11 +18,13 @@ export function Navmenu() {
     }
 
     return (
-        <select name="pets" id="pet-select" value={route} onChange={handleSelect}>
-            <option value="home" defaultValue={'true'}>Home</option>
-            <option value="colorguesser">Color Guesser</option>
-            <option value="csscolors">CSS Colours</option>
-            <option value="contrastchecker">Contrast Checker</option>
-        </select>
+        <label className='app-navmenu__wrap'>
+            <select name="navmenu" id="navmenu" value={route} onChange={handleSelect}>
+                <option value="home" defaultValue={'true'}>Home</option>
+                <option value="colorguesser">Color Guesser</option>
+                <option value="csscolors">CSS Colours</option>
+                <option value="contrastchecker">Contrast Checker</option>
+            </select>
+        </label>
     )
 }

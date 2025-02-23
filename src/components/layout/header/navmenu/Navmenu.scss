@@ -1,0 +1,37 @@
+.app-navmenu {
+    &__wrap {
+        > select {
+            border: none;
+            padding: none;
+            appearance: none;
+            background-color: transparent;
+            padding-right: calc(var(--_caret) + 0.5rem);
+            cursor: pointer;
+        }
+        &::after {
+            content: '';
+            width: 1rem;
+            height: 1rem;
+            background-color: currentColor;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' %3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat center;
+            mask-size: 1rem;
+            display: inline-block;
+            transition: rotate 0.2s ease;
+            pointer-events: none;
+            position: absolute;
+            inset: 50% 0 auto auto;
+            translate: 0 -50%;
+        }
+
+        & {
+            --_caret: 1rem;
+            position: relative;
+        }
+
+        &:has(select:open) {
+            &::after {
+                rotate: 180deg;
+            }
+        }
+    }
+}
