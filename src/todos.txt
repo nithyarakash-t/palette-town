@@ -2,12 +2,15 @@ COMPLETED
 -- css colors -- Add https://yoksel.github.io/handy-colors/ - tema
 -- color guesser
 -- dropdown / island in header with options to choose diff pages
+-- contrast checker -- https://coolors.co/contrast-checker / webaim
 
 
 INPROGRESS
 -- CSS MPA / SPA transitions (Bramus)
+-- UI for v1.0.0
+-- landing page, hero
 
-inspirations
+potential inspirations
 -- https://x.com/KadriJibraan/status/1887281802546757740?t=hwL-2sVsq6d9STXRmjUfiQ&s=19
 -- https://21st.dev/?tab=components&sort=recommended&s=09
 -- https://gsap.com/community/forums/topic/39639-gsap-wrapper-for-disabling-animations/
@@ -16,15 +19,12 @@ inspirations
 YTD
 UI - add the color picker logo
 After dark - dark mode
-landing page, hero
 gSap + kill switch
 
 -- oklch . com
--- palette generator
+-- palette generator - connect to contrast checker, visualizer, css colours
 -- gradient, box shadow, drop shadow generators ? -- gradient.style
--- contrast checker -- https://coolors.co/contrast-checker / webaim
--- hsl picker . com
--- color converter -- RGB, hex, HSL, HWB, OKLCH, CMK
+-- color converter and visualizer -- RGB, hex, HSL, HWB, OKLCH, CMK -- -- hsl picker . com
 
 -- color picker drop on header (web only)
 -- colorpicker - colorpicker.fr / https://coolors.co/
@@ -32,7 +32,7 @@ gSap + kill switch
 -- mix blend mode deepdive
 -- upload pic and get colours / wrapper to create art
 
-other ideas
+other ideas----------------------------------------------------------------------------------
 
 -- Easing visualizer 
     - https://cubic-bezier.com/ 

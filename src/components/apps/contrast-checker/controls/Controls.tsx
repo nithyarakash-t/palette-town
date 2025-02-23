@@ -116,7 +116,6 @@ type ColorInputProps = {
     onChange: (value: string) => void;
     label: string;
 }
-
 function ColorInput({ value, onChange, label }: ColorInputProps) {
     const [inputValue, setInputValue] = useState(value);
 
