@@ -112,7 +112,7 @@ export function ControlsAndResult({foreground, setForeground, background, setBac
                         <tbody>
                             <tr>
                                 <th scope='row'> 
-                                    <Tooltip content="Normal text is defined as non-bold font less than 14 point (typically 18.66 pixels)." position="top" delay={300}> 
+                                    <Tooltip content="Normal text is defined as non-bold font less than 14 point (typically 18.66 pixels). Benchmark - 4.5:1 (AA) and 7:1 (AAA)" position="top" delay={300}> 
                                         <button type='button' className='cxc-main__table-tltipcont'>Normal Text</button>
                                     </Tooltip>
                                 </th>
@@ -121,7 +121,7 @@ export function ControlsAndResult({foreground, setForeground, background, setBac
                             </tr>
                             <tr>
                                 <th scope='row'> 
-                                    <Tooltip content="Large text is defined as at least 18 point (typically 24 pixels) or 14 point (typically 18.66 pixels) bold font." position="top" delay={300}> 
+                                    <Tooltip content="Large text is defined as at least 18 point (typically 24 pixels) or 14 point (typically 18.66 pixels) bold font. Benchmark - 3:1 (AA) and 4.5:1 (AAA)." position="top" delay={300}> 
                                         <button type='button' className='cxc-main__table-tltipcont'>Large Text</button>
                                     </Tooltip>
                                 </th>
@@ -130,7 +130,7 @@ export function ControlsAndResult({foreground, setForeground, background, setBac
                             </tr>
                             <tr>
                                 <th scope='row'> 
-                                    <Tooltip content="UI elements include user interface components and graphics such as buttons, links, and icons." position="top" delay={300}> 
+                                    <Tooltip content="UI elements include user interface components and graphics such as buttons, links, and icons. Benchmark - 3:1 to background." position="top" delay={300}> 
                                         <button type='button' className='cxc-main__table-tltipcont'>Icons/Graphics</button>
                                     </Tooltip>
                                 </th>

@@ -16,7 +16,7 @@
             }
         }
         & {
-            border: 1px solid light-dark(#ccc, #eee);
+            border: 1px solid var(--app-color-border-secondary);
             padding: var(--_padding);
             border-radius: var(--_border-radius);
         }

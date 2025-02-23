@@ -19,9 +19,10 @@
   --color-base-background: var(--color-contrast);
   
   --app-color-text-primary: var(--color-default);
-  --app-color-text-secondary: light-dark(var(--color-grey-700), var(--color-grey-200))
-  --app-color-border-primary: var(--color-default);
+  --app-color-text-secondary: light-dark(var(--color-grey-700), var(--color-grey-200));
+  --app-color-border-primary: light-dark(var(--color-base-black), var(--color-base-white));
   --app-color-border-secondary: light-dark(#ccc, #737373);
+  --app-color-border-tertiary: light-dark(#ccc, #eee);
   --anchor-color-text-primary: light-dark(#000, #fff);
   --anchor-color-text-primary-active:  light-dark(#0f73ee, #bb86fc); //light-dark(#000. #fff);
   --anchor-color-text-secondary: light-dark(#999, #737373);
