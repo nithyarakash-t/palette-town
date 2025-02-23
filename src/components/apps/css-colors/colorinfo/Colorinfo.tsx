@@ -1,6 +1,6 @@
 import { ColorListItem } from '../data/parsedUniqueColors';
 import { formatHSL, formatRGB } from '../utils/utils';
-import './colorinfo.scss';
+import './Colorinfo.scss';
 
 export function ColorInfo({selectedColor, setSelectedColor}
     :{readonly selectedColor:ColorListItem, readonly setSelectedColor:(color:ColorListItem | null)=>void}) {
