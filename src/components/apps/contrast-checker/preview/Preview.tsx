@@ -4,6 +4,7 @@ import { getSongs, Track } from "../main/songs";
 import { getRandomQuote } from "../main/quotes";
 import { ColorDeficiencyEnum, ColorDeficiencyLabels } from './types';
 import { Tooltip } from '../../../uicomponents/tooltip/Tooltip';
+import { Link } from 'react-router-dom';
 
 export function Player({simulation}:{simulation:ColorDeficiencyEnum}) {
     const [tracklist, setTracklist] = useState<Track[]>(getSongs());
@@ -48,7 +49,7 @@ export function Player({simulation}:{simulation:ColorDeficiencyEnum}) {
                 </div>
                 <div className='cxc-main__player-buttons'>
                     <button type="button" className="--shuffle" aria-label="Shuffle button" onClick={handleShuffle}></button>
-                    <button type="button" className="--control" disabled aria-label="Play button"></button>
+                    <Link to={'https://open.spotify.com/playlist/3fFhzl5TVYXoHGVCTeTEGv?si=4c100d5fbf414aae'} target='_blank' className="--control" aria-label="Play button"></Link>
                 </div>
             </div>
             <div className="cxc-main__player-body">

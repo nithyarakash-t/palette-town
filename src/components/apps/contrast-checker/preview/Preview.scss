@@ -145,7 +145,7 @@
         }
 
         &-buttons {
-            > button {
+            > button, a {
                 cursor: pointer;
                 flex: 0 0 2.5rem;
                 height: 2.5rem;
@@ -155,6 +155,12 @@
                 mask: no-repeat center;
                 mask-size: 2.5rem;
                 background-color: var(--_text-color);
+
+                &:hover,
+                &:focus-visible {
+                    text-decoration: none;
+                    background-color: var(--_text-color);
+                }
 
                 &.--shuffle {
                     // background-color: var(--_link-color);
