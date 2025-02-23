@@ -1,6 +1,16 @@
+import { FormEvent, useState } from 'react';
 import { Tooltip } from '../../../uicomponents/tooltip/Tooltip';
 import './Controls.scss';
 
+type Results = {
+    [key:string]: Result
+}
+type Result = {
+    ratio:string,
+    ratio2?:string,
+    AA:boolean,
+    AAA:boolean
+}
 type ControlProps = {
     foreground: string,
     setForeground: React.Dispatch<React.SetStateAction<string>>, 
@@ -33,7 +43,7 @@ export function ControlsAndResult({foreground, setForeground, background, setBac
     };
 
     // Function to evaluate contrast against WCAG thresholds
-    const evaluateContrast = (foreground: string, background: string, aa: number = 4.5, aaa: number = 7) => {
+    const evaluateContrast = (foreground: string, background: string, aa: number = 4.5, aaa: number = 7):Result => {
         const colorToBackground = getContrastRatio(foreground, background);
         return {
             ratio: colorToBackground.toFixed(1),
@@ -43,7 +53,7 @@ export function ControlsAndResult({foreground, setForeground, background, setBac
     };
 
     //Function to evaluate link contrasts
-    const evaluateLinkContrast = (link: string, foreground: string, background: string, aa: number = 4.5, aaa: number = 7) => {
+    const evaluateLinkContrast = (link: string, foreground: string, background: string, aa: number = 4.5, aaa: number = 7):Result => {
         const linkToBackground = getContrastRatio(link, background);
         const linkToForeground = getContrastRatio(link, foreground);
         const colorToBackground = getContrastRatio(foreground, background);
@@ -56,7 +66,7 @@ export function ControlsAndResult({foreground, setForeground, background, setBac
     }
 
     // Compute contrast results for various elements
-    const results = {
+    const results:Results = {
         text: evaluateContrast(foreground, background),
         largeText: evaluateContrast(foreground, background, 3, 4.5),
         link: evaluateLinkContrast(link, foreground, background),
@@ -75,28 +85,104 @@ export function ControlsAndResult({foreground, setForeground, background, setBac
                 <button type="button" aria-label="Swap" onClick={handleSwap}>Swap</button>
             </div>
             <div className="cxc-main__setup-body">
-                <fieldset className="cxc-main__setup-field">
-                    <legend>Foreground</legend>
-                    <p>{foreground}</p>
-                    <input type="color" value={foreground} onChange={(e) => setForeground(e.target.value)} />
-                </fieldset>
-                <fieldset className="cxc-main__setup-field">
-                    <legend>Background</legend>
-                    <p>{background}</p>
-                    <input type="color" value={background} onChange={(e) => setBackground(e.target.value)} />
-                </fieldset>
-                <fieldset className="cxc-main__setup-field">
-                    <legend>Link</legend>
-                    <p>{link}</p>
-                    <input type="color" value={link} onChange={(e) => setLink(e.target.value)} />
-                </fieldset>
-                <fieldset className="cxc-main__setup-field">
-                    <legend>Link Alternate</legend>
-                    <p>{linkActive}</p>
-                    <input type="color" value={linkActive} onChange={(e) => setLinkActive(e.target.value)} />
-                </fieldset>
+                <ColorInput 
+                    label="Foreground"
+                    value={foreground}
+                    onChange={setForeground}
+                />
+                <ColorInput 
+                    label="Background"
+                    value={background}
+                    onChange={setBackground}
+                />
+                <ColorInput 
+                    label="Link"
+                    value={link}
+                    onChange={setLink}
+                />
+                <ColorInput 
+                    label="Link Alternative"
+                    value={linkActive}
+                    onChange={setLinkActive}
+                />
             </div>
-            <div className="cxc-main__tablewrap">
+            <ResultTable results={results} />
+        </div>
+    )
+}
+
+type ColorInputProps = {
+    value: string;
+    onChange: (value: string) => void;
+    label: string;
+}
+
+function ColorInput({ value, onChange, label }: ColorInputProps) {
+    const [inputValue, setInputValue] = useState(value);
+
+    // Validate hex color
+    const validateHexColor = (value: string): boolean => {
+        return /^#([A-Fa-f0-9]{3}){1,2}$/.test(value);
+    };
+
+    // Handle text input changes
+    const handleColorChange = (value: string) => {
+        setInputValue(value);
+        // Allow empty, #, and partial hex values while typing
+        if (value === '' || value === '#' || value.match(/^#[A-Fa-f0-9]{0,6}$/)) {
+            onChange(value);
+        }
+    };
+
+    // Convert shorthand hex to full hex
+    const expandHexColor = (hex: string): string => {
+        // Remove # if present
+        hex = hex.replace('#', '');
+        
+        // If it's already full format, just return with #
+        if (hex.length === 6) return `#${hex}`;
+        
+        // If it's shorthand, expand it
+        if (hex.length === 3) {
+            return `#${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+        }
+        
+        return value; // Return current value instead of default black
+    };
+
+    // Handle blur
+    function handleBlur(e:FormEvent) {
+        if (!validateHexColor((e.target as HTMLInputElement).value)) {
+            setInputValue(value); // Reset to passed value
+            onChange(value);
+        }
+    }
+
+    return (
+        <fieldset className="cxc-main__setup-field">
+            <legend>{label}</legend>
+            <label>
+                <input 
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => handleColorChange(e.target.value)}
+                    onBlur={handleBlur}
+                    placeholder="#000000"
+                    maxLength={7}
+                />
+            </label>
+            <input 
+                type="color" 
+                value={expandHexColor(value)} 
+                onChange={(e) => onChange(e.target.value)} 
+            />
+        </fieldset>
+    );
+}
+
+function ResultTable({results}:{results:Results}) {
+    return (
+        <div className="cxc-main__tablewrap">
                 <div className="cxc-main__tableresponsive">
                     <table className="cxc-main__table">
                         <caption className="sr-only">Results</caption>
@@ -159,6 +245,5 @@ export function ControlsAndResult({foreground, setForeground, background, setBac
                     </table>
                 </div>
             </div>
-        </div>
     )
 }

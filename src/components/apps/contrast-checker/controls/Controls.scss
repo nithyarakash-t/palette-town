@@ -70,6 +70,35 @@
                 border-radius: var(--_child-radius);
                 min-width: 0;
             }
+            > label {
+                > input[type='text'] {
+                    padding: 0;
+                    border: none;
+                    outline: none;
+                    background-color: transparent;
+                    text-transform: uppercase;
+                }
+                &::before {
+                    content: 'HEX';
+                    font-size: 0.75rem;
+                }
+                & {
+                    height: var(--_size);
+                    display: flex;
+                    flex-direction: column;
+                    font-size: 1.125rem;
+                    border-radius: var(--_child-radius);
+                    background-color: light-dark(#eee, #575757);
+                    padding: 0.625rem;
+                    line-height: 1;
+                    gap: 0.5rem;
+                    text-transform: uppercase;
+
+                    &:has(input:focus-visible) {
+                        outline: 1px solid;
+                    }
+                }
+            }
             > p {
                 height: var(--_size);
                 display: flex;
