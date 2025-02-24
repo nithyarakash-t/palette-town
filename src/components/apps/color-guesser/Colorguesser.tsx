@@ -6,7 +6,7 @@ import { references } from './references/references';
 
 export function ColorGuesser() {
     return(
-        <section className='app-grid'>
+        <section className='app-grid cg-app__wrap'>
             <h1 className='cg-app__title'>Color Guesser</h1>
             <Routes>
                 <Route path="/" element={

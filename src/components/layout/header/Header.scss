@@ -38,7 +38,7 @@
     &__wrap {
         --_margin-h: 2rem;
         position: fixed;
-        inset: 20px auto auto 50%;
+        inset: var(--app-margin-top-header) auto auto 50%;
         width: min(850px, calc(100vw - 2 * var(--_margin-h)));
         height: var(--header-height, 4rem);
         translate: -50% 0;
@@ -49,4 +49,10 @@
         box-shadow: 0 0.25rem 0 var(--app-color-background-contrast);
         border-radius: 200px;
     }
+}
+
+:root {
+    --app-height-header: 4rem;
+    --app-margin-top-header: 1.25rem;
+    --app-wrap-padding-v: calc(var(--app-height-header) + var(--app-margin-top-header) + 2rem)
 }

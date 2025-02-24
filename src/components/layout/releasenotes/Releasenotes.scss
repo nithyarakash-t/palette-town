@@ -29,7 +29,7 @@
         text-align: center;
     }
     &__back {
-        color: #000;
+        color: var(--color-default);
         svg {
             width: 1.5rem;
             height: 1.5rem;
@@ -41,6 +41,6 @@
         gap: 1rem;
     }
     &__wrap {
-        padding: 2rem 0;
+        padding: var(--app-wrap-padding-v) 0 2rem;
     }
 }

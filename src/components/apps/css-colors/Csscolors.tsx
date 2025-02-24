@@ -10,13 +10,13 @@ export type Tolerance = {
 };
 export function CssColors() {
     return (
-        <div className="app-grid">
+        <div className="app-grid cc-app__wrap">
             <h1 className="cc-app__title">CSS Colors</h1>
             <Routes>
                 <Route path="/" element={
                     <>
                         <Main/>
-                        <div className="cc-app__refont">
+                        <div className="cc-app__refcont">
                             <Link to={'./references'} aria-label="References for Css colors"
                                 >References</Link>
                         </div>
