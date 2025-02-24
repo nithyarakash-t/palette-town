@@ -16,7 +16,7 @@
   --color-default: light-dark(var(--color-base-black), var(--color-base-white));
   --color-contrast: light-dark(var(--color-base-white), var(--color-base-black));
   --color-overlay: light-dark(rgba(0, 0, 0, 0.6), rgba(255, 255, 255, 0.6));
-  --color-base-background: var(--color-contrast);
+  --color-base-background: var(--color-contrast); //light-dark(#f9f7ee, #130a44)
   
   --app-color-text-primary: var(--color-default);
   --app-color-text-secondary: light-dark(var(--color-grey-700), var(--color-grey-200));

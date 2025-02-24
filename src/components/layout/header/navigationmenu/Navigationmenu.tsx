@@ -103,7 +103,7 @@ export function NavigationMenu() {
                 aria-label='Current page'
                 aria-autocomplete="none"
             >
-                {selected} <span className="app-nxvmenu__arrow">▼</span>
+                {selected}
             </button>
 
             <div

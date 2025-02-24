@@ -1,73 +1,73 @@
 .app-nxvmenu {
-    &__wrap {
-        position: relative;
-    }
-
-    &__button {
-        background: none;
-        border: 2px solid #333;
+    &__item {
+        display: block;
         padding: 0.5rem 1rem;
-        cursor: pointer;
-        font-size: 1rem;
-        border-radius: 4px;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-
-        &:focus {
-            outline: 2px solid #4a90e2;
-            outline-offset: 2px;
-        }
-    }
-
-    &__arrow {
-        font-size: 0.8em;
-        transition: transform 0.2s;
-        .is-open & {
-            transform: rotate(180deg);
+        text-decoration: none;
+        
+        &:hover,
+        &:focus-visible {
+            background-color: light-dark(#f5f5f5, #575757); //eee
+            outline: none;
+            text-decoration: none;
         }
     }
 
     &__dropdown {
         position: absolute;
-        top: 100%;
-        left: 0;
-        background: white;
-        border: 1px solid #ddd;
-        border-radius: 4px;
+        top: calc(100% + 0.5rem);
+        right: 0;
+        background: var(--color-base-background);
+        border: 1px solid var(--color-default);
+        border-radius: 0.5rem;
         padding: 0.5rem 0;
-        margin-top: 0.25rem;
         min-width: 200px;
+        max-height: 80vh;
+        overflow-y: auto;
+        scrollbar-gutter: stable;
         display: none;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 4px light-dark(rgba(0,0,0,0.1), transparent);
 
         &.is-open {
             display: block;
         }
     }
 
-    &__item {
-        display: block;
-        padding: 0.5rem 1rem;
-        text-decoration: none;
-        color: #333;
-        
-        &:hover,
-        &:focus {
-            background-color: #f5f5f5;
-            outline: none;
-            text-decoration: underline;
+    &__button {
+        background: none;
+        padding: 0 0.25rem;
+        cursor: pointer;
+        font-size: 1rem;
+        border-radius: 0.5rem;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border: none;
+
+        &::after {
+            content: '';
+            height: 1rem;
+            width: 1rem;
+            background-color: currentColor;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' %3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat center;
+            mask-size: 1rem;
+            display: block;
+            transition: rotate 0.2s ease;
+        }
+
+        &[aria-expanded=true] {
+            &::after {
+                rotate: 180deg;
+            }
+        }
+
+        &:focus-visible {
+            outline: 2px solid #4a90e2;
+            outline-offset: 2px;
         }
     }
-}
 
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
+    &__wrap {
+        position: relative;
+    }
 }
