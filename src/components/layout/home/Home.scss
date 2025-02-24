@@ -1,0 +1,25 @@
+.app-landing {
+    &__title {
+        font-family: "Dela Gothic One", Arial, Helvetica, sans-serif;
+        font-size: min(8rem, 20vmin);
+        align-self: center;
+        justify-self: center;
+        line-height: 1.2;
+        text-align: center;
+        color: var(--app-color-background-primary);
+        -webkit-text-stroke: 0.0625rem light-dark(#000, #fff);
+        text-shadow: 0 0.25rem 0 var(--app-color-background-contrast);
+        max-width: 46.875rem;
+    }
+    &__hero {
+        place-items: center;
+        place-content: center;
+        height: 100vh;
+        min-height: 18.75rem; //fallback
+        background: url('/hero-light.png') no-repeat center;
+        background-size: cover;
+    }
+    &__wrap {
+        position: relative;
+    }
+}

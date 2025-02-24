@@ -27,7 +27,7 @@ export function NavigationMenu() {
             setFocusedIndex(-1);
         }
     }, [isOpen]);
- 
+
     useEffect(() => {
         if (focusedIndex >= 0 && optionRefs.current[focusedIndex]) {
             optionRefs.current[focusedIndex]?.focus();
@@ -53,7 +53,7 @@ export function NavigationMenu() {
                     setIsOpen(true);
                     setFocusedIndex(getSelectedIndex());
                 } else {
-                    setFocusedIndex(prev => 
+                    setFocusedIndex(prev =>
                         prev < menuItems.length - 1 ? prev + 1 : 0
                     );
                 }
@@ -64,7 +64,7 @@ export function NavigationMenu() {
                     setIsOpen(true);
                     setFocusedIndex(getSelectedIndex());
                 } else {
-                    setFocusedIndex(prev => 
+                    setFocusedIndex(prev =>
                         prev > 0 ? prev - 1 : menuItems.length - 1
                     );
                 }
@@ -88,29 +88,15 @@ export function NavigationMenu() {
     };
     /** Utils - END */
     return (
-        <div 
-            className='app-nxvmenu__wrap'
-            role="navigation"
-            aria-label="Primary navigation"
-            onKeyDown={handleKeyDown}
-        >
-            <button
-                className='app-nxvmenu__button'
-                onClick={() => setIsOpen(!isOpen)}
-                role="combobox"
-                aria-expanded={isOpen}
-                aria-controls="app-nav-menu"
-                aria-label='Current page'
-                aria-autocomplete="none"
+        <div className='app-nxvmenu__wrap' role="navigation" aria-label="Primary navigation" onKeyDown={handleKeyDown} >
+            <button className='app-nxvmenu__control' role="combobox" aria-expanded={isOpen} aria-controls="app-nav-menu" 
+                aria-label='Current page' aria-autocomplete="none" onClick={() => setIsOpen(!isOpen)}
             >
-                {selected}
+                <span>{selected}</span>
             </button>
 
-            <div
-                id="app-nav-menu"
-                ref={menuRef}
-                className={`app-nxvmenu__dropdown ${isOpen ? 'is-open' : ''}`}
-                role="listbox"
+            <div id="app-nav-menu" ref={menuRef} className={`app-nxvmenu__dropdown ${isOpen ? 'is-open' : ''}`} 
+                role="listbox" 
             >
                 {menuItems.map((item, index) => (
                     <Link

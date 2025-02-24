@@ -73,13 +73,13 @@ Easy to use with Angular.
     margin-right: auto;
   }
   &-wrap {
+    --app-wrap-padding-v: 1rem;
     width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     position: relative;
     flex: 1;
-    padding: 1rem 0;
   }
   &-wrapper {
     display: flex;

@@ -1,0 +1,27 @@
+.c-tooltip {
+    &__wrapper {
+        display: inline-block;
+    }
+
+    &__inner {
+        --_bg: light-dark(#000, #fff);
+        --_color: light-dark(#fff, #000);
+        padding: 0.75rem 1rem;
+        border-radius: 0.25rem;
+        background-color: var(--_bg);
+        color: var(--_color);
+        font-size: 0.875rem;
+        line-height: 1.5;
+        z-index: 1000;
+        max-width: min(15rem, 50vw);
+    }
+
+    &__arrow {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: var(--_bg);
+        transform: rotate(45deg);
+        z-index: -1;
+    }
+}

@@ -5,7 +5,7 @@ import { NavigationMenu } from "./navigationmenu/Navigationmenu";
 
 export function Header() {
     return (
-        <header className="app-header__wrap app-grid">
+        <header className="app-header__wrap"> {/**app-grid */}
             <div className="app-header__inner">
                 <Link to={'/'} className="app-header__logo">
                     Palette Town
