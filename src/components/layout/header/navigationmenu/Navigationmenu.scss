@@ -1,0 +1,73 @@
+.app-nxvmenu {
+    &__wrap {
+        position: relative;
+    }
+
+    &__button {
+        background: none;
+        border: 2px solid #333;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        font-size: 1rem;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        &:focus {
+            outline: 2px solid #4a90e2;
+            outline-offset: 2px;
+        }
+    }
+
+    &__arrow {
+        font-size: 0.8em;
+        transition: transform 0.2s;
+        .is-open & {
+            transform: rotate(180deg);
+        }
+    }
+
+    &__dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 0.5rem 0;
+        margin-top: 0.25rem;
+        min-width: 200px;
+        display: none;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+        &.is-open {
+            display: block;
+        }
+    }
+
+    &__item {
+        display: block;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        color: #333;
+        
+        &:hover,
+        &:focus {
+            background-color: #f5f5f5;
+            outline: none;
+            text-decoration: underline;
+        }
+    }
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}

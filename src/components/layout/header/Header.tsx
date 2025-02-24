@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Themeswitch } from "../themeSwitch/Themeswitch";
 import './Header.scss';
-import { Navmenu } from "./navmenu/Navmenu";
+import { NavigationMenu } from "./navigationmenu/Navigationmenu";
 
 export function Header() {
     return (
@@ -11,7 +11,7 @@ export function Header() {
                     Palette Town
                 </Link>
                 <div className="app-header__right">
-                    <Navmenu/>
+                    <NavigationMenu />
                     <Themeswitch/>
                 </div>
             </div>
