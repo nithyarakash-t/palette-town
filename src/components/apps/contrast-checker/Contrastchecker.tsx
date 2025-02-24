@@ -7,7 +7,7 @@ import { Faq } from './faq/Faq';
 
 export function ContrastChecker() {
     return(
-        <section className='app-grid'>
+        <section className='app-grid cxc-app__wrap'>
             <h1 className='cxc-app__title'>Contrast checker</h1>
             <Routes>
                 <Route path="/" element={
