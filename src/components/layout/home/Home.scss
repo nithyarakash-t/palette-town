@@ -1,25 +1,85 @@
-.app-landing {
-    &__title {
-        font-family: "Dela Gothic One", Arial, Helvetica, sans-serif;
-        font-size: min(8rem, 20vmin);
-        align-self: center;
-        justify-self: center;
-        line-height: 1.2;
-        text-align: center;
-        color: var(--app-color-background-primary);
-        -webkit-text-stroke: 0.0625rem light-dark(#000, #fff);
-        text-shadow: 0 0.25rem 0 var(--app-color-background-contrast);
-        max-width: 46.875rem;
+.home {
+    &-tool {
+        &__list {
+            &item {
+                &.-left {
+                    > h3 {
+                        font-size: 1.5rem;
+                        font-weight: 600;
+                    } 
+                    > p {
+                        font-size: 0.875rem;
+                    }
+                    & {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1rem;
+                    }
+                }
+                &.-right {
+                    border-radius: 1rem;
+                    background-color: var(--app-color-background-contrast);//light-dark(#fff, #000);
+                    width: 100%;
+                    aspect-ratio: 2/1;
+                }
+            }
+            > li {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                align-items: center;
+
+                &:nth-child(even) {
+                    > .-left {
+                        grid-column: 2/2;
+                    }
+                    > .-right {
+                        grid-column: 1/1;
+                        grid-row: 1;
+                    }
+                }
+            }
+            & {
+                display: grid;
+                gap: 1.5rem;
+            }
+        }
+        &__wrap {
+            > h2 {
+                font-size: 2rem;
+                font-family: "Dela Gothic One", Arial, Helvetica, sans-serif;
+                text-align: center;
+                padding-bottom: 1.5rem;
+            }
+            & {
+                padding-top: 1.5rem;
+                padding-bottom: 3.5rem;
+                position: relative;
+                border-top: 1px solid var(--app-color-background-contrast);
+                color: 1px solid var(--app-color-background-contrast);
+            }
+        }
     }
-    &__hero {
-        place-items: center;
-        place-content: center;
-        height: 100vh;
-        min-height: 18.75rem; //fallback
-        background: url('/hero-light.png') no-repeat center;
-        background-size: cover;
-    }
-    &__wrap {
-        position: relative;
+    &-landing {
+        &__title {
+            font-family: "Dela Gothic One", Arial, Helvetica, sans-serif;
+            font-size: min(8rem, 17.5vmin);
+            line-height: 1.2;
+            text-align: center;
+            color: var(--app-color-background-primary);
+            -webkit-text-stroke: 0.0625rem light-dark(#000, #fff);
+            text-shadow: 0 0.25rem 0 var(--app-color-background-contrast);
+            max-width: 46.875rem;
+        }
+        &__hero {
+            padding-top: var(--app-wrap-padding-v);
+            height: 100vh;
+            min-height: 18.75rem; //fallback
+            background: url('/hero-light.png') no-repeat center;
+            background-size: cover;
+        }
+        &__wrap {
+            position: relative;
+        }
     }
 }

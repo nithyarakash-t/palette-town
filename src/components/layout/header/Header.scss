@@ -40,7 +40,7 @@
         position: fixed;
         inset: var(--app-margin-top-header) auto auto 50%;
         width: min(850px, calc(100vw - 2 * var(--_margin-h)));
-        height: var(--header-height, 4rem);
+        height: var(--app-height-header, 4rem);
         translate: -50% 0;
         background-color: var(--app-color-background-primary);
         z-index: 99;
@@ -48,6 +48,10 @@
         border: 1px solid light-dark(#000, #fff);
         box-shadow: 0 0.25rem 0 var(--app-color-background-contrast);
         border-radius: 200px;
+
+        @media (max-width: 300px) {
+            --_margin-h: 0.75rem;
+        }
     }
 }
 
