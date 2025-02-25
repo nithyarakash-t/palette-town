@@ -23,9 +23,26 @@ export function NavigationMenu() {
     const optionRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
     useEffect(() => {
+        // Reset focus when menu closes
         if (!isOpen) {
             setFocusedIndex(-1);
+            return; // Early return if menu is closed
         }
+
+        // Handle clicks outside when menu is open
+        const handleClickOutside = (event: MouseEvent) => {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                const button = document.querySelector('.app-nxvmenu__control');
+                if (button && !button.contains(event.target as Node)) {
+                    setIsOpen(false);
+                }
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
     }, [isOpen]);
 
     useEffect(() => {

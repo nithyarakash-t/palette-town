@@ -7,6 +7,8 @@
         &:hover,
         &:focus-visible {
             background-color: light-dark(#f5f5f5, #575757); //eee
+            background-color: var(--app-color-background-contrast);
+            color: var(--app-color-background-primary);
             outline: none;
             text-decoration: none;
         }
@@ -14,16 +16,14 @@
 
     &__dropdown {
         position: absolute;
-        top: calc(100% + 0.5rem);
+        top: calc(100% + 0.75rem);
         right: 0;
         background: var(--app-color-background-primary);
         border: 1px solid var(--color-default);
         border-radius: 0.5rem;
-        padding: 0.5rem 0;
         min-width: 200px;
         max-height: 80vh;
         overflow-y: auto;
-        scrollbar-gutter: stable;
         display: none;
         box-shadow: 0 2px 4px light-dark(rgba(0,0,0,0.1), transparent);
 
