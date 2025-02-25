@@ -40,7 +40,7 @@
         position: fixed;
         inset: var(--app-margin-top-header) auto auto 50%;
         width: min(850px, calc(100vw - 2 * var(--_margin-h)));
-        min-height: var(--header-height, 4rem);
+        height: var(--app-height-header, 4rem);
         translate: -50% 0;
         background-color: var(--app-color-background-primary);
         z-index: 99;

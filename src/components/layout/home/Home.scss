@@ -5,7 +5,7 @@
                 &.-left {
                     > h3 {
                         font-size: 1.5rem;
-                        font-weight: 500;
+                        font-weight: 600;
                     } 
                     > p {
                         font-size: 0.875rem;
@@ -18,7 +18,7 @@
                 }
                 &.-right {
                     border-radius: 1rem;
-                    background-color: light-dark(#fff, #000);
+                    background-color: var(--app-color-background-contrast);//light-dark(#fff, #000);
                     width: 100%;
                     aspect-ratio: 2/1;
                 }
@@ -63,9 +63,7 @@
     &-landing {
         &__title {
             font-family: "Dela Gothic One", Arial, Helvetica, sans-serif;
-            font-size: min(8rem, 20vmin);
-            align-self: center;
-            justify-self: center;
+            font-size: min(8rem, 17.5vmin);
             line-height: 1.2;
             text-align: center;
             color: var(--app-color-background-primary);
@@ -74,8 +72,7 @@
             max-width: 46.875rem;
         }
         &__hero {
-            place-items: center;
-            place-content: center;
+            padding-top: var(--app-wrap-padding-v);
             height: 100vh;
             min-height: 18.75rem; //fallback
             background: url('/hero-light.png') no-repeat center;
