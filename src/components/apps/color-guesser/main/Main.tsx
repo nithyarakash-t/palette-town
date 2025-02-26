@@ -39,23 +39,28 @@ export function Main() {
         <section className='cg-main__wrap'>
             <fieldset className='cg-difficulty__group'>
                 <legend>Choose your difficulty </legend>
+                <div className='cg-difficulty__wrap'>
+                    <label className='cg-difficulty__rdo'>
+                        <input type="radio" id="cg-difficulty-easy" name="cg-diff-easy" value="easy"
+                        checked={difficulty==='easy'} onChange={()=>setDifficulty('easy')}/>
+                        <span>Easy</span>
+                    </label>
+                    <label className='cg-difficulty__rdo'>
+                        <input type="radio" id="cg-difficulty-medium" name="cg-diff-assisted" value="assisted"
+                        checked={difficulty==='assisted'} onChange={()=>setDifficulty('assisted')}/>
+                        <span>Assisted</span>
+                    </label>
+                    <label className='cg-difficulty__rdo'>
+                        <input type="radio" id="cg-difficulty-hard" name="cg-diff-challenging" value="challenging"
+                        checked={difficulty==='challenging'} onChange={()=>setDifficulty('challenging')}/>
+                        <span>Challenging</span>
+                    </label>
 
-                <label className='cg-difficulty__rdo'>
-                    <input type="radio" id="cg-difficulty-easy" name="cg-diff-easy" value="easy"
-                    checked={difficulty==='easy'} onChange={()=>setDifficulty('easy')}/>
-                    <span>Easy</span>
-                </label>
-                <label className='cg-difficulty__rdo'>
-                    <input type="radio" id="cg-difficulty-medium" name="cg-diff-assisted" value="assisted"
-                    checked={difficulty==='assisted'} onChange={()=>setDifficulty('assisted')}/>
-                    <span>Assisted</span>
-                </label>
-                <label className='cg-difficulty__rdo'>
-                    <input type="radio" id="cg-difficulty-hard" name="cg-diff-challenging" value="challenging"
-                    checked={difficulty==='challenging'} onChange={()=>setDifficulty('challenging')}/>
-                    <span>Challenging</span>
-                </label>
+                    <div className="cg-difficulty__bar"></div>
+                    <div className="cg-difficulty__slidebar"></div>
+                </div>
             </fieldset>
+
             <label className='cg-main__input'>
                 <input type='color' aria-label='Choose color' name='cg-input' id='cg-input'
                 value={inputColor} onInput={(e)=>handleColorInput(e)}/>
