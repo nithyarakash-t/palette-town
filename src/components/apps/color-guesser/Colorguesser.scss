@@ -1,16 +1,57 @@
 .cg-app {
-    &__refcont {
-        margin: 2rem 0 3rem 0;
-        display: flex;
-        justify-content: center;
-        font-size: 1rem;
+  &__refcont {
+    margin: 2rem 0 3rem 0;
+    display: flex;
+    justify-content: center;
+    font-size: 1rem;
+  }
+  &__title {
+    > span {
+      --_border: var(--app-color-background-contrast);
+      position: relative;
+      padding: 0.2rem 0.5rem;
+      margin-left: 0.5rem;
+      transition: all 0.3s ease;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: -0.2rem;
+        left: -0.3rem;
+        width: calc(100% + 0.6rem);
+        height: calc(100% + 0.4rem);
+        border: 1px solid var(--_border);
+        box-shadow: 0 2px 4px
+          color-mix(in srgb, var(--_border) 20%, transparent);
+        filter: url(#rough-edge);
+      }
     }
-    &__title {
-        text-align: center;
-        margin-bottom: 2rem;
-        font-size: 2rem;
+    & {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      position: relative;
     }
-    &__wrap {
-        padding-top: var(--app-wrap-padding-v);
-    }
+  }
+  &__wrap {
+    padding-top: var(--app-wrap-padding-v);
+  }
 }
+
+/*Sample ellipses, do not remove*/
+// border-radius: 50% 60% 50% 60% / 50% 50% 50% 50%;
+// border-radius: 55% 45% 45% 55% / 60% 60% 40% 40%;
+/* Option 1: Highly irregular, asymmetrical */
+// border-radius: 43% 57% 38% 62% / 51% 43% 57% 49%;
+/* Option 2: Slightly more organic, still asymmetrical */
+// border-radius: 47% 53% 45% 55% / 52% 48% 52% 48%;
+/* Option 3: Very wavy with more pronounced bumps */
+// border-radius: 37% 63% 31% 69% / 59% 41% 61% 39%;
+/* Option 4: Subtle wobbliness */
+// border-radius: 45% 55% 42% 58% / 53% 47% 53% 47%;
+/* Option 5: Hand-drawn, slightly lumpy */
+// border-radius: 51% 49% 46% 54% / 47% 53% 47% 53%;
+/* Option 6: Marker-drawn look */
+// border-radius: 40% 60% 40% 60% / 55% 45% 55% 45%;
+/* Option 7: More exaggerated wobble */
+// border-radius: 35% 65% 30% 70% / 60% 40% 60% 40%;
