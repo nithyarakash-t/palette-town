@@ -7,7 +7,8 @@ import { references } from './references/references';
 export function ColorGuesser() {
     return(
         <section className='app-grid cg-app__wrap'>
-            <h1 className='cg-app__title'>Color Guesser</h1>
+            <svg className='sr-only' xmlns="http://www.w3.org/2000/svg" width="0" height="0" ><filter id="rough-edge"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap></filter></svg>
+            <h1 className='cg-app__title'>Color <span>Guesser</span></h1>
             <Routes>
                 <Route path="/" element={
                     <>
