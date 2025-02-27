@@ -1,9 +1,11 @@
 export const releaseNotes = [
     {
-        version: "0.3.0",
+        version: "0.3.2",
         date: "22.02.2025",
         desc: [
             "Completed contrast checker",
+            "0.3.1 - 25.02.2025 - Published landing page",
+            "0.3.2 - 27.02.2025 - UI updates to Color guesser, fixes to contrast checker"
         ]
     },
     {

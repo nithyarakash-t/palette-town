@@ -11,7 +11,8 @@
       position: relative;
       padding: 0.2rem 0.5rem;
       margin-left: 0.5rem;
-      transition: all 0.3s ease;
+      // transition: all 0.3s ease;
+      display: inline-block;
 
       &::before {
         content: "";

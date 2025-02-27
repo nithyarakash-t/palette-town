@@ -18,34 +18,159 @@
 
 .cg {
   &-main {
+    &__yinyang {
+      --_yin: #000;
+      --_yang: #fff;
+      position: relative;
+      box-sizing: content-box;
+      width: 6rem;
+      height: 3rem;
+      background: var(--_yin);
+      border-color: var(--_yang);
+      border-style: solid;
+      border-width: 0.125rem 0.125rem 3.125rem 0.125rem;
+      border-radius: 50%;
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        border: 1.125rem solid;
+        border-radius: 50%;
+        width: 0.75rem;
+        height: 0.75rem;
+        box-sizing: content-box;
+      }
+      &:before {
+        background-color: var(--_yin);
+        border-color: var(--_yang);
+      }
+      &:after {
+        left: 50%;
+        background-color: var(--_yang);
+        border-color: var(--_yin);
+      }
+    }
+    &__result {
+      padding: 0.25em 0;
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        inset: -1.75em;
+        mask: url("data:image/svg+xml,%3Csvg width='377' height='132' viewBox='0 0 377 132' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M275.477 1.21947C302.595 1.51341 328.756 4.54979 353.724 14.4939C358.999 16.5946 363.938 19.3476 368.3 23.0448C377.922 31.2013 379.263 41.6937 371.69 51.7683C363.263 62.9775 351.461 69.9415 339.445 76.4825C304.395 95.5616 266.626 107.174 228.041 116.345C196.272 123.896 164.092 128.868 131.441 130.716C103.787 132.28 76.1953 132.731 48.8334 127.532C38.5233 125.574 28.4576 122.674 19.1454 117.621C-0.312383 107.064 -4.89759 88.3688 7.5697 70.0938C15.1268 59.0168 25.4637 50.8994 36.4672 43.5765C58.547 28.8818 82.6355 17.9457 106.404 6.41618C109.09 5.11314 111.743 3.73051 114.483 2.55363C116.798 1.55961 119.735 -0.718344 121.455 2.58402C123.26 6.05137 119.627 6.98124 117.376 8.1182C100.916 16.4294 84.3174 24.4726 67.9729 33.0032C52.3254 41.17 37.0988 50.0792 23.8727 61.9752C18.2584 67.025 13.3065 72.6245 10.1957 79.5962C4.87976 91.5089 7.82434 101.881 18.6429 109.184C28.9398 116.134 40.7311 119.159 52.7114 121.256C75.605 125.264 98.6737 125.85 121.878 124.559C189.916 120.774 255.562 106.717 318.156 79.4182C331.739 73.4945 344.765 66.4608 356.528 57.3248C360.751 54.0453 364.675 50.4237 367.419 45.7483C370.904 39.809 370.316 34.8066 365.445 29.9109C358.889 23.3223 350.406 20.2077 341.84 17.4712C324.3 11.8683 306.207 9.48094 287.872 8.32079C233.417 4.87517 180.794 14.0002 129.261 30.9358C106.819 38.311 84.767 46.7591 62.6382 54.9979C59.8352 56.0415 56.9568 56.8813 54.1432 57.898C52.0057 58.6704 50.0696 58.6793 49.1544 56.2751C48.192 53.7461 50.1228 52.7084 51.9684 51.7843C52.5603 51.4881 53.198 51.282 53.8188 51.0454C92.3325 36.3652 130.777 21.4956 171.021 11.9853C205.221 3.90336 239.844 0.120895 275.477 1.21947Z' fill='%23130A44'/%3E%3C/svg%3E%0A")
+          no-repeat center;
+        background-color: currentColor;
+        mask-size: contain;
+        pointer-events: none;
+      }
+    }
     &__reset {
       width: fit-content;
     }
     &__btngroup {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
+      > button {
+        --_radius: 0.3125em;
+        --_bg: light-dark(#fff, #000);
+        --_shadow: light-dark(#000, #eee);
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
+        border-radius: var(--_radius);
+        background: var(--_shadow);
+        span {
+          display: block;
+          box-sizing: border-box;
+          border: 2px solid var(--_shadow);
+          border-radius: var(--_radius);
+          padding: 0.75em 1.5em;
+          background: var(--_bg);
+          color: var(--_shadow);
+          transform: translate(-0.2em, -0.2em);
+          transition: transform 0.1s ease;
+        }
+        &:is(:hover, :focus-visible) span {
+          transform: translate(-0.33em, -0.33em);
+        }
+
+        &:is(:active) span {
+          transform: translate(0, 0);
+        }
+      }
+      & {
+        display: flex;
+        gap: 1rem;
+        padding-top: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
     &__venn {
       &item {
         --_animation-duration: 0.5s;
         --_final-translate-x: calc(var(--_gap) * 2);
-        height: 6.25rem;
-        width: 6.25rem;
+        width: min(8.25rem, 25vmin);
+        height: auto;
+        aspect-ratio: 1/1;
         border-radius: 50%;
         border: 1px solid light-dark(#000, #fff);
+        font-size: 0.875rem;
+        transition: all 0.5s ease-in-out;
 
+        &.-selected {
+          position: relative;
+        }
         &.-question {
           --_final-translate-x: calc(var(--_gap) * -2);
+          position: relative;
+          > div {
+            position: absolute;
+            inset: 0 auto auto calc(100% + 0.25rem);
+            height: 3em;
+            width: 4em;
+            rotate: 180deg; // 0 webkit onbly
+
+            svg {
+              height: 100%;
+              width: 100%;
+              
+              path {
+                &:not(:nth-of-type(1)) {
+                  fill: var(--app-color-background-primary);
+                }
+              }
+            }
+
+            &::after {
+              content: 'target';
+              rotate: -180deg; //0 - webkit only
+              display: block;
+              position: absolute;
+              left: -3em;
+              top: 1em;
+            }
+
+            @media (max-width: 400px) {
+              left: 50%;
+              display: none;
+            }
+          }
         }
         &.-easy {
+          & {
+            aspect-ratio: 1/1.25;
+            border-radius: 0.5rem;
+          }
           &.-selected {
             animation: slidein-from-left var(--_animation-duration) ease-in-out
               forwards;
+              rotate: -5deg;
           }
           &.-question {
             animation: slidein-from-right var(--_animation-duration) ease-in-out
               forwards;
+              rotate: 5deg;
             mix-blend-mode: difference;
           }
         }
@@ -64,7 +189,7 @@
       place-content: center;
       place-items: center;
       text-align: center;
-      gap: 1rem;
+      gap: 2rem;
     }
   }
 }
@@ -85,7 +210,8 @@ html[data-theme="dark"] {
       background: var(--_color-highlight);
       transform-origin: 0 0 0;
       z-index: 0;
-      transition: transform var(--_duration) cubic-bezier(0.33, 0.83, 0.99, 0.98);
+      transition: transform var(--_duration)
+        cubic-bezier(0.33, 0.83, 0.99, 0.98);
     }
     &__bar {
       --_br: 2em;
@@ -94,7 +220,8 @@ html[data-theme="dark"] {
       height: 100%;
       width: var(--_label-w);
       z-index: 0;
-      transition: transform var(--_duration) cubic-bezier(0.33, 0.83, 0.99, 0.98);
+      transition: transform var(--_duration)
+        cubic-bezier(0.33, 0.83, 0.99, 0.98);
 
       &::before,
       &::after {
@@ -128,7 +255,6 @@ html[data-theme="dark"] {
         text-align: center;
         justify-content: center;
         cursor: pointer;
-        color: var(--_color-secondary);
         padding: 0.75em 1em;
         min-width: var(--_label-w);
         outline-offset: -0.375em;
@@ -138,14 +264,20 @@ html[data-theme="dark"] {
         &:has(input:focus-visible) {
           outline: 1px solid;
         }
+        &:has(input:checked) {
+          span {
+            color: var(--_color-selected);
+          }
+        }
       }
     }
     &__wrap {
       & {
         --_duration: 0.3s;
-        --_color-background: #e8e8e8;
-        --_color-secondary: var(--app-color-background-contrast);
-        --_color-highlight: #b8b8b8;
+        --_color-background: transparent;
+        --_color-secondary: var(--color-default);
+        --_color-highlight: var(--app-color-background-contrast);
+        --_color-selected: var(--color-contrast);
         --_border-radius: 0.625em;
         --_padding-h: 0.5em;
         --_padding-v: 0.25em;
@@ -156,6 +288,8 @@ html[data-theme="dark"] {
         position: relative;
         background: var(--_color-background);
         border-radius: var(--_border-radius);
+        border: 1px solid var(--_color-secondary);
+        padding-right: 0;
         overflow-x: clip;
         grid-column: 1/-1;
         font-size: min(1rem, 4vmin);

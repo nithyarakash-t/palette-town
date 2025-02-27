@@ -1,5 +1,6 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { Tooltip } from '../../../uicomponents/tooltip/Tooltip';
+import { ColorAction, ColorState } from '../main/Main';
 import './Controls.scss';
 
 type Results = {
@@ -12,20 +13,16 @@ type Result = {
     AAA:boolean
 }
 type ControlProps = {
-    foreground: string,
-    setForeground: React.Dispatch<React.SetStateAction<string>>, 
-    background:string, 
-    setBackground: React.Dispatch<React.SetStateAction<string>>, 
-    link:string, 
-    setLink: React.Dispatch<React.SetStateAction<string>>, 
-    linkActive:string, 
-    setLinkActive: React.Dispatch<React.SetStateAction<string>>
+    colorState: ColorState;
+    dispatch: React.Dispatch<ColorAction>;
 }
-export function ControlsAndResult({foreground, setForeground, background, setBackground, link, setLink, linkActive, setLinkActive}:ControlProps) {
+
+export function ControlsAndResult({colorState, dispatch}:ControlProps) {
+    const { foreground, background, link, linkActive } = colorState;
+    
     //Handle swap b/w foreground and background
     function handleSwap() {
-        setForeground(background);
-        setBackground(foreground);
+        dispatch({ type: 'SWAP_COLORS' });
     }
 
     // Function to calculate relative luminance
@@ -70,7 +67,7 @@ export function ControlsAndResult({foreground, setForeground, background, setBac
         text: evaluateContrast(foreground, background),
         largeText: evaluateContrast(foreground, background, 3, 4.5),
         link: evaluateLinkContrast(link, foreground, background),
-        linkActive: evaluateLinkContrast(link, foreground, background),
+        linkActive: evaluateLinkContrast(linkActive, foreground, background),
         icons: evaluateContrast(foreground, background, 3, 3),
     };
 
@@ -88,22 +85,22 @@ export function ControlsAndResult({foreground, setForeground, background, setBac
                 <ColorInput 
                     label="Foreground"
                     value={foreground}
-                    onChange={setForeground}
+                    setColor={(value) => dispatch({ type: 'SET_FOREGROUND', payload: value })}
                 />
                 <ColorInput 
                     label="Background"
                     value={background}
-                    onChange={setBackground}
+                    setColor={(value) => dispatch({ type: 'SET_BACKGROUND', payload: value })}
                 />
                 <ColorInput 
                     label="Link"
                     value={link}
-                    onChange={setLink}
+                    setColor={(value) => dispatch({ type: 'SET_LINK', payload: value })}
                 />
                 <ColorInput 
                     label="Link Alternative"
                     value={linkActive}
-                    onChange={setLinkActive}
+                    setColor={(value) => dispatch({ type: 'SET_LINK_ACTIVE', payload: value })}
                 />
             </div>
             <ResultTable results={results} />
@@ -113,11 +110,16 @@ export function ControlsAndResult({foreground, setForeground, background, setBac
 
 type ColorInputProps = {
     value: string;
-    onChange: (value: string) => void;
+    setColor: (value: string) => void;
     label: string;
 }
-function ColorInput({ value, onChange, label }: ColorInputProps) {
+function ColorInput({ value, setColor, label }: ColorInputProps) {
     const [inputValue, setInputValue] = useState(value);
+
+    // sync inputval state everytime prop changes - as its only initialized once
+    useEffect(() => {
+        setInputValue(value);
+    }, [value]);
 
     // Validate hex color
     const validateHexColor = (value: string): boolean => {
@@ -125,11 +127,11 @@ function ColorInput({ value, onChange, label }: ColorInputProps) {
     };
 
     // Handle text input changes
-    const handleColorChange = (value: string) => {
+    const handleInputChange = (value: string) => {
         setInputValue(value);
         // Allow empty, #, and partial hex values while typing
         if (value === '' || value === '#' || value.match(/^#[A-Fa-f0-9]{0,6}$/)) {
-            onChange(value);
+            setColor(value);
         }
     };
 
@@ -153,18 +155,33 @@ function ColorInput({ value, onChange, label }: ColorInputProps) {
     function handleBlur(e:FormEvent) {
         if (!validateHexColor((e.target as HTMLInputElement).value)) {
             setInputValue(value); // Reset to passed value
-            onChange(value);
+            setColor(value);
         }
     }
+
+    // copy color to clipboard
+    const handleCopyToClipboard = () => {
+        const colorToCopy = expandHexColor(value);
+        navigator.clipboard.writeText(colorToCopy)
+            .then(() => {})
+            .catch(err => {
+                console.error('Failed to copy color to clipboard:', err);
+            });
+    };
 
     return (
         <fieldset className="cxc-main__setup-field">
             <legend>{label}</legend>
+            <button 
+                type='button' 
+                aria-label={`Copy ${label} color to clipboard`}
+                onClick={handleCopyToClipboard}
+            ></button>
             <label>
                 <input 
                     type="text"
                     value={inputValue}
-                    onChange={(e) => handleColorChange(e.target.value)}
+                    onChange={(e) => handleInputChange(e.target.value)}
                     onBlur={handleBlur}
                     placeholder="#000000"
                     maxLength={7}
@@ -173,7 +190,7 @@ function ColorInput({ value, onChange, label }: ColorInputProps) {
             <input 
                 type="color" 
                 value={expandHexColor(value)} 
-                onChange={(e) => onChange(e.target.value)} 
+                onChange={(e) => setColor(e.target.value)} 
             />
         </fieldset>
     );
