@@ -38,6 +38,10 @@ export const MetaColorContextProvider: React.FC<{ children: React.ReactNode }> =
     styleTag.innerHTML = `:root { --meta-color: rgb(${red}, ${green}, ${blue}); }`;
     document.head.appendChild(styleTag);
     // document.documentElement.style.setProperty("--metacolor", `rgb(${red}, ${green}, ${blue})`);
+
+    return () => {
+      document.head.removeChild(styleTag);
+    };
   }, [red, green, blue]);
 
   return (
