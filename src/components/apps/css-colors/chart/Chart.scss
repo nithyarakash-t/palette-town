@@ -86,8 +86,12 @@
     --_addition-space: calc(var(--_axis-fs) + (var(--_axis-padding) * 2));
     position: relative;
     width: var(--_content-width);
-    height: var(--_content-width);
+    aspect-ratio: 1/1;
     margin-bottom: 10vh;
+
+    @media(max-width: 600px) {
+      width: calc(var(--_content-width) - var(--_addition-space));
+    }
     // padding-right: var(--_addition-space);
     // padding-bottom: var(--_addition-space);
   }
