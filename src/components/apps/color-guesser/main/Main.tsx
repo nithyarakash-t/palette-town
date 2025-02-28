@@ -88,8 +88,10 @@ export function Main() {
                 }
             </div>
 
-            {(true as boolean) && <div className='cg-main__yinyang'
-            style={{'--_yin': `${inputColor}`, '--_yang': `${targetColor.hex}`} as React.CSSProperties}>{similarity}</div>}
+            {(difficulty === 'assisted' || difficulty === 'easy') && <div className='cg-main__yinyang'
+            style={{'--_yin': `${inputColor}`, '--_yang': `${targetColor.hex}`} as React.CSSProperties}>
+                {/* {similarity}% */}
+            </div>}
 
             <p className='cg-main__color'>{targetColor ? `Color to find: ${targetColor.name} ${targetColor.alternativeName ? "/" + targetColor.alternativeName: ''}` : 'Reset to choose new color'}</p>
             

@@ -48,6 +48,10 @@ html {
     color-scheme: dark;
   }
   &[data-theme="dark"] {
-    color-scheme: dark;
+    color-scheme: only dark;
   }
+  &[data-theme="light"] {
+    color-scheme: only light;
+  }
+  
 }

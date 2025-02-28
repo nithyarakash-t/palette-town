@@ -16,6 +16,13 @@
   }
 }
 
+
+@keyframes yinyang {
+  to {
+    rotate: -360deg;
+  }
+}
+
 .cg {
   &-main {
     &__yinyang {
@@ -30,6 +37,7 @@
       border-style: solid;
       border-width: 0.125rem 0.125rem 3.125rem 0.125rem;
       border-radius: 50%;
+      animation: yinyang 4s linear infinite;
       &::before,
       &::after {
         content: "";
@@ -50,6 +58,9 @@
         left: 50%;
         background-color: var(--_yang);
         border-color: var(--_yin);
+      }
+      &:hover {
+        animation-play-state: paused;
       }
     }
     &__result {
