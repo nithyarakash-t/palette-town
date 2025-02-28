@@ -36,11 +36,14 @@ export const MetaColorContextProvider: React.FC<{ children: React.ReactNode }> =
     const styleTag = document.getElementById("dynamic-style") || document.createElement("style");
     styleTag.id = "dynamic-style";
     styleTag.innerHTML = `:root { --meta-color: rgb(${red}, ${green}, ${blue}); }`;
-    document.head.appendChild(styleTag);
-    // document.documentElement.style.setProperty("--metacolor", `rgb(${red}, ${green}, ${blue})`);
+    if (!styleTag.parentElement) {
+      document.head.appendChild(styleTag);
+    }
 
     return () => {
-      document.head.removeChild(styleTag);
+      if (styleTag.parentElement) {
+        // styleTag.parentElement.removeChild(styleTag);
+      }
     };
   }, [red, green, blue]);
 

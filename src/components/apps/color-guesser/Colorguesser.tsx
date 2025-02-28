@@ -10,11 +10,15 @@ export function ColorGuesser() {
         const styleTag = document.getElementById("dynamic-style") || document.createElement("style");
         styleTag.id = "dynamic-style";
         styleTag.innerHTML = `:root { --app-color-background-primary: light-dark(#fff, #000); }`;
-        document.head.appendChild(styleTag);
-    
+        if (!styleTag.parentElement) {
+            document.head.appendChild(styleTag);
+        }
+      
         return () => {
-          document.head.removeChild(styleTag);
-        };
+            if (styleTag.parentElement) {
+              styleTag.parentElement.removeChild(styleTag);
+            }
+        }
       }, []);
     return(
         <section className='app-grid cg-app__wrap'>

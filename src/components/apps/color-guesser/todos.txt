@@ -2,7 +2,7 @@
 -- cookie
 -- local storage
 -- set up 1v1 game ?!
--- easy mode (-- venn diagram)
+-- easy mode (-- venn diagram) --- DONE
 -- jojos inspired congrats / try better message
 -- precision isnt important, accuracy is -- add this message
 
