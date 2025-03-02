@@ -8,7 +8,7 @@ type Difficulty =  'easy' | 'assisted' | 'challenging';
 export function Main() {
     const [difficulty, setDifficulty] = useState<Difficulty>('challenging');
     const [targetColor, setTargetColor] = useState<UniqueColorItem>(getRandomColor());
-    const [inputColor, setInputColor] = useState<ColorHEX>(getRandomColor().hex as ColorHEX);
+    const [inputColor, setInputColor] = useState<ColorHEX>(getDifferentRandomColor(targetColor).hex as ColorHEX);
     const [similarity, setSimilarity] = useState<number | null>(null);
 
     useEffect(()=>{
@@ -16,6 +16,14 @@ export function Main() {
 
     function getRandomColor() {
         return data[getRandomIntInclusive(0, data.length - 1)];
+    }
+
+    function getDifferentRandomColor(excludeColor: UniqueColorItem) {
+        let randomColor = getRandomColor();
+        while (randomColor.hex === excludeColor.hex) {
+            randomColor = getRandomColor();
+        }
+        return randomColor;
     }
 
     function handleColorInput(e:FormEvent) {
@@ -32,7 +40,7 @@ export function Main() {
     function handleReset() {
         setSimilarity(null);
         setTargetColor(getRandomColor());
-        setInputColor(getRandomColor().hex as ColorHEX)
+        setInputColor(getDifferentRandomColor(targetColor).hex as ColorHEX)
     }
 
     return (
