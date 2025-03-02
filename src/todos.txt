@@ -14,7 +14,8 @@
 -- https://21st.dev/?tab=components&sort=recommended&s=09
 -- https://gsap.com/community/forums/topic/39639-gsap-wrapper-for-disabling-animations/
 -- uicolors.app
-
+-- https://codepen.io/Nithyarakash-t/pen/gbOgNOo
+-- https://flatuicolors.com/
 ------------------YTD-------------------
 — UI - add the color picker logo
 — After dark - dark mode

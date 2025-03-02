@@ -17,10 +17,9 @@
   --color-contrast: light-dark(var(--color-base-white), var(--color-base-black));
   --color-overlay: light-dark(rgba(0, 0, 0, 0.6), rgba(255, 255, 255, 0.6));
 
-
-  // --app-color-background-primary: var(--color-contrast); //light-dark(#f9f7ee, #130a44)
   --app-color-background-primary: light-dark(#f9f7ee, #130a44);
   --app-color-background-contrast: light-dark(#130a44, #f9f7ee);
+  
   --app-color-text-primary: var(--color-default);
   --app-color-text-secondary: light-dark(var(--color-grey-700), var(--color-grey-200));
   --app-color-border-primary: light-dark(var(--color-base-black), var(--color-base-white));
@@ -52,6 +51,5 @@ html {
   }
   &[data-theme="light"] {
     color-scheme: only light;
-  }
-  
+  } 
 }
