@@ -1,5 +1,5 @@
 import './Preview.scss';
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { getSongs, Track } from "../main/songs";
 import { getRandomQuote } from "../main/quotes";
 import { ColorDeficiencyEnum, ColorDeficiencyLabels } from './types';
@@ -82,97 +82,103 @@ export function Player({simulation}:{simulation:ColorDeficiencyEnum}) {
 }
 
 export function Simulation({simulation, setSimulation}:{simulation:ColorDeficiencyEnum ,setSimulation:React.Dispatch<React.SetStateAction<ColorDeficiencyEnum>>}) {
+    const [isOpen, setIsOpen] = useState(false);
+    const [activeIndex, setActiveIndex] = useState(-1);
+    const optionRefs = useRef<(HTMLLIElement | null)[]>([]);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const options = Object.values(ColorDeficiencyEnum);
+
+    //useeffect handling the dropdown
+    useEffect(() => {
+        if (!isOpen) {
+            setActiveIndex(-1);
+            return;
+        }
+
+        function handleKeyDown(e: KeyboardEvent) {
+            switch (e.key) {
+                case 'ArrowDown':
+                    e.preventDefault();
+                    setActiveIndex(prev => {
+                        const next = prev + 1 >= options.length ? 0 : prev + 1;
+                        optionRefs.current[next]?.focus();
+                        return next;
+                    });
+                    break;
+                case 'ArrowUp':
+                    e.preventDefault();
+                    setActiveIndex(prev => {
+                        const next = prev - 1 < 0 ? options.length - 1 : prev - 1;
+                        optionRefs.current[next]?.focus();
+                        return next;
+                    });
+                    break;
+                case 'Enter':
+                    if (activeIndex !== -1) {
+                        setSimulation(options[activeIndex]);
+                        setIsOpen(false);
+                    }
+                    break;
+                case 'Escape':
+                    setIsOpen(false);
+                    buttonRef.current?.focus();
+                    break;
+            }
+        }
+
+        document.addEventListener('keydown', handleKeyDown);
+        return () => document.removeEventListener('keydown', handleKeyDown);
+    }, [isOpen, activeIndex, options, setSimulation]);
+
     return (
         <div className="cxc-simulation__wrap">
-            <svg className='sr-only' aria-hidden="true">
-                <defs>
-                    {/* Protoanomaly - mild red weak */}
-                    <filter id="protanomaly">
-                        <feColorMatrix type="matrix" values="
-                            0.817, 0.183, 0.000, 0, 0
-                            0.333, 0.667, 0.000, 0, 0
-                            0.000, 0.125, 0.875, 0, 0
-                            0, 0, 0, 1, 0"/>
-                    </filter>
-                    {/* protanopia - no red / severe */}
-                    <filter id="protanopia">
-                        <feColorMatrix
-                        type="matrix"
-                        values="0.567, 0.433, 0,     0, 0
-                                0.558, 0.442, 0,     0, 0
-                                0,     0.242, 0.758, 0, 0
-                                0,     0,     0,     1, 0"/>
-                    </filter>
-                    
-                    {/* mild green weak */}
-                    <filter id="deuteranomaly">
-                        <feColorMatrix type="matrix" values="
-                            0.800, 0.200, 0.000, 0, 0
-                            0.258, 0.742, 0.000, 0, 0
-                            0.000, 0.142, 0.858, 0, 0
-                            0, 0, 0, 1, 0"/>
-                    </filter>
-                    {/* no green / severe */}
-                    <filter id="deutranopia">
-                        <feColorMatrix
-                        type="matrix"
-                        values="0.625, 0.375, 0,   0, 0
-                                0.7,   0.3,   0,   0, 0
-                                0,     0.3,   0.7, 0, 0
-                                0,     0,     0,   1, 0"/>
-                    </filter>
-                    
-                    {/* mild blue weak */}
-                     <filter id="tritanomaly">
-                        <feColorMatrix type="matrix" values="
-                            0.967, 0.033, 0.000, 0, 0
-                            0.000, 0.733, 0.267, 0, 0
-                            0.000, 0.183, 0.817, 0, 0
-                            0, 0, 0, 1, 0"/>
-                    </filter>
-                    {/* no blue / severe */}
-                    <filter id="tritanopia">
-                        <feColorMatrix
-                        type="matrix"
-                        values="0.95, 0.05,  0,     0, 0
-                                0,    0.433, 0.567, 0, 0
-                                0,    0.475, 0.525, 0, 0
-                                0,    0,     0,     1, 0"/>
-                    </filter>
-
-                    {/* Achromatomaly (Partial Color vision challenges - Desaturated) */}
-                    <filter id="achromatomaly">
-                        <feColorMatrix type="matrix" values="
-                            0.618, 0.320, 0.062, 0, 0
-                            0.163, 0.775, 0.062, 0, 0
-                            0.163, 0.320, 0.516, 0, 0
-                            0, 0, 0, 1, 0"/>
-                    </filter>
-                    {/* Achromatopsia (Total Color vision challenges - Grayscale) */}
-                    <filter id="achromatopsia">
-                        <feColorMatrix type="matrix" values="
-                            0.299, 0.587, 0.114, 0, 0
-                            0.299, 0.587, 0.114, 0, 0
-                            0.299, 0.587, 0.114, 0, 0
-                            0, 0, 0, 1, 0"/>
-                    </filter>
-                </defs>
-            </svg>
+            <SimulationFilters />
             <label className="cxc-simulation__select">
                 <span>Simulation - experimental</span>
-                <div>
-                    <select name="color-deficiency-simulation" id="color-deficiency-simulation" 
-                    value={simulation}
-                    onChange={(e) => setSimulation(e.target.value as ColorDeficiencyEnum)}>
-                        {Object.values(ColorDeficiencyEnum).map(value => (
-                            <option key={value} value={value}>
+                <div className={`cxc-simulation__combo`}>
+                    <button 
+                        ref={buttonRef}
+                        type='button' 
+                        role="combobox" 
+                        aria-controls="color-deficiency-simulation" 
+                        aria-expanded={isOpen} 
+                        aria-haspopup="listbox" 
+                        tabIndex={0} 
+                        onClick={() => setIsOpen(prev => !prev)} 
+                    > 
+                        {ColorDeficiencyLabels[simulation]} 
+                    </button>
+                    <ul 
+                        className={isOpen ? '-open' : ''}
+                        id="color-deficiency-simulation"
+                        role="listbox"
+                        aria-label="Color simulation options"
+                    >
+                        {options.map((value, index) => (
+                            <li
+                                key={value}
+                                ref={el => optionRefs.current[index] = el}
+                                role="option"
+                                aria-selected={simulation === value}
+                                tabIndex={isOpen ? 0 : -1}
+                                onClick={() => {
+                                    setSimulation(value);
+                                    setIsOpen(false);
+                                }}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        setSimulation(value);
+                                        setIsOpen(false);
+                                    }
+                                }}
+                            >
                                 {ColorDeficiencyLabels[value]}
-                            </option>
+                            </li>
                         ))}
-                    </select>
+                    </ul>
                 </div>
             </label>
-
             <Tooltip content="Color simulations show an approximation of how selected colors might appear to users with different forms of color visual deficiency." position="top" delay={300}> 
                 <button type="button"  className='cxc-simulation__info' aria-label="Color simulations show an approximation of how selected colors might appear to users with different forms of color visual deficiency.">
                     <svg aria-hidden='true' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -182,7 +188,7 @@ export function Simulation({simulation, setSimulation}:{simulation:ColorDeficien
             </Tooltip>
             
         </div>
-    )
+    );
 }
 
 export function Quote({simulation}:{simulation:ColorDeficiencyEnum}) {
@@ -202,5 +208,84 @@ export function Quote({simulation}:{simulation:ColorDeficiencyEnum}) {
             <a href='https://youtube.com/shorts/6gt5E-jWDpg?si=AFliOYtR76uefNXc' target='_blank'>In case you're bored</a>
             {/* <a href="https://www.youtube.com/watch?v=j5a0jTc9S10" target="_blank">Don't believe me ?</a> */}
         </div>
+    )
+}
+
+function SimulationFilters() {
+    return (
+        <svg className='sr-only' aria-hidden="true">
+            <defs>
+                {/* Protoanomaly - mild red weak */}
+                <filter id="protanomaly">
+                    <feColorMatrix type="matrix" values="
+                        0.817, 0.183, 0.000, 0, 0
+                        0.333, 0.667, 0.000, 0, 0
+                        0.000, 0.125, 0.875, 0, 0
+                        0, 0, 0, 1, 0"/>
+                </filter>
+                {/* protanopia - no red / severe */}
+                <filter id="protanopia">
+                    <feColorMatrix
+                    type="matrix"
+                    values="0.567, 0.433, 0,     0, 0
+                            0.558, 0.442, 0,     0, 0
+                            0,     0.242, 0.758, 0, 0
+                            0,     0,     0,     1, 0"/>
+                </filter>
+                
+                {/* mild green weak */}
+                <filter id="deuteranomaly">
+                    <feColorMatrix type="matrix" values="
+                        0.800, 0.200, 0.000, 0, 0
+                        0.258, 0.742, 0.000, 0, 0
+                        0.000, 0.142, 0.858, 0, 0
+                        0, 0, 0, 1, 0"/>
+                </filter>
+                {/* no green / severe */}
+                <filter id="deutranopia">
+                    <feColorMatrix
+                    type="matrix"
+                    values="0.625, 0.375, 0,   0, 0
+                            0.7,   0.3,   0,   0, 0
+                            0,     0.3,   0.7, 0, 0
+                            0,     0,     0,   1, 0"/>
+                </filter>
+                
+                {/* mild blue weak */}
+                    <filter id="tritanomaly">
+                    <feColorMatrix type="matrix" values="
+                        0.967, 0.033, 0.000, 0, 0
+                        0.000, 0.733, 0.267, 0, 0
+                        0.000, 0.183, 0.817, 0, 0
+                        0, 0, 0, 1, 0"/>
+                </filter>
+                {/* no blue / severe */}
+                <filter id="tritanopia">
+                    <feColorMatrix
+                    type="matrix"
+                    values="0.95, 0.05,  0,     0, 0
+                            0,    0.433, 0.567, 0, 0
+                            0,    0.475, 0.525, 0, 0
+                            0,    0,     0,     1, 0"/>
+                </filter>
+
+                {/* Achromatomaly (Partial Color vision challenges - Desaturated) */}
+                <filter id="achromatomaly">
+                    <feColorMatrix type="matrix" values="
+                        0.618, 0.320, 0.062, 0, 0
+                        0.163, 0.775, 0.062, 0, 0
+                        0.163, 0.320, 0.516, 0, 0
+                        0, 0, 0, 1, 0"/>
+                </filter>
+                {/* Achromatopsia (Total Color vision challenges - Grayscale) */}
+                <filter id="achromatopsia">
+                    <feColorMatrix type="matrix" values="
+                        0.299, 0.587, 0.114, 0, 0
+                        0.299, 0.587, 0.114, 0, 0
+                        0.299, 0.587, 0.114, 0, 0
+                        0, 0, 0, 1, 0"/>
+                </filter>
+            </defs>
+        </svg>
     )
 }

@@ -112,7 +112,7 @@ export function NavigationMenu() {
                 <span>{selected}</span>
             </button>
 
-            <div id="app-nav-menu" ref={menuRef} className={`app-nxvmenu__dropdown ${isOpen ? 'is-open' : ''}`} 
+            <div id="app-nav-menu" ref={menuRef} className={`app-nxvmenu__dropdown ${isOpen ? '-open' : ''}`} 
                 role="listbox" 
             >
                 {menuItems.map((item, index) => (
