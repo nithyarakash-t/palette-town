@@ -8,7 +8,9 @@
 -- CSS MPA / SPA transitions (Bramus)
 -- UI for v1.0.0
 -- landing page, hero
-
+-- rgbcube from https://rgbcu.be/?s=09
+-- light/dark string switch with gsap
+-- Shuffle carousel, flip/drag carousel
 -------------------potential inspirations-------------------------
 -- https://x.com/KadriJibraan/status/1887281802546757740?t=hwL-2sVsq6d9STXRmjUfiQ&s=19
 -- https://21st.dev/?tab=components&sort=recommended&s=09
