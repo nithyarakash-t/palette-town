@@ -1,4 +1,7 @@
+import { Suspense, lazy } from 'react';
 import './Home.scss';
+
+const Cube = lazy(() => import('./cube/Cube').then(module => ({ default: module.Cube })));
 
 export function Home() {
     return (
@@ -32,6 +35,11 @@ export function Home() {
                             <div className='home-tool__listitem -right'> </div>
                         </li>
                     </ul>
+                </section>
+                <section className='app-grid home-cube__wrap'>
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <Cube/>
+                    </Suspense>
                 </section>
             </div>
         </>

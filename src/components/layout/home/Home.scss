@@ -1,4 +1,12 @@
 .home {
+    &-cube {
+        &__wrap {
+            position: relative;
+            height: min(25rem, 100dvh);
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+    }
     &-tool {
         &__list {
             &item {
@@ -62,7 +70,6 @@
             }
             & {
                 padding-top: 1.5rem;
-                padding-bottom: 3.5rem;
                 position: relative;
                 border-top: 1px solid var(--app-color-background-contrast);
                 color: 1px solid var(--app-color-background-contrast);
@@ -92,6 +99,11 @@
         }
         &__wrap {
             position: relative;
+
+            > *:last-child {
+                padding-block-start: 3.5rem;
+                padding-block-end: 3.5rem;
+            }
         }
     }
 }
