@@ -62,8 +62,7 @@
     }
 
     & {
-      width: var(--_size);
-      height: var(--_size);
+      inset: 0;
       position: absolute;
       display: flex;
       align-items: center;
@@ -89,11 +88,15 @@
   &__cube {
     --_size: 10rem;
     --_translateZ: calc(var(--_size) / 2);
-    height: var(--_size);
     width: var(--_size);
+    aspect-ratio: 1/1;
     position: relative;
     transform: translateZ(calc((var(--_translateZ) - 1px) * -1));
     transform-style: preserve-3d;
+
+    @media (max-width:400px) {
+      --_size: 8rem;
+    }
   }
   &__scene {
     height: min(20rem, 100%);

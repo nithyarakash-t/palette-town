@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import './Cube.scss';
-import { CyberpunkLink } from '../../../../elements/anchors/links/cyberpunk/Cyberpunk';
+import { CyberpunkLink } from './cyberpunk/Cyberpunk';
 
 interface Vec3 {
   x: number;
