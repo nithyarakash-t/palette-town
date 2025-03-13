@@ -10,8 +10,11 @@
 -- landing page, hero
 -- rgbcube from https://rgbcu.be/?s=09
 -- light/dark string switch with gsap
--- Shuffle carousel, flip/drag carousel
+-- marquee
+-- Shuffle carousel
+-- flip/drag carousel 
 -------------------potential inspirations-------------------------
+-- https://webdesigninspiration.io/
 -- https://www.whirrls.com/
 -- https://x.com/heysatya_/status/1889927821390385223
 -- https://m3.material.io/
@@ -22,6 +25,7 @@
 -- uicolors.app
 -- https://codepen.io/Nithyarakash-t/pen/gbOgNOo
 -- https://flatuicolors.com/
+-- https://hareesh.web.app/work
 ------------------YTD-------------------
 — UI - add the color picker logo
 — After dark - dark mode

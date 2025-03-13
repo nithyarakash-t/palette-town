@@ -1,16 +1,18 @@
 import { Suspense, lazy } from 'react';
 import './Home.scss';
+import { Carousel } from './carousel/Carousel';
+// import { Stringbulb } from '../themeSwitch/stringbulb/Stringbulb';
 
 const Cube = lazy(() => import('./cube/Cube').then(module => ({ default: module.Cube })));
 
 export function Home() {
     return (
         <>
-            <div className='home-landing__wrap'>
-                <div className='app-grid home-landing__hero'>
+            <div className='home-landing__wrap app-grid'>
+                <div className='home-landing__hero'>
                     <h1 className='home-landing__title'>Palette Town</h1>
                 </div>
-                <section className='app-grid home-tool__wrap'>
+                <section className='home-tool__wrap'>
                     <h2>Tools offered</h2>
                     <ul className='home-tool__list'>
                         <li>
@@ -36,11 +38,17 @@ export function Home() {
                         </li>
                     </ul>
                 </section>
-                <section className='app-grid home-cube__wrap'>
+                <section className='' style={{padding: '3rem 0', minHeight: '20rem', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    <Carousel />
+                </section>
+                <section className='home-cube__wrap'>
                     <Suspense fallback={<div>Loading...</div>}>
                         <Cube/>
                     </Suspense>
                 </section>
+                {/* <section style={{padding: '3rem 0', minHeight: '20rem', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    <Stringbulb />
+                </section> */}
             </div>
         </>
     )

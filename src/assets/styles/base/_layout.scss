@@ -30,22 +30,19 @@ Inspired by the following articles:
       grid-column: breakout;
   }
   &-grid {
-    --grid-padding-horizontal: var(--content-padding);
-    --grid-content-maxwidth: var(--content-maxwidth);
-    --grid-breakout-maxwidth: var(--content-breakout-maxwidth);
-    --grid-breakout-size: calc((var(--grid-breakout-maxwidth) - var(--grid-content-maxwidth)) / 2);
+    --_grid-breakout-size: calc((var(--content-breakout-maxwidth) - var(--content-maxwidth)) / 2);
   
     display: grid;
     grid-template-columns:
-      [full-width-start] minmax(var(--grid-padding-horizontal), 1fr)
-      [breakout-start] minmax(0, var(--grid-breakout-size))
+      [full-width-start] minmax(var(--content-padding), 1fr)
+      [breakout-start] minmax(0, var(--_grid-breakout-size))
       [content-start] min(
-        100% - (var(--grid-padding-horizontal) * 2),
-        var(--grid-content-maxwidth)
+        100% - (var(--content-padding) * 2),
+        var(--content-maxwidth)
       )
       [content-end]
-      minmax(0, var(--grid-breakout-size)) [breakout-end]
-      minmax(var(--grid-padding-horizontal), 1fr) [full-width-end];
+      minmax(0, var(--_grid-breakout-size)) [breakout-end]
+      minmax(var(--content-padding), 1fr) [full-width-end];
   }
 
   &-fullwidth,
