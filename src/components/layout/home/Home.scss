@@ -1,4 +1,15 @@
 .home {
+    &-carousel {
+        &__wrap {
+            padding: 7rem 0 3rem;
+            min-height: 20rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: clip;
+
+        }
+    }
     &-cube {
         &__wrap {
             position: relative;

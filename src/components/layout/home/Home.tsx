@@ -38,7 +38,7 @@ export function Home() {
                         </li>
                     </ul>
                 </section>
-                <section className='' style={{padding: '3rem 0', minHeight: '20rem', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                <section className='home-carousel__wrap app-fullwidth'>
                     <Carousel />
                 </section>
                 <section className='home-cube__wrap'>

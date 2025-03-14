@@ -1,18 +1,49 @@
 .app-tcarousel {
     &__card {
-        height: 100px;
+        --_transtion-duration: 400ms;
+        --_animation-duration: calc(2 * var(--_transtion-duration));
+        --_allowed-rotation: 35deg;
+        height: var(--_card-height);
         width: min(400px, 100%);
-        border-radius: 12px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 1rem;
+        box-shadow: var(--app-color-background-contrast) 0 4px;
         border: 1px solid;
+        overflow: hidden;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+        transform-origin: bottom right;
+        transition: translate var(--_transtion-duration) linear;
+
         display: flex;
+        flex-wrap: wrap;
         place-content: center;
         place-items: center;
+
+        &[data-order] {
+            animation: shuffle var(--_animation-duration) linear forwards;
+        }
+
+        &[data-order='0'] {
+            animation: shuffle-active var(--_animation-duration) linear forwards;
+        }
     }
     &__scroller {
+        --_card-height: 15rem;
         position: relative;
         display: flex;
         justify-content: center;
         width: 100%;
+        height: var(--_card-height);
+
+        &.-noanimate {
+            > .app-tcarousel__card {
+                animation-duration: 0ms;
+                transition-duration: 0ms;
+            }
+        }
     }
     &__control {
         & {
@@ -50,7 +81,7 @@
             display: flex;
             justify-content: center;
             gap: 1.5rem;
-            padding: 1rem 0;
+            padding: 2rem 0 1rem;
         }
     }
     &__wrap {
@@ -60,5 +91,28 @@
         justify-content: center;
         align-items: center;
         width: 100%;
+    }
+}
+
+@keyframes shuffle-active {
+    0% {
+        z-index: var(--_old-zindex);
+    }
+    50% {
+        rotate: var(--_allowed-rotation, 25deg);
+    }
+    100% {
+        rotate: 0;
+        z-index: var(--_zindex);
+    }
+}
+
+@keyframes shuffle {
+    from {
+        rotate: 0;
+        z-index: var(--_old-zindex);
+    }
+    to {
+        z-index: var(--_zindex);
     }
 }
