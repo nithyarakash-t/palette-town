@@ -93,7 +93,7 @@
             font-size: min(8rem, 17.5vmin);
             line-height: 1.2;
             text-align: center;
-            color: var(--app-color-background-primary);
+            color: light-dark(#fff, #222); //var(--app-color-background-primary);
             -webkit-text-stroke: 0.0625rem light-dark(#000, #fff);
             text-shadow: 0 0.25rem 0 var(--app-color-background-contrast);
             max-width: 7ch;
