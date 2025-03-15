@@ -15,18 +15,18 @@ function usePrevious<T>(value: T): T | undefined {
 
 export function Carousel() {
     const [activeIndex, setActiveIndex] = useState(0);
-    const [hasAnimated, setHasAnimated] = useState(false);
+    const [animationMode, setAnimationMode] = useState<'forwards' | 'reverse' | 'none'>('none');
     const prevActiveIndex = usePrevious(activeIndex);
 
     // prev page
     function goToPrev() {
-        if (!hasAnimated) setHasAnimated(true);
+        setAnimationMode('reverse');
         setActiveIndex(activeIndex === 0 ? data.length - 1 : activeIndex - 1);
     }
 
     // next page
     function goToNext() {
-        if (!hasAnimated) setHasAnimated(true);
+        setAnimationMode('forwards');
         setActiveIndex(activeIndex === data.length - 1 ? 0 : activeIndex + 1);
     }
 
@@ -60,7 +60,7 @@ export function Carousel() {
                 <button type='button' className='app-tcarousel__control -prev' aria-label='prev' onClick={goToPrev}></button>
                 <button type='button' className='app-tcarousel__control -next' aria-label='next' onClick={goToNext}></button>
             </div>
-            <ul className={`app-tcarousel__scroller ${!hasAnimated ? '-noanimate' : ''}`}>
+            <ul className={`app-tcarousel__scroller`} data-animation-mode={animationMode}>
                 {data.map((item, index)=> {
 
                     /**
@@ -71,7 +71,8 @@ export function Carousel() {
                         data-index={index} data-order={getCardOrder(index)}
                         style={{'--_zindex': getZIndex(index),
                             '--_old-zindex': getOldZIndex(index),
-                            translate: `calc(10px * attr(data-order type(<number>), 0)) calc(-10px * attr(data-order type(<number>), 0))`
+                            // translate: `calc(10px * attr(data-order type(<number>), 0)) calc(-10px * attr(data-order type(<number>), 0))`,
+                            margin: `0 0 calc(10px * attr(data-order type(<number>), 0)) calc(10px * attr(data-order type(<number>), 0))`
                         } as React.CSSProperties}
                         aria-hidden={index === activeIndex ? 'false' : 'true'}>{item}</li>
                 

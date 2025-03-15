@@ -19,7 +19,9 @@
             font-size: 0;
             &::before {
                 content: 'PT';
+                // color: var(--color-default);
                 font-size: 1.5rem;
+                font-family: "Dela Gothic One";
             }
         }
     }
