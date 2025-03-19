@@ -19,7 +19,7 @@ export function CyberpunkLink({
     <Link 
       to={href}
       className={"cybr-link__wrap" + (alternate ? " -secondary" : "")}
-      target='_blank'
+      target='_blank' rel='noopener noreferrer'
     >
       {content}<span aria-hidden="true">_</span>
       <span aria-hidden="true" className="cybr-link__glitch">{content}_</span>

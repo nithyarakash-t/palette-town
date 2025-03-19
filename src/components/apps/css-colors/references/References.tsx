@@ -30,7 +30,7 @@ export function References({references, appname=''}:{references:Reference[], app
             <ol className='cc-references__list'>
                 {references.map((item,index)=>{
                     return <li key={index}>
-                        <a href={item.link} target='_blank' aria-label={item.name}>{item.name}</a>
+                        <a href={item.link} target='_blank' rel='noopener noreferrer' aria-label={item.name}>{item.name}</a>
                     </li>
                 })}
             </ol>

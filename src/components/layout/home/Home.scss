@@ -128,7 +128,7 @@
             height: 100vh;
             min-height: 18.75rem; //fallback
             background: url('/hero-light.png') no-repeat center;
-            background-size: cover;
+            background-size: clamp(40rem, 43.75rem, 100%) 100%;
             display: grid;
             justify-items: center;
             align-items: center;

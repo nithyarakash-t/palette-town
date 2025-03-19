@@ -11,6 +11,9 @@ export function Home() {
             <div className='home-landing__wrap app-grid'>
                 <div className='home-landing__hero'>
                     <h1 className='home-landing__title'>Palette Town</h1>
+                    <div className='home-landing__whirrls' style={{display: 'none'}}>
+
+                    </div>
                 </div>
                 <section className='home-tool__wrap'>
                     <h2>Tools offered</h2>

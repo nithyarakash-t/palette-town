@@ -49,7 +49,7 @@ export function Player({simulation}:{simulation:ColorDeficiencyEnum}) {
                 </div>
                 <div className='cxc-main__player-buttons'>
                     <button type="button" className="--shuffle" aria-label="Shuffle button" onClick={handleShuffle}></button>
-                    <Link to={'https://open.spotify.com/playlist/3fFhzl5TVYXoHGVCTeTEGv?si=4c100d5fbf414aae'} target='_blank' className="--control" aria-label="Play button"></Link>
+                    <Link to={'https://open.spotify.com/playlist/3fFhzl5TVYXoHGVCTeTEGv?si=4c100d5fbf414aae'} target='_blank' rel='noopener noreferrer' className="--control" aria-label="Play button"></Link>
                 </div>
             </div>
             <div className="cxc-main__player-body">
@@ -205,7 +205,7 @@ export function Quote({simulation}:{simulation:ColorDeficiencyEnum}) {
             </div>  
             <p>{quote.quote}</p>
             <p>- {quote.by}</p>
-            <a href='https://youtube.com/shorts/6gt5E-jWDpg?si=AFliOYtR76uefNXc' target='_blank'>In case you're bored</a>
+            <a href='https://youtube.com/shorts/6gt5E-jWDpg?si=AFliOYtR76uefNXc' target='_blank' rel='noopener noreferrer'>In case you're bored</a>
             {/* <a href="https://www.youtube.com/watch?v=j5a0jTc9S10" target="_blank">Don't believe me ?</a> */}
         </div>
     )

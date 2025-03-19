@@ -185,9 +185,9 @@ export function Cube(){
     document.addEventListener('mousedown', handleMouseDown);
     document.addEventListener('mouseup', handleMouseUp);
     document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('touchstart', handleMouseDown);
+    document.addEventListener('touchstart', handleMouseDown, { passive: false });
     document.addEventListener('touchend', handleMouseUp);
-    document.addEventListener('touchmove', handleTouchMove);
+    document.addEventListener('touchmove', handleTouchMove, { passive: false });
 
     // Start animation
     animationFrameId = requestAnimationFrame(updateFrame);
