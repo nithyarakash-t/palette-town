@@ -1,0 +1,109 @@
+.home-cxbe {
+  &__face {
+    // Face positioning
+    &.-front {
+      transform: rotateY(0deg) translateZ(calc(var(--_translateZ) - 1px));
+      background: linear-gradient(to bottom, cyan, blue);
+
+      &::before {
+        background: linear-gradient(to bottom, white, magenta);
+        mask-image: linear-gradient(to left, magenta, transparent);
+      }
+    }
+
+    &.-back {
+      transform: rotateY(180deg) translateZ(calc(var(--_translateZ) - 1px));
+      background: linear-gradient(to bottom, yellow, red);
+
+      &::before {
+        background: linear-gradient(to bottom, lime, black);
+        mask-image: linear-gradient(to left, black, transparent);
+      }
+    }
+
+    &.-left {
+      transform: rotateY(-89.99999999999999deg) translateZ(calc(var(--_translateZ) - 1px));
+      background: linear-gradient(to bottom, lime, black);
+
+      &::before {
+        background: linear-gradient(to bottom, cyan, blue);
+        mask-image: linear-gradient(to left, blue, transparent);
+      }
+    }
+
+    &.-right {
+      transform: rotateY(89.99999999999999deg) translateZ(calc(var(--_translateZ) - 1px));
+      background: linear-gradient(to bottom, white, magenta);
+
+      &::before {
+        background: linear-gradient(to bottom, yellow, red);
+        mask-image: linear-gradient(to left, red, transparent);
+      }
+    }
+
+    &.-top {
+      transform: rotateX(89.99999999999999deg) translateZ(calc(var(--_translateZ) - 1px));
+      background: linear-gradient(to bottom, lime, cyan);
+
+      &::before {
+        background: linear-gradient(to bottom, yellow, white);
+        mask-image: linear-gradient(to left, white, transparent);
+      }
+    }
+
+    &.-bottom {
+      transform: rotateX(-89.99999999999999deg) translateZ(calc(var(--_translateZ) - 1px));
+      background: linear-gradient(to bottom, blue, black);
+
+      &::before {
+        background: linear-gradient(to bottom, magenta, red);
+        mask-image: linear-gradient(to left, red, transparent);
+      }
+    }
+
+    & {
+      inset: 0;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+      padding: 0 0.375rem;
+      user-select: none;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    &:hover {
+      background-color: light-dark(red, yellow);
+    }
+
+    &::before {
+      content: "";
+      height: inherit;
+      width: inherit;
+      position: absolute;
+    }
+  }
+  &__cube {
+    --_size: 10rem;
+    --_translateZ: calc(var(--_size) / 2);
+    width: var(--_size);
+    aspect-ratio: 1/1;
+    position: relative;
+    transform: translateZ(calc((var(--_translateZ) - 1px) * -1));
+    transform-style: preserve-3d;
+
+    @media (max-width:400px) {
+      --_size: 8rem;
+    }
+  }
+  &__scene {
+    height: min(20rem, 100%);
+    width: 100%;
+    perspective: 15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,5 +1,12 @@
 export const releaseNotes = [
     {
+        version: "0.4.0",
+        date: "15.03.2025",
+        desc: [
+            "Added carousel and cube to landing page"
+        ]
+    },
+    {
         version: "0.3.2",
         date: "22.02.2025",
         desc: [

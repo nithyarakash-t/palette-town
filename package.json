@@ -1,7 +1,7 @@
 {
   "name": "Palette Town",
   "private": true,
-  "version": "0.3.3",
+  "version": "0.4.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,12 +12,14 @@
   "dependencies": {
     "@floating-ui/react": "^0.27.4",
     "@vercel/analytics": "^1.4.1",
+    "gsap": "^3.12.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
+    "@types/gsap": "^3.0.0",
     "@types/node": "^22.13.5",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",

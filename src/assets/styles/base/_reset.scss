@@ -143,7 +143,7 @@ fieldset {
 }
 
 [hidden] {
-  display: none;
+  display: none !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {

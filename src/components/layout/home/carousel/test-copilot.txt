@@ -1,0 +1,98 @@
+export interface BaseCardData {
+    id: number | string;
+    order: number;
+}
+
+export interface CarouselProps<T extends BaseCardData> {
+    items: T[];
+    renderItem: (item: T) => React.ReactNode;
+    className?: string;
+}
+
+import { useState, useMemo } from 'react';
+import { BaseCardData, CarouselProps } from './types';
+import './Carousel.scss';
+
+export function Carousel<T extends BaseCardData>({ items, renderItem, className = '' }: CarouselProps<T>) {
+    const [activeIndex, setActiveIndex] = useState(0);
+
+    const cardsWithOrder = useMemo(() => {
+        return items.map((item, index) => {
+            let order = index - activeIndex;
+            if (order < 0) order += items.length;
+            return {
+                ...item,
+                order
+            };
+        });
+    }, [items, activeIndex]);
+
+    function goToPrev() {
+        setActiveIndex(activeIndex === 0 ? items.length - 1 : activeIndex - 1);
+    }
+
+    function goToNext() {
+        setActiveIndex(activeIndex === items.length - 1 ? 0 : activeIndex + 1);
+    }
+
+    return (
+        <div className={`app-tcarousel__wrap ${className}`}>
+            <div className='app-tcarousel__controls'>
+                <button type='button' className='app-tcarousel__control -prev' aria-label='prev' onClick={goToPrev}></button>
+                <button type='button' className='app-tcarousel__control -next' aria-label='next' onClick={goToNext}></button>
+            </div>
+            <ul className='app-tcarousel__scroller'>
+                {cardsWithOrder.map((item) => (
+                    <li 
+                        key={item.id}
+                        className='app-tcarousel__card'
+                        data-order={item.order}
+                        hidden={item.order !== 0}
+                    >
+                        {renderItem(item)}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+}
+
+// Example implementation
+interface ProductCard extends BaseCardData {
+    id: number;
+    title: string;
+    price: number;
+    image: string;
+    description: string;
+}
+
+const productData: Omit<ProductCard, 'order'>[] = [
+    {
+        id: 1,
+        title: "Product 1",
+        price: 99.99,
+        image: "/path/to/image1.jpg",
+        description: "Description 1"
+    },
+    // ...more products
+];
+
+// In your parent component
+function ProductShowcase() {
+    const renderProduct = (product: ProductCard) => (
+        <div className="product-card">
+            <img src={product.image} alt={product.title} />
+            <h3>{product.title}</h3>
+            <p>{product.description}</p>
+            <span>${product.price}</span>
+        </div>
+    );
+
+    return (
+        <Carousel
+            items={productData}
+            renderItem={renderProduct}
+            className="product-carousel"
+        />
+    );
+}

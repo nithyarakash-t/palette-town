@@ -37,7 +37,7 @@
       border-style: solid;
       border-width: 0.125rem 0.125rem 3.125rem 0.125rem;
       border-radius: 50%;
-      animation: yinyang 4s linear infinite;
+      animation: yinyang 8s linear infinite;
       &::before,
       &::after {
         content: "";
@@ -59,7 +59,7 @@
         background-color: var(--_yang);
         border-color: var(--_yin);
       }
-      &:hover {
+      &.-easy, &:hover {
         animation-play-state: paused;
       }
     }
@@ -182,7 +182,7 @@
             animation: slidein-from-right var(--_animation-duration) ease-in-out
               forwards;
               rotate: 5deg;
-            mix-blend-mode: difference;
+              mix-blend-mode: difference;
           }
         }
       }
