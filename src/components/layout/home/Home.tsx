@@ -1,6 +1,8 @@
 import { Suspense, lazy } from 'react';
 import './Home.scss';
-import { Carousel } from './carousel/Carousel';
+// import { Carousel } from './carousel/Carousel';
+import { Link } from 'react-router-dom';
+import { menuItems } from '../header/navigationmenu/Navigationmenu';
 // import { Stringbulb } from '../themeSwitch/stringbulb/Stringbulb';
 
 const Cube = lazy(() => import('./cube/Cube').then(module => ({ default: module.Cube })));
@@ -19,9 +21,10 @@ export function Home() {
                     <h2>Tools offered</h2>
                     <ul className='home-tool__list'>
                         <li>
-                            <div className='home-tool__listitem -left'>
-                                <h3>Contrast Checker</h3>
-                                <p>Check if your color combinations meet accessibility standards. Our contrast checker helps you validate color pairs against WCAG guidelines, ensuring your designs are readable and accessible for all users.</p>                            
+                            <div className='home-tool__listitem -left' role='group' aria-labelledby='home-tool-0-title'>
+                                <h3 id='home-tool-0-title'>Contrast Checker</h3>
+                                <p>Check if your color combinations meet accessibility standards. Our contrast checker helps you validate color pairs against WCAG guidelines, ensuring your designs are readable and accessible for all users.</p>
+                                <Link to={menuItems[3].path}>Check out</Link>                         
                             </div>
                             <figure className='home-tool__listitem -right'>
                                 <picture>
@@ -30,9 +33,10 @@ export function Home() {
                             </figure>
                         </li>
                         <li>
-                            <div className='home-tool__listitem -left'>
-                                <h3>CSS Colours</h3>
+                            <div className='home-tool__listitem -left' role='group' aria-labelledby='home-tool-1-title'>
+                                <h3 id='home-tool-1-title'>CSS Colours</h3>
                                 <p>In a Pinch ? Make use of our tool to get the CSS preset color for your deired hue. CSS is all you need</p>
+                                <Link to={menuItems[2].path}>Check out</Link>                         
                             </div>
                             <figure className='home-tool__listitem -right'>
                                 <picture>
@@ -41,9 +45,10 @@ export function Home() {
                             </figure>
                         </li>
                         <li>
-                            <div className='home-tool__listitem -left'>
-                                <h3>Color guesser</h3>
+                            <div className='home-tool__listitem -left' role='group' aria-labelledby='home-tool-2-title'>
+                                <h3 id='home-tool-2-title'>Color guesser</h3>
                                 <p>How well do you know your CSS colours ? How good is your color perception ? Take a break, and have fun with this mini game</p>
+                                <Link to={menuItems[1].path}>Check out</Link>                         
                             </div>
                             <figure className='home-tool__listitem -right'>
                                 <picture>
@@ -53,9 +58,9 @@ export function Home() {
                         </li>
                     </ul>
                 </section>
-                <section className='home-carousel__wrap app-fullwidth'>
+                {/* <section className='home-carousel__wrap app-fullwidth'>
                     <Carousel />
-                </section>
+                </section> */}
                 <section className='home-cube__wrap'>
                     <Suspense fallback={<div>Loading...</div>}>
                         <Cube/>
