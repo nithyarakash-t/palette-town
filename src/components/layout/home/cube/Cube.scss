@@ -93,6 +93,7 @@
     position: relative;
     transform: translateZ(calc((var(--_translateZ) - 1px) * -1));
     transform-style: preserve-3d;
+    touch-action: none;
 
     @media (max-width:400px) {
       --_size: 8rem;
@@ -105,5 +106,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    touch-action: none;
   }
 }

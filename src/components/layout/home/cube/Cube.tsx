@@ -128,6 +128,7 @@ export function Cube(){
 
   useEffect(() => {
     let animationFrameId: number;
+    const cubeElement = cubeRef.current;
 
     const updateFrame = (timestamp: number) => {
       if (lastUpdateRef.current === 0) {
@@ -182,12 +183,12 @@ export function Cube(){
       handleMouseMove(touch);
     };
 
-    document.addEventListener('mousedown', handleMouseDown);
-    document.addEventListener('mouseup', handleMouseUp);
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('touchstart', handleMouseDown, { passive: false });
-    document.addEventListener('touchend', handleMouseUp);
-    document.addEventListener('touchmove', handleTouchMove, { passive: false });
+    cubeElement?.addEventListener('mousedown', handleMouseDown);
+    cubeElement?.addEventListener('mouseup', handleMouseUp);
+    cubeElement?.addEventListener('mousemove', handleMouseMove);
+    cubeElement?.addEventListener('touchstart', handleMouseDown, { passive: false });
+    cubeElement?.addEventListener('touchend', handleMouseUp);
+    cubeElement?.addEventListener('touchmove', handleTouchMove, { passive: false });
 
     // Start animation
     animationFrameId = requestAnimationFrame(updateFrame);
@@ -197,12 +198,12 @@ export function Cube(){
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
       }
-      document.removeEventListener('mousedown', handleMouseDown);
-      document.removeEventListener('mouseup', handleMouseUp);
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('touchstart', handleMouseDown);
-      document.removeEventListener('touchend', handleMouseUp);
-      document.removeEventListener('touchmove', handleTouchMove);
+      cubeElement?.removeEventListener('mousedown', handleMouseDown);
+      cubeElement?.removeEventListener('mouseup', handleMouseUp);
+      cubeElement?.removeEventListener('mousemove', handleMouseMove);
+      cubeElement?.removeEventListener('touchstart', handleMouseDown);
+      cubeElement?.removeEventListener('touchend', handleMouseUp);
+      cubeElement?.removeEventListener('touchmove', handleTouchMove);
     };
   }, []);
 
