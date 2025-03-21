@@ -2,7 +2,7 @@ import { useState, useRef, KeyboardEvent, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Navigationmenu.scss';
 
-const menuItems = [
+export const menuItems = [
     { label: 'Home', path: '/' },
     { label: 'Colorguesser', path: '/colorguesser' },
     { label: 'Csscolors', path: '/csscolors' },
