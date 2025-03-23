@@ -1,3 +1,5 @@
+import { convertHSLAtoHex } from "../utils/utils";
+
 interface ColorState {
     hue: number;
     saturation: number;
@@ -22,6 +24,43 @@ const initialState: ColorState = {
 };
 
 function colorReducer(state: ColorState, action: ColorAction): ColorState {
+    let newState: ColorState;
+
+    switch (action.type) {
+        case 'SET_HUE':
+            newState = { ...state, hue: action.payload };
+            break;
+        case 'SET_SATURATION':
+            newState = { ...state, saturation: action.payload };
+            break;
+        case 'SET_LIGHTNESS':
+            newState = { ...state, lightness: action.payload };
+            break;
+        case 'SET_ALPHA':
+            newState = { ...state, alpha: action.payload };
+            break;
+        case 'SET_COLOR':
+            return { ...state, color: action.payload };
+        default:
+            return state;
+    }
+
+    const newColor = convertHSLAtoHex(
+        `hsla(${newState.hue}, ${newState.saturation}, ${newState.lightness}, ${newState.alpha})`
+    );
+    return { ...newState, color: newColor };
+}
+
+export type { ColorState, ColorAction };
+export { colorReducer, initialState };
+
+
+
+
+/**old reducer
+ * 
+ * 
+function colorReducer(state: ColorState, action: ColorAction): ColorState {
     switch (action.type) {
         case 'SET_HUE':
             return { ...state, hue: action.payload };
@@ -37,6 +76,4 @@ function colorReducer(state: ColorState, action: ColorAction): ColorState {
             return state;
     }
 }
-
-export type { ColorState, ColorAction };
-export { colorReducer, initialState };
+ */
