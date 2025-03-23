@@ -44,6 +44,8 @@
       &.-red { @include utl.red-slider(); }
       &.-green { @include utl.green-slider(); } 
       &.-blue { @include utl.blue-slider(); }
+      &.-white { @include utl.white-slider(); }
+      &.-black { @include utl.black-slider(); }
       &.-mono { @include utl.mono-slider(); }
     }
     & {

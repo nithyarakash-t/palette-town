@@ -164,6 +164,45 @@ export function convertRGBAtoHSLA(rgba: ColorRGBA): ColorHSLA {
     return `hsla(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%, ${alpha})`;
 }
 
+/**TO BE FIXED */
+export function convertHWBAtoHex(hwba: string): ColorHEX {
+    // Parse hwb values
+    const matches = hwba.match(/[\d.]+/g);
+    if (!matches || matches.length < 4) {
+        return '#000000';
+    }
+
+    const h = parseInt(matches[0]);
+    const w = parseInt(matches[1]) / 100;
+    const b = parseInt(matches[2]) / 100;
+    // const a = matches[3] ? parseInt(matches[3]) / 100 : 1;
+
+    // HWB to RGB conversion
+    const sum = w + b;
+    if (sum >= 1) {
+        const gray = Math.round(w / sum * 255);
+        return `#${gray.toString(16).padStart(2, '0')}${gray.toString(16).padStart(2, '0')}${gray.toString(16).padStart(2, '0')}`;
+    }
+
+    // Convert HWB to RGB
+    const rgb = hslToRgb(h, 100, 50);
+    for (let i = 0; i < 3; i++) {
+        rgb[i] *= (1 - w - b);
+        rgb[i] += w * 255;
+        rgb[i] = Math.round(rgb[i]);
+    }
+
+    return `#${rgb[0].toString(16).padStart(2, '0')}${rgb[1].toString(16).padStart(2, '0')}${rgb[2].toString(16).padStart(2, '0')}`;
+}
+function hslToRgb(h: number, s: number, l: number): number[] {
+    s /= 100;
+    l /= 100;
+    const k = (n: number) => (n + h / 30) % 12;
+    const a = s * Math.min(l, 1 - l);
+    const f = (n: number) =>
+        l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+    return [255 * f(0), 255 * f(8), 255 * f(4)];
+}
 
 
 /**

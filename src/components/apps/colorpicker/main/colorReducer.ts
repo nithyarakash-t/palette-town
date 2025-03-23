@@ -1,4 +1,4 @@
-import { ColorHEX, convertHexToHSLA, convertHexToRGBA, convertHSLAtoHex } from "../utils/utils";
+import { ColorHEX, convertHexToHSLA, convertHexToRGBA, convertHSLAtoHex, convertHWBAtoHex } from "../utils/utils";
 
 interface ColorState {
     hue: number;
@@ -11,6 +11,9 @@ interface ColorState {
     green: number;
     blue: number;
 
+    white:number;
+    black:number;
+
     color: string;
 }
 
@@ -22,6 +25,8 @@ type ColorAction =
     | { type: 'SET_RED'; payload: number }
     | { type: 'SET_GREEN'; payload: number }
     | { type: 'SET_BLUE'; payload: number }
+    | { type: 'SET_WHITE'; payload: number } 
+    | { type: 'SET_BLACK'; payload: number }
     | { type: 'SET_COLOR'; payload: string };
 
 const initialState: ColorState = {
@@ -32,6 +37,8 @@ const initialState: ColorState = {
     red: 255,
     green: 0,
     blue: 0,
+    white: 0,
+    black: 0,
     color: '#ff0000',
 };
 
@@ -69,6 +76,29 @@ function colorReducer(state: ColorState, action: ColorAction): ColorState {
             return {
                 ...newState,
                 color: computedHex,
+                hue: hslaValues.h,
+                saturation: hslaValues.s,
+                lightness: hslaValues.l
+            };
+        }
+
+        case 'SET_WHITE':
+        case 'SET_BLACK': {
+            // Handle HWBA changes
+            return state;
+
+            //TO BE FIXED
+            newState = { ...state, [action.type.slice(4).toLowerCase()]: action.payload };
+            const hwbaString = `hwb(${state.hue} ${newState.white}% ${newState.black}% / ${state.alpha}%)`;
+            computedHex = convertHWBAtoHex(hwbaString);
+            const rgbaValues = convertHexToRGBA(computedHex);
+            const hslaValues = convertHexToHSLA(computedHex);
+            return {
+                ...newState,
+                color: computedHex,
+                red: rgbaValues.r,
+                green: rgbaValues.g,
+                blue: rgbaValues.b,
                 hue: hslaValues.h,
                 saturation: hslaValues.s,
                 lightness: hslaValues.l

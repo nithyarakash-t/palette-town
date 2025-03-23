@@ -1,7 +1,7 @@
 import { FormEvent } from 'react';
 import './Slider.scss';
 
-type SliderType = 'hue' | 'saturation' | 'lightness' | 'alpha' | 'red' | 'green' | 'blue';
+type SliderType = 'hue' | 'saturation' | 'lightness' | 'alpha' | 'red' | 'green' | 'blue' | 'white' | 'black';
 const sliderRanges: Record<SliderType, { min: number; max: number }> = {
     hue: { min: 0, max: 360 },
     saturation: { min: 0, max: 100 },
@@ -9,7 +9,9 @@ const sliderRanges: Record<SliderType, { min: number; max: number }> = {
     alpha: { min: 0, max: 100 },
     red: { min: 0, max: 255 },
     green: { min: 0, max: 255 },
-    blue: { min: 0, max: 255 }
+    blue: { min: 0, max: 255 },
+    white: { min: 0, max: 100 },
+    black: { min: 0, max: 100 }
 };
 interface SliderProps {
     readonly customclass?: string;
