@@ -5,7 +5,7 @@ export type ColorHSLA = `hsla(${number}, ${number}%, ${number}%, ${number})`;
 export type Color = ColorRGBA | ColorHEX | ColorHSLA;
 
 /**Conversion methods */
-export function convertHexToRGBA(hex: ColorHEX): ColorRGBA {
+export function convertHexToRGBA(hex: ColorHEX): { r: number; g: number; b: number; a: number } {
     // Remove the hash (#) if it exists
     const hexNoHash = hex.replace(/^#/, "");
     
@@ -23,7 +23,58 @@ export function convertHexToRGBA(hex: ColorHEX): ColorRGBA {
         b = parseInt(hexNoHash.slice(4, 6), 16);
     }
 
-    return `rgba(${r}, ${g}, ${b}, ${a})`;
+    // return `rgba(${r}, ${g}, ${b}, ${a})`;
+    return {
+        r: r,
+        g: g,
+        b: b,
+        a: a
+    }
+}
+export function convertHexToHSLA(hex: ColorHEX): { h: number; s: number; l: number; a: number } {
+    // Remove the hash and handle both 6 and 8 digit hex
+    const hexNoHash = hex.replace(/^#/, "");
+    
+    // Convert hex to rgba values
+    let r, g, b, a = 1;
+    if (hexNoHash.length === 8) {
+        r = parseInt(hexNoHash.slice(0, 2), 16) / 255;
+        g = parseInt(hexNoHash.slice(2, 4), 16) / 255;
+        b = parseInt(hexNoHash.slice(4, 6), 16) / 255;
+        a = parseInt(hexNoHash.slice(6, 8), 16) / 255;
+    } else {
+        r = parseInt(hexNoHash.slice(0, 2), 16) / 255;
+        g = parseInt(hexNoHash.slice(2, 4), 16) / 255;
+        b = parseInt(hexNoHash.slice(4, 6), 16) / 255;
+    }
+
+    // Find greatest and smallest channel values
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    let h = 0;
+    let s = 0;
+    const l = (max + min) / 2;
+
+    // Calculate hue and saturation
+    if (max !== min) {
+        const d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        
+        switch (max) {
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+    }
+
+    // Convert to degrees and percentages
+    return {
+        h: Math.round(h * 360),
+        s: Math.round(s * 100),
+        l: Math.round(l * 100),
+        a: Math.round(a * 100)
+    };
 }
 
 export function convertRGBAToHex(rgba: ColorRGBA): ColorHEX {
@@ -45,14 +96,10 @@ export function convertRGBAToHex(rgba: ColorRGBA): ColorHEX {
         ? `#${toHex(r)}${toHex(g)}${toHex(b)}${toHex(alphaHex)}`
         : `#${toHex(r)}${toHex(g)}${toHex(b)}`;
 }
-
-
 export function convertHSLAtoHex(hsla: ColorHSLA = 'hsla(0, 50%, 50%, 1)'): ColorHEX {
     const rgba = convertHSLAtoRGBA(hsla);
     return convertRGBAToHex(rgba);
 }
-
-
 export function convertHSLAtoRGBA(hsla: ColorHSLA): ColorRGBA {
     // Updated regex to handle percentage signs
     const matches = hsla.match(/[\d.]+/g);
@@ -86,7 +133,6 @@ export function convertHSLAtoRGBA(hsla: ColorHSLA): ColorRGBA {
 
     return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
 }
-
 export function convertRGBAtoHSLA(rgba: ColorRGBA): ColorHSLA {
     const matches = rgba.match(/[\d.]+/g);
     if (!matches || matches.length !== 4) {

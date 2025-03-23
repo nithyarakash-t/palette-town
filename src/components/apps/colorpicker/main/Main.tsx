@@ -25,6 +25,15 @@ export function Main() {
                 
                     <Result result={`hsla(${state.hue}, ${state.saturation}%, ${state.lightness}%, ${state.alpha / 100})`} />
                 </div>
+
+                <div className='cop-main__inputgroup'>
+                    <Slider type='red' value={state.red} setValue={(value) => dispatch({ type: 'SET_RED', payload: value })} name='cop-red-slider' id='cop-red-slider' label='Red' />
+                    <Slider type='green' value={state.green} setValue={(value) => dispatch({ type: 'SET_GREEN', payload: value })} name='cop-green-slider' id='cop-green-slider' label='Green' />
+                    <Slider type='blue' value={state.blue} setValue={(value) => dispatch({ type: 'SET_BLUE', payload: value })} name='cop-blue-slider' id='cop-blue-slider' label='Blue' />
+                    <Slider type='alpha' value={state.alpha} setValue={(value) => dispatch({ type: 'SET_ALPHA', payload: value })} name='cop-alpha-slider' id='cop-alpha-slider' label='Alpha' />
+                
+                    <Result result={`rgba(${state.red}, ${state.green}, ${state.blue}, ${state.alpha / 100})`} />
+                </div>
             </div>
         </div>
     )

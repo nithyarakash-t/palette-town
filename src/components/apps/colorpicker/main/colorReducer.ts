@@ -1,4 +1,4 @@
-import { convertHSLAtoHex } from "../utils/utils";
+import { ColorHEX, convertHexToHSLA, convertHexToRGBA, convertHSLAtoHex } from "../utils/utils";
 
 interface ColorState {
     hue: number;
@@ -37,28 +37,68 @@ const initialState: ColorState = {
 
 function colorReducer(state: ColorState, action: ColorAction): ColorState {
     let newState: ColorState;
+    let computedHex: ColorHEX;
 
     switch (action.type) {
         case 'SET_HUE':
-            newState = { ...state, hue: action.payload };
-            break;
         case 'SET_SATURATION':
-            newState = { ...state, saturation: action.payload };
-            break;
         case 'SET_LIGHTNESS':
-            newState = { ...state, lightness: action.payload };
-            break;
-        case 'SET_ALPHA':
-            newState = { ...state, alpha: action.payload };
-            break;
-        case 'SET_COLOR':
-            return { ...state, color: action.payload };
+        case 'SET_ALPHA': {
+            // Handle HSLA changes
+            newState = { ...state, [action.type.slice(4).toLowerCase()]: action.payload };
+            computedHex = convertHSLAtoHex(
+                `hsla(${newState.hue}, ${newState.saturation}%, ${newState.lightness}%, ${newState.alpha})`
+            );
+            const rgbaValues = convertHexToRGBA(computedHex);
+            return {
+                ...newState,
+                color: computedHex,
+                red: rgbaValues.r,
+                green: rgbaValues.g,
+                blue: rgbaValues.b
+            };
+        }
+
+        case 'SET_RED':
+        case 'SET_GREEN':
+        case 'SET_BLUE': {
+            // Handle RGBA changes
+            newState = { ...state, [action.type.slice(4).toLowerCase()]: action.payload };
+            computedHex = `#${newState.red.toString(16).padStart(2, '0')}${newState.green.toString(16).padStart(2, '0')}${newState.blue.toString(16).padStart(2, '0')}`;
+            const hslaValues = convertHexToHSLA(computedHex);
+            return {
+                ...newState,
+                color: computedHex,
+                hue: hslaValues.h,
+                saturation: hslaValues.s,
+                lightness: hslaValues.l
+            };
+        }
+
+        // currently not used, implement input type color / custom color picker
+        case 'SET_COLOR': {
+            if (!/^#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$/.test(action.payload)) {
+                throw new Error('Invalid color format. Please provide a hex color of 6-8 characters excluding #.');
+            }
+
+            // Handle direct color changes (stricly hex of 6-8 chars excluding #)
+            newState = { ...state, color: action.payload };
+            const rgbaValues = convertHexToRGBA(action.payload as ColorHEX);
+            const hslaValues = convertHexToHSLA(action.payload as ColorHEX);
+            return {
+                ...newState,
+                red: rgbaValues.r,
+                green: rgbaValues.g,
+                blue: rgbaValues.b,
+                hue: hslaValues.h,
+                saturation: hslaValues.s,
+                lightness: hslaValues.l
+            };
+        }
+
         default:
             return state;
     }
-
-    const newColor = convertHSLAtoHex(`hsla(${newState.hue}, ${newState.saturation}%, ${newState.lightness}%, ${newState.alpha})`);
-    return { ...newState, color: newColor };
 }
 
 export type { ColorState, ColorAction };
