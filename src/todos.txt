@@ -34,10 +34,11 @@
 
 
 --------------Other pages----------------
+hsl - rgb - hex (oklch, lch, lab) - 
+    -- color converter and visualizer -- RGB, hex, HSL, HWB, OKLCH, CMK -- -- hsl picker . com
 oklch . com
 palette generator - connect to contrast checker, visualizer, css colours
 gradient, box shadow, drop shadow generators ? -- gradient.style
-color converter and visualizer -- RGB, hex, HSL, HWB, OKLCH, CMK -- -- hsl picker . com
 
 colorpicker - [colorpicker.fr](http://colorpicker.fr/) / https://coolors.co/
 color mix visualizer
