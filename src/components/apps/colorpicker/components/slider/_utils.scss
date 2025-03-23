@@ -1,0 +1,14 @@
+@mixin slider-thumb {
+    appearance: none;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: linear-gradient(120deg, #444 30%, #111 100%);
+    box-shadow: 0 0 0 2px white, 0 0 2px 3px #444;
+}
+  
+@mixin hue-slider-thumb-focus {
+    background: linear-gradient(120deg, hsl(calc(var(--_pos) * 360), 90%, 50% ) 30%, hsl( calc(var(--_pos) * 360), 100%, 40% ) 100%);
+    box-shadow: 0 0 0 3px white, 0 0 2px 4px hsl(calc(var(--_pos) * 360), 100%, 50%);
+}

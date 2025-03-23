@@ -1,0 +1,22 @@
+.cop-main {
+    &__result {
+        & {
+            border-radius: 1rem;
+            background-color: red;
+            aspect-ratio: 1/1;
+        }
+        &group {
+            display: grid;
+            gap: 1rem;
+        }
+    }
+    &__right {
+        
+    }
+    &__wrap {
+        --_result-width: 7.8125rem;
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: 7.8125rem 1fr;
+    }
+}
