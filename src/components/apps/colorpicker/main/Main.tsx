@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import React, { useReducer } from 'react';
 import { Result } from '../components/result/Result';
 import { Slider } from '../components/slider/Slider';
 import { colorReducer, initialState } from './colorReducer';
@@ -8,7 +8,10 @@ export function Main() {
     const [state, dispatch] = useReducer(colorReducer, initialState);
 
     return (
-        <div className='cop-main__wrap'>
+        <div className='cop-main__wrap' 
+             style={{'--_hue': state.hue, '--_saturation': `${state.saturation}%`, 
+                    '--_lightness': `${state.lightness}%`, '--_alpha': state.alpha} as React.CSSProperties}
+        >
             <div className='cop-main__resultgroup'>
                 <div className='cop-main__result' style={{ backgroundColor: state.color }}> </div>
                 <Result result={state.color} />

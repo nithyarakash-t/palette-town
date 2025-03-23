@@ -8,8 +8,10 @@
     }
     input {
       --_pos: 0;
-      --_bg: linear-gradient( to right, hsl(0, 80%, 70%) 0%, hsl(30, 80%, 70%) 8.3%, hsl(60, 80%, 70%) 16.6%, hsl(90, 80%, 70%) 25%, hsl(120, 80%, 70%) 33.3%, hsl(150, 80%, 70%) 41.6%, hsl(180, 80%, 70%) 50%, hsl(210, 80%, 70%) 58.3%, hsl(240, 80%, 70%) 66.6%, hsl(270, 80%, 70%) 75%, hsl(300, 80%, 70%) 83.3%, hsl(330, 80%, 70%) 91.6%, hsl(360, 80%, 70%) 100% );
+      --_bg: red;
       --_shadow: none;
+      --_thumb-bg: linear-gradient(120deg, #444 30%, #111 100%);
+      --_thumb-shadow: 0 0 0 2px white, 0 0 2px 3px #444;
       flex: 1;
       appearance: none;
       outline: none;
@@ -19,6 +21,11 @@
       background: var(--_bg);
       box-shadow: var(--_shadow);
 
+      // unable to combine
+      // #{&}::-moz-range-thumb,
+      // #{&}::-webkit-slider-thumb {
+      //   @include utl.hue-slider-thumb-focus();
+      // }
       &::-webkit-slider-thumb {
         @include utl.slider-thumb();
       }
@@ -27,42 +34,17 @@
       }
 
       &:focus {
-        // unable to combine
-        // #{&}::-moz-range-thumb,
-        // #{&}::-webkit-slider-thumb {
-        //   @include utl.hue-slider-thumb-focus();
-        // }
-        &::-webkit-slider-thumb {
-          @include utl.hue-slider-thumb-focus();
-        }
-        &::-moz-range-thumb {
-          @include utl.hue-slider-thumb-focus();
-        }
-        & {
-          height: 0.625rem;
-          background: linear-gradient(
-            to right,
-            hsl(0, 100%, 50%) 0%,
-            hsl(30, 100%, 50%) 8.3%,
-            hsl(60, 100%, 50%) 16.6%,
-            hsl(90, 100%, 50%) 25%,
-            hsl(120, 100%, 50%) 33.3%,
-            hsl(150, 100%, 50%) 41.6%,
-            hsl(180, 100%, 50%) 50%,
-            hsl(210, 100%, 50%) 58.3%,
-            hsl(240, 100%, 50%) 66.6%,
-            hsl(270, 100%, 50%) 75%,
-            hsl(300, 100%, 50%) 83.3%,
-            hsl(330, 100%, 50%) 91.6%,
-            hsl(360, 100%, 50%) 100%
-          );
-        }
+        height: 0.625rem;
       }
 
-      &.-mono {
-        --_bg: linear-gradient(to bottom, #444 0%, #111 100%) !important;
-        --_shadow: none !important;
-      }
+      &.-hue { @include utl.hue-slider(); }
+      &.-saturation { @include utl.saturation-slider(); }
+      &.-lightness { @include utl.lightness-slider(); }
+      &.-alpha { @include utl.alpha-slider(); }
+      &.-red { @include utl.red-slider(); }
+      &.-green { @include utl.green-slider(); } 
+      &.-blue { @include utl.blue-slider(); }
+      &.-mono { @include utl.mono-slider(); }
     }
     & {
       display: flex;

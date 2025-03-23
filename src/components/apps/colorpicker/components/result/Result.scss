@@ -1,7 +1,11 @@
 .cop-result__group {
+    > p {
+        margin: 0 auto;
+    }
     & {
         position: relative;
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         gap: 1rem;
     }

@@ -1,4 +1,8 @@
 .cop-main {
+    &__inputgroup {
+        display: grid;
+        gap: 1rem;
+    }
     &__result {
         & {
             border-radius: 1rem;
@@ -8,15 +12,23 @@
         &group {
             display: grid;
             gap: 1rem;
+            width: min(var(--_result-width), 100%);
         }
     }
     &__right {
-        
+        display: grid;
+        gap: 2rem;
+        width: 100%;
     }
     &__wrap {
         --_result-width: 7.8125rem;
         display: grid;
         gap: 2rem;
         grid-template-columns: 7.8125rem 1fr;
+
+        @media (max-width: 600px) {
+            grid-template-columns: 1fr;
+            place-items: center;
+        }
     }
 }
