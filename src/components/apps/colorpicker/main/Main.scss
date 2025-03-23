@@ -1,0 +1,36 @@
+.cop-main {
+    &__inputgroup {
+        display: grid;
+        gap: 1rem;
+    }
+    &__result {
+        & {
+            border-radius: 1rem;
+            background-color: red;
+            aspect-ratio: 1/1;
+        }
+        &group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: min(var(--_result-width), 100%);
+        }
+    }
+    &__right {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        width: 100%;
+    }
+    &__wrap {
+        --_result-width: 9.5rem;
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: var(--_result-width) 1fr;
+
+        @media (max-width: 600px) {
+            grid-template-columns: 1fr;
+            place-items: center;
+        }
+    }
+}

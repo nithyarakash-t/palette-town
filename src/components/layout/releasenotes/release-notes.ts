@@ -1,5 +1,12 @@
 export const releaseNotes = [
     {
+        version: "0.5.0",
+        date: "24.03.2025",
+        desc: [
+            "Initial release of Color picker / converter"
+        ]
+    },
+    {
         version: "0.4.0",
         date: "15.03.2025",
         desc: [
