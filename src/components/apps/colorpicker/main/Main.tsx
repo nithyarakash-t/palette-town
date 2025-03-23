@@ -3,10 +3,23 @@ import { Result } from '../components/result/Result';
 import { Slider } from '../components/slider/Slider';
 import { colorReducer, initialState } from './colorReducer';
 import './Main.scss';
+import { getColorByHex, isValidCssColor } from '../../css-colors/data/parsedUniqueColorsObject';
 
 export function Main() {
     const [state, dispatch] = useReducer(colorReducer, initialState);
 
+    const cssColor:string[] = [];
+    if(state.alpha === 100) {
+        if(isValidCssColor(state.color)) {
+            const targetColor = getColorByHex(state.color);
+            cssColor.push(targetColor.name);
+
+            if(targetColor?.alternativeName) {
+                cssColor.push(targetColor.alternativeName);
+            }
+            
+        }
+    }
     return (
         <div className='cop-main__wrap' 
              style={{'--_hue': state.hue, '--_saturation': `${state.saturation}%`, 
@@ -15,6 +28,12 @@ export function Main() {
             <div className='cop-main__resultgroup'>
                 <div className='cop-main__result' style={{ backgroundColor: state.color }}> </div>
                 <Result result={state.color} />
+
+                {
+                    cssColor.map((color, index) => {
+                        return <Result key={index} result={color} />
+                    })
+                }
             </div>
             <div className='cop-main__right'>
                 <div className='cop-main__inputgroup'>
