@@ -10,7 +10,7 @@ export function Result({ result }: { result: string }) {
     return (
         <div className='cop-result__group' role='group'>
             <p>{result}</p>
-            <button type='button' onClick={handleCopy} aria-label='Copy'>Copy</button>
+            <button type='button' onClick={handleCopy} aria-label='Copy'></button>
         </div>
     )
 }

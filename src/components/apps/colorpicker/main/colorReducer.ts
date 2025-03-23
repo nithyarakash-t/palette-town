@@ -4,7 +4,13 @@ interface ColorState {
     hue: number;
     saturation: number;
     lightness: number;
+
     alpha: number;
+
+    red: number;
+    green: number;
+    blue: number;
+
     color: string;
 }
 
@@ -13,6 +19,9 @@ type ColorAction =
     | { type: 'SET_SATURATION'; payload: number }
     | { type: 'SET_LIGHTNESS'; payload: number }
     | { type: 'SET_ALPHA'; payload: number }
+    | { type: 'SET_RED'; payload: number }
+    | { type: 'SET_GREEN'; payload: number }
+    | { type: 'SET_BLUE'; payload: number }
     | { type: 'SET_COLOR'; payload: string };
 
 const initialState: ColorState = {
@@ -20,7 +29,10 @@ const initialState: ColorState = {
     saturation: 100,
     lightness: 50,
     alpha: 100,
-    color: '#ff0000'
+    red: 255,
+    green: 0,
+    blue: 0,
+    color: '#ff0000',
 };
 
 function colorReducer(state: ColorState, action: ColorAction): ColorState {
@@ -45,9 +57,7 @@ function colorReducer(state: ColorState, action: ColorAction): ColorState {
             return state;
     }
 
-    const newColor = convertHSLAtoHex(
-        `hsla(${newState.hue}, ${newState.saturation}, ${newState.lightness}, ${newState.alpha})`
-    );
+    const newColor = convertHSLAtoHex(`hsla(${newState.hue}, ${newState.saturation}%, ${newState.lightness}%, ${newState.alpha})`);
     return { ...newState, color: newColor };
 }
 
