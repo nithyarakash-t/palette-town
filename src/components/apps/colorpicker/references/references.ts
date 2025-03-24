@@ -6,6 +6,10 @@ export const references: Reference[] = [
     link: "https://hslpicker.com",
   },
   {
+    name: "Josh Comeau",
+    link: "https://www.joshwcomeau.com/css/color-formats/"
+  },
+  {
     name: "Colorpicker . fr",
     link: "https://colorpicker.fr/",
   },
@@ -38,6 +42,7 @@ export const references: Reference[] = [
 /**
  * TODOS
  * dropdown to add / remove more types
+ * https://www.joshwcomeau.com/css/color-formats/
  * checkbox for hwb, rgba
  * remove rgba and hsla, use modern formats
  * add more formats in results - lch, oklch, hwb, cmyk

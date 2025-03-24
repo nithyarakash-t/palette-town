@@ -9,6 +9,14 @@ export const references:Reference[] = [
         link: "https://enes.in/sorted-colors"
     },
     {
+        name: 'Josh Comeau',
+        link: 'https://www.joshwcomeau.com/css/color-formats/'
+    },
+    {
+        name: 'Arantius',
+        link: 'https://github.com/arantius/web-color-wheel'
+    },
+    {
         name: "meyerweb.com/eric/css/colors/",
         link: "https://meyerweb.com/eric/css/colors/"
     },
@@ -19,6 +27,10 @@ export const references:Reference[] = [
     {
         name: "w3.org/TR/SVG/types.html",
         link: "https://www.w3.org/TR/SVG/types.html#ColorKeywords",
+    },
+    {
+        name: 'W3 org -> Properties -> color keywords',
+        link: 'https://www.w3.org/wiki/CSS/Properties/color/keywords'
     },
     {
         name: "Tomato versus #ff6347 - The tragicomic history of CSS color names",

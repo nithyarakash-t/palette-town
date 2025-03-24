@@ -5,6 +5,14 @@ export type ColorHSLA = `hsla(${number}, ${number}%, ${number}%, ${number})`;
 export type ColorHWB = `hwb(${number} ${number} ${number} / ${number})`;
 export type Color = ColorRGBA | ColorHEX | ColorHSLA | ColorHWB;
 
+//needs verification
+export type ColorHSL = `hsl(${number} ${number} ${number} / ${number})`;
+export type ColorRGB = `rgb(${number} ${number} ${number} / ${number})`;
+export type ColorLAB = `lab(${number} ${number} ${number} / ${number})`;
+export type ColorOKLCH = `oklch(${number} ${number} ${number} / ${number})`;
+export type ColorLCH = `lch(${number} ${number} ${number} / ${number})`;
+export type ColorCMYK = `cmyk(${number} ${number} ${number} ${number} / ${number})`;
+
 /**Conversion methods */
 export function convertHexToRGBA(hex: ColorHEX): { r: number; g: number; b: number; a: number } {
     // Remove the hash (#) if it exists
