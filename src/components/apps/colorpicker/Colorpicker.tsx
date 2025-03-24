@@ -7,7 +7,9 @@ import { references } from './references/references';
 export function Colorpicker() {
     return (
         <section className='app-grid cop-app__wrap'>
-            <h1 className='cop-app__title'>Color Picker  / Converter</h1>
+            <h1 className='cop-app__title' aria-label='Color Picker and Converter'>Color Picker / <br/>
+                <span>Converter</span>
+            </h1>
             <Routes>
                 <Route path="/" element={
                     <>

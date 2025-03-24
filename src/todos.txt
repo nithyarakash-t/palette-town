@@ -1,18 +1,18 @@
 ---------------COMPLETED PAGES--------------
+-- landing
 -- css colors -- Add https://yoksel.github.io/handy-colors/ - tema
 -- color guesser
--- dropdown / island in header with options to choose diff pages
 -- contrast checker - webaim
-
+-- hsl - rgb - hex (oklch, lch, lab, cmyk) -- color picker, converter and visualizer -- RGB, hex, HSL, HWB, OKLCH, CMK -- -- hsl picker . com
 ------------IN PROGRESS---------------------
 -- CSS MPA / SPA transitions (Bramus)
 -- UI for v1.0.0
--- landing page, hero
--- rgbcube from https://rgbcu.be/?s=09
+-- landing page, hero refinement
 -- light/dark string switch with gsap
--- marquee
+-- marquee carousel
 -- Shuffle carousel
--- flip/drag carousel 
+-- flip/drag carousel lume / loom ?
+-- gradient, box shadow, drop shadow generators ? -- gradient.style
 -------------------potential inspirations-------------------------
 -- https://webdesigninspiration.io/
 -- https://www.whirrls.com/
@@ -25,21 +25,15 @@
 -- uicolors.app
 -- https://codepen.io/Nithyarakash-t/pen/gbOgNOo
 -- https://flatuicolors.com/
--- https://hareesh.web.app/work
+-- https://hareesh.web.app/work (color)
 ------------------YTD-------------------
 — UI - add the color picker logo
 — After dark - dark mode
 — gSap + kill switch
 - color picker drop on header (web only)
-
-
 --------------Other pages----------------
-hsl - rgb - hex (oklch, lch, lab) - 
-    -- color converter and visualizer -- RGB, hex, HSL, HWB, OKLCH, CMK -- -- hsl picker . com
 oklch . com
 palette generator - connect to contrast checker, visualizer, css colours
-gradient, box shadow, drop shadow generators ? -- gradient.style
-
 colorpicker - [colorpicker.fr](http://colorpicker.fr/) / https://coolors.co/
 color mix visualizer
 mix blend mode deepdive

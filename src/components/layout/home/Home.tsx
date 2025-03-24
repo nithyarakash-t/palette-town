@@ -33,9 +33,21 @@ export function Home() {
                             </figure>
                         </li>
                         <li>
+                            <div className='home-tool__listitem -left' role='group' aria-labelledby='home-tool-3-title'>
+                                <h3 id='home-tool-3-title'>Color picker, converter</h3>
+                                <p>Tool to visualize, pick and convert colors</p>
+                                <Link to={menuItems[4].path}>Check out</Link>                         
+                            </div>
+                            <figure className='home-tool__listitem -right'>
+                                <picture>
+                                    <img src='home/about/cop-light.png' alt=''/>
+                                </picture>
+                            </figure>
+                        </li>
+                        <li>
                             <div className='home-tool__listitem -left' role='group' aria-labelledby='home-tool-1-title'>
                                 <h3 id='home-tool-1-title'>CSS Colours</h3>
-                                <p>In a Pinch ? Make use of our tool to get the CSS preset color for your deired hue. CSS is all you need</p>
+                                <p>In a Pinch ? Make use of our tool to get the CSS preset color for your desired hue. CSS is all you need</p>
                                 <Link to={menuItems[2].path}>Check out</Link>                         
                             </div>
                             <figure className='home-tool__listitem -right'>

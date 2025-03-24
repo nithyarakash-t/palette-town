@@ -1,8 +1,17 @@
 //types
-export type ColorRGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
 export type ColorHEX = `#${string}`;
+export type ColorRGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
 export type ColorHSLA = `hsla(${number}, ${number}%, ${number}%, ${number})`;
-export type Color = ColorRGBA | ColorHEX | ColorHSLA;
+export type ColorHWB = `hwb(${number} ${number} ${number} / ${number})`;
+export type Color = ColorRGBA | ColorHEX | ColorHSLA | ColorHWB;
+
+//needs verification
+export type ColorHSL = `hsl(${number} ${number} ${number} / ${number})`;
+export type ColorRGB = `rgb(${number} ${number} ${number} / ${number})`;
+export type ColorLAB = `lab(${number} ${number} ${number} / ${number})`;
+export type ColorOKLCH = `oklch(${number} ${number} ${number} / ${number})`;
+export type ColorLCH = `lch(${number} ${number} ${number} / ${number})`;
+export type ColorCMYK = `cmyk(${number} ${number} ${number} ${number} / ${number})`;
 
 /**Conversion methods */
 export function convertHexToRGBA(hex: ColorHEX): { r: number; g: number; b: number; a: number } {
@@ -165,45 +174,143 @@ export function convertRGBAtoHSLA(rgba: ColorRGBA): ColorHSLA {
 }
 
 /**TO BE FIXED */
-export function convertHWBAtoHex(hwba: string): ColorHEX {
-    // Parse hwb values
-    const matches = hwba.match(/[\d.]+/g);
-    if (!matches || matches.length < 4) {
-        return '#000000';
+export function convertHexToHWB(hex: ColorHEX): {h: number, w: number, b: number, a: number} {
+    const { r, g, b, a } = convertHexToRGBA(hex);
+  
+    // Normalize RGB to 0-1 range
+    const rNorm = r / 255;
+    const gNorm = g / 255;
+    const bNorm = b / 255;
+  
+    // Calculate Whiteness (W) and Blackness (B)
+    const whiteness = Math.min(rNorm, gNorm, bNorm);
+    const blackness = 1 - Math.max(rNorm, gNorm, bNorm);
+  
+    // Calculate Hue (H)
+    let hue = 0;
+    const max = Math.max(rNorm, gNorm, bNorm);
+    const min = Math.min(rNorm, gNorm, bNorm);
+    const chroma = max - min;
+  
+    if (chroma !== 0) {
+      if (max === rNorm) {
+        hue = ((gNorm - bNorm) / chroma) % 6;
+      } else if (max === gNorm) {
+        hue = (bNorm - rNorm) / chroma + 2;
+      } else if (max === bNorm) {
+        hue = (rNorm - gNorm) / chroma + 4;
+      }
+      hue *= 60; // Convert to degrees
+      if (hue < 0) hue += 360;
     }
-
-    const h = parseInt(matches[0]);
-    const w = parseInt(matches[1]) / 100;
-    const b = parseInt(matches[2]) / 100;
-    // const a = matches[3] ? parseInt(matches[3]) / 100 : 1;
-
-    // HWB to RGB conversion
-    const sum = w + b;
-    if (sum >= 1) {
-        const gray = Math.round(w / sum * 255);
-        return `#${gray.toString(16).padStart(2, '0')}${gray.toString(16).padStart(2, '0')}${gray.toString(16).padStart(2, '0')}`;
+  
+    // HWB values with inline bounds
+    const h = Math.round(hue); // Hue is naturally 0-360 from calculation
+    const w = Math.round(Math.min(Math.max(whiteness * 100, 0), 100)); // 0-100
+    const bVal = Math.round(Math.min(Math.max(blackness * 100, 0), 100)); // 0-100
+    const alpha = Math.min(Math.max(a, 0), 1); // 0-1
+  
+    return {
+        h,
+        w,
+        b: bVal,
+        a: alpha
     }
-
+}
+export function convertHWBToHex(hwb: ColorHWB): ColorHEX {
+    const match = hwb.match(/^hwb\((\d+)\s+(\d+)\s+(\d+)\s*\/\s*([0-1]?\.?\d*)\)$/);
+    if (!match) {
+      throw new Error("Invalid HWB format. Must be hwb(H W B / A).");
+    }
+  
+    const [, hStr, wStr, bStr, aStr] = match;
+    const h = parseInt(hStr, 10);
+    let w = parseInt(wStr, 10) / 100; // Convert percentage to 0-1
+    let b = parseInt(bStr, 10) / 100; // Convert percentage to 0-1
+    const a = parseFloat(aStr);
+  
+    /**
+     * Normalizes whiteness (w) and blackness (b) if their sum exceeds 1 (100%). In HWB, 
+     * `chroma = 1 - w - b` must be non-negative for valid RGB conversion. If `w + b > 1`, 
+     * values are scaled proportionally to fit within 100%, aligning with CSS Color Module 
+     * Level 4 (https://drafts.csswg.org/css-color-4/#hwb-color). For example, `hwb(200 60 60 / 1)` 
+     * becomes `hwb(200 50 50 / 1)` to ensure a valid color (e.g., gray).
+     */
+    if (w + b > 1) {
+        const scale = 1 / (w + b);
+        w *= scale;
+        b *= scale;
+    }
+  
+    // Normalize hue to 0-360
+    const hue = h % 360;
+  
     // Convert HWB to RGB
-    const rgb = hslToRgb(h, 100, 50);
-    for (let i = 0; i < 3; i++) {
-        rgb[i] *= (1 - w - b);
-        rgb[i] += w * 255;
-        rgb[i] = Math.round(rgb[i]);
+    const chroma = 1 - w - b;
+    let r = 0, g = 0, blue = 0;
+  
+    if (chroma !== 0) {
+      const hPrime = hue / 60;
+      const x = chroma * (1 - Math.abs(hPrime % 2 - 1));
+      let rgb = [0, 0, 0];
+  
+      if (hPrime >= 0 && hPrime < 1) rgb = [chroma, x, 0];
+      else if (hPrime < 2) rgb = [x, chroma, 0];
+      else if (hPrime < 3) rgb = [0, chroma, x];
+      else if (hPrime < 4) rgb = [0, x, chroma];
+      else if (hPrime < 5) rgb = [x, 0, chroma];
+      else if (hPrime < 6) rgb = [chroma, 0, x];
+  
+      r = rgb[0] + w;
+      g = rgb[1] + w;
+      blue = rgb[2] + w;
+    } else {
+      r = g = blue = w; // Grayscale case
     }
-
-    return `#${rgb[0].toString(16).padStart(2, '0')}${rgb[1].toString(16).padStart(2, '0')}${rgb[2].toString(16).padStart(2, '0')}`;
+  
+    // Convert to 0-255 range and format as HEX with inline bounds
+    const rHex = Math.round(Math.min(Math.max(r * 255, 0), 255)).toString(16).padStart(2, "0");
+    const gHex = Math.round(Math.min(Math.max(g * 255, 0), 255)).toString(16).padStart(2, "0");
+    const bHex = Math.round(Math.min(Math.max(blue * 255, 0), 255)).toString(16).padStart(2, "0");
+  
+    // Handle alpha
+    if (a < 1) {
+      const aHex = Math.round(Math.min(Math.max(a * 255, 0), 255)).toString(16).padStart(2, "0");
+      return `#${rHex}${gHex}${bHex}${aHex}` as ColorHEX;
+    }
+  
+    return `#${rHex}${gHex}${bHex}` as ColorHEX;
 }
-function hslToRgb(h: number, s: number, l: number): number[] {
-    s /= 100;
-    l /= 100;
-    const k = (n: number) => (n + h / 30) % 12;
-    const a = s * Math.min(l, 1 - l);
-    const f = (n: number) =>
-        l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
-    return [255 * f(0), 255 * f(8), 255 * f(4)];
-}
+  
 
+
+// Helper functions to validate and parse HEX - from Claude
+export function parseHex(hex: ColorHEX): { r: number; g: number; b: number; a: number } {
+    if (!/^#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$/.test(hex)) {
+      throw new Error("Invalid HEX format. Must be #RRGGBB or #RRGGBBAA.");
+    }
+  
+    const hexValue = hex.slice(1); // Remove '#'
+    const r = parseInt(hexValue.slice(0, 2), 16);
+    const g = parseInt(hexValue.slice(2, 4), 16);
+    const b = parseInt(hexValue.slice(4, 6), 16);
+    const a = hexValue.length === 8 ? parseInt(hexValue.slice(6, 8), 16) / 255 : 1;
+  
+    return { r, g, b, a };
+}
+export function parseHex2(hex: ColorHEX): { r: number; g: number; b: number; a: number } {
+    const hexNoHash = hex.replace(/^#/, "");
+    if (hexNoHash.length !== 6 && hexNoHash.length !== 8) {
+      throw new Error("HEX must be 6 or 8 characters (excluding #).");
+    }
+  
+    const r = parseInt(hexNoHash.slice(0, 2), 16);
+    const g = parseInt(hexNoHash.slice(2, 4), 16);
+    const b = parseInt(hexNoHash.slice(4, 6), 16);
+    const a = hexNoHash.length === 8 ? parseInt(hexNoHash.slice(6, 8), 16) / 255 : 1;
+  
+    return { r, g, b, a };
+}
 
 /**
  * 
