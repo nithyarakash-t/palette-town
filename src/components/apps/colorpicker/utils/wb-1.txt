@@ -1,0 +1,124 @@
+/**
+ * Documentation summarized via GROK on why w and b in hwb can exceed 100% but for calculations should be brought downstream
+ 
+ * #### References
+ * - **CSS Color Module Level 4 Specification**: Defines HWB and normalization for `W + B > 100%`.
+ *   - [https://drafts.csswg.org/css-color-4/#hwb-color](https://drafts.csswg.org/css-color-4/#hwb-color)
+ * - **MDN Web Docs on HWB**: Explains HWB behavior and normalization for grayscale.
+ *   - [https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hwb](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hwb)
+ * - **Alvy Ray Smith’s HWB Paper**: Original definition of HWB (abstract only; full text may require access).
+ *   - [https://www.tandfonline.com/doi/abs/10.1080/10867660.1996.10487466](https://www.tandfonline.com/doi/abs/10.1080/10867660.1996.10487466)
+ * - **CSS Levels Up: The HWB Colour Model by Stefan Baumgartner**: Practical explanation of HWB normalization.
+ *   - [https://fettblog.eu/css-levels-up-hwb/](https://fettblog.eu/css-levels-up-hwb/)
+ * - **The Gray Areas of HWB Color by Miriam Eric Suzanne**: Discusses grayscale and normalization beyond 100%.
+ *   - [https://www.miriamsuzanne.com/2022/06/29/hwb-gray/](https://www.miriamsuzanne.com/2022/06/29/hwb-gray/)
+ *
+
+ * # HWB to HEX Conversion: Whiteness + Blackness Validation and Handling
+ *
+ * ## Function: `hwbToHex`
+ *
+ * ### Validation/Normalization Logic: `if (w + b > 1)`
+ *
+ * #### Overview
+ * The HWB (Hue, Whiteness, Blackness) color model defines colors using three components plus an optional alpha channel:
+ * - **Hue (H)**: A degree value (0-360°) representing the base color (e.g., red at 0°, cyan at 200°).
+ * - **Whiteness (W)**: A percentage (0-100%, normalized to 0-1 in code) indicating the amount of white mixed into the color.
+ * - **Blackness (B)**: A percentage (0-100%, normalized to 0-1) indicating the amount of black mixed in.
+ * - **Alpha (A)**: An opacity value (0-1), optional in HEX output.
+ *
+ * The "colorfulness" or **chroma** is calculated as:
+ * ```
+ * chroma = 1 - w - b
+ * ```
+ * This represents the proportion of the pure hue remaining after accounting for whiteness and blackness. For a color to be valid within the sRGB color space (which HWB maps to via RGB for HEX output), the following must hold:
+ * - `w + b ≤ 1` (W + B ≤ 100% when expressed as percentages), ensuring `chroma ≥ 0`.
+ *
+ * If `w + b > 1`, chroma becomes negative. For example:
+ * - `w = 0.6` (60%), `b = 0.6` (60%) → `w + b = 1.2` → `chroma = 1 - 1.2 = -0.2`.
+ * - A negative chroma is physically and mathematically impossible in RGB, where each channel (R, G, B) ranges from 0 to 255, as it implies "less than no color," which cannot be represented.
+ *
+ * #### Purpose of the Check
+ * Originally, the function included a strict validation:
+ * ```typescript
+ * if (w + b > 1) {
+ *   throw new Error("Whiteness + Blackness cannot exceed 100%.");
+ * }
+ * ```
+ * This check served several critical purposes:
+ * 1. **Model Integrity**:
+ *    - HWB, introduced by Alvy Ray Smith in his 1996 paper ("HWB—A More Intuitive Hue-Based Color Model"), and later adopted in CSS, is designed as an intuitive model mimicking paint mixing. The total "budget" for a color is 100%, split among hue (via chroma), whiteness, and blackness. Exceeding this—e.g., `hwb(200 100 100 / 1)` implying 100% white + 100% black—over-specifies the desaturation, breaking the conceptual model. It’s akin to filling a glass 200% full; it doesn’t fit the physical analogy.
+ *    - Reference: [https://www.tandfonline.com/doi/abs/10.1080/10867660.1996.10487466](https://www.tandfonline.com/doi/abs/10.1080/10867660.1996.10487466)
+ *
+ * 2. **RGB Conversion Safety**:
+ *    - The `hwbToHex` function converts HWB to RGB using chroma to scale the hue’s contribution across red, green, and blue channels. The logic:
+ *      ```typescript
+ *      const chroma = 1 - w - b;
+ *      if (chroma !== 0) { ... } else { r = g = blue = w; }
+ *      ```
+ *      relies on a non-negative chroma. A negative value (e.g., -0.2) disrupts this transformation, potentially yielding out-of-range results (e.g., negative RGB values before clamping), which cannot be directly mapped to a valid HEX string (#RRGGBB or #RRGGBBAA).
+ *
+ * 3. **Standard Compliance**:
+ *    - The CSS Color Module Level 4 specification defines HWB and addresses cases where `W + B > 100%`. Section 8.2 states: "If the sum of whiteness and blackness is greater than 100%, the whiteness and blackness values of the grey color are effectively normalized as `W / (W + B)` and `B / (W + B)` respectively." This ensures the color remains within the sRGB gamut (RGB 0-255).
+ *    - Reference: [https://drafts.csswg.org/css-color-4/#hwb-color](https://drafts.csswg.org/css-color-4/#hwb-color)
+ *    - The original strict check rejected such inputs outright, aligning with a purist interpretation of HWB’s constraints, rather than silently adjusting them as CSS does.
+ *
+ * 4. **Error Prevention**:
+ *    - By throwing an error, the function explicitly alerts the caller to invalid inputs—e.g., `hwb(200 60 60 / 1)` where `w = 0.6`, `b = 0.6`, `w + b = 1.2`—preventing downstream issues in color rendering or further processing. This strictness enhances robustness by requiring valid data upfront.
+ *
+ * #### Why Can’t `W + B` Exceed 100% Without Adjustment?
+ * - **Physical Limit**: RGB is a bounded additive color system (0-255 per channel). HWB maps to this space, and the total contribution of hue (chroma), whiteness, and blackness must fit within 100%. If `W = 100%` and `B = 100%`, you’re requesting 200% desaturation, which exceeds the maximum representable color intensity in RGB. Without adjustment, this leads to an impossible state.
+ * - **Chroma Dependency**: The conversion algorithm depends on `chroma = 1 - w - b` being non-negative. A negative chroma implies "negative hue contribution," which has no meaningful RGB equivalent. For instance:
+ *   - `hwb(200 100 100 / 1)` → `w = 1`, `b = 1` → `chroma = 1 - 1 - 1 = -1` → No valid RGB result without scaling.
+ * - **Intuitive Design**: HWB’s purpose is to intuitively mix hue with white and black. Exceeding 100% (e.g., `W = 60%`, `B = 60%`) overfills the "canvas," requiring normalization to restore balance.
+ *
+ * #### Examples
+ * - **Invalid Input (Original Behavior)**:
+ *   - Input: `hwb(200 60 60 / 1)`
+ *     - `w = 0.6`, `b = 0.6`
+ *     - `w + b = 1.2 > 1`
+ *     - Result: Throws `Error: "Whiteness + Blackness cannot exceed 100%."`
+ * - **Valid Input**:
+ *   - Input: `hwb(200 50 50 / 1)`
+ *     - `w = 0.5`, `b = 0.5`
+ *     - `w + b = 1 ≤ 1`
+ *     - `chroma = 0` → Proceeds to produce gray (`#808080`), as hue is fully desaturated.
+ *
+ * #### Alternative: Normalization (Updated Behavior)
+ * Modern implementations, like CSS, handle `W + B > 100%` by normalizing W and B proportionally to sum to 1. This is reflected in the updated code:
+ * ```typescript
+ * if (w + b > 1) {
+ *   const scale = 1 / (w + b);
+ *   w *= scale;
+ *   b *= scale;
+ * }
+ * ```
+ * - **How It Works**:
+ *   - Example: `hwb(200 60 60 / 1)`
+ *     - `w = 0.6`, `b = 0.6`
+ *     - `w + b = 1.2 > 1`
+ *     - `scale = 1 / 1.2 ≈ 0.8333`
+ *     - `w = 0.6 * 0.8333 ≈ 0.5`, `b = 0.6 * 0.8333 ≈ 0.5`
+ *     - Adjusted: `hwb(200 50 50 / 1)`
+ *     - `chroma = 1 - 0.5 - 0.5 = 0` → Grayscale result: `#808080`.
+ *   - Example: `hwb(200 100 100 / 1)`
+ *     - `w = 1`, `b = 1`
+ *     - `w + b = 2 > 1`
+ *     - `scale = 1 / 2 = 0.5`
+ *     - `w = 1 * 0.5 = 0.5`, `b = 1 * 0.5 = 0.5`
+ *     - Adjusted: `hwb(200 50 50 / 1)` → `#808080`.
+ * - **Why Normalize?**:
+ *   - Ensures all inputs produce a valid RGB color, even if over-specified.
+ *   - Matches CSS behavior, making the function more forgiving and practical for real-world use cases (e.g., user input from a UI).
+ *
+ * #### Trade-Offs
+ * - **Strict Validation (Original)**:
+ *   - Pros: Enforces HWB’s theoretical limits, prevents silent errors, requires explicit caller correction.
+ *   - Cons: Rejects potentially "fixable" inputs like `hwb(200 100 100 / 1)`.
+ * - **Normalization (Updated)**:
+ *   - Pros: Accepts a wider range of inputs, aligns with CSS, produces sensible results (grayscale).
+ *   - Cons: Silently adjusts values, potentially masking user errors.
+ *
+ * #### Conclusion
+ * The original strict validation (`throw new Error`) upheld HWB’s theoretical constraints, ensuring only valid inputs proceeded to RGB conversion. The updated normalization (`w *= scale`, `b *= scale`) adopts a more permissive approach, aligning with CSS standards by adjusting over-specified inputs to produce valid colors (typically grayscale). This reflects a design choice balancing strictness with usability, depending on whether you prioritize explicit error handling or flexible input tolerance.
+ */

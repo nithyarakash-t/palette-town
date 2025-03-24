@@ -1,4 +1,4 @@
-import { ColorHEX, convertHexToHSLA, convertHexToRGBA, convertHSLAtoHex, convertHWBAtoHex } from "../utils/utils";
+import { ColorHEX, ColorHWB, convertHexToHSLA, convertHexToHWB, convertHexToRGBA, convertHSLAtoHex, convertHWBToHex } from "../utils/utils";
 
 interface ColorState {
     hue: number;
@@ -57,12 +57,15 @@ function colorReducer(state: ColorState, action: ColorAction): ColorState {
                 `hsla(${newState.hue}, ${newState.saturation}%, ${newState.lightness}%, ${newState.alpha})`
             );
             const rgbaValues = convertHexToRGBA(computedHex);
+            const hwbValues = convertHexToHWB(computedHex);
             return {
                 ...newState,
                 color: computedHex,
                 red: rgbaValues.r,
                 green: rgbaValues.g,
-                blue: rgbaValues.b
+                blue: rgbaValues.b,
+                white: hwbValues.w,
+                black: hwbValues.b
             };
         }
 
@@ -73,24 +76,24 @@ function colorReducer(state: ColorState, action: ColorAction): ColorState {
             newState = { ...state, [action.type.slice(4).toLowerCase()]: action.payload };
             computedHex = `#${newState.red.toString(16).padStart(2, '0')}${newState.green.toString(16).padStart(2, '0')}${newState.blue.toString(16).padStart(2, '0')}`;
             const hslaValues = convertHexToHSLA(computedHex);
+            const hwbValues = convertHexToHWB(computedHex);
             return {
                 ...newState,
                 color: computedHex,
                 hue: hslaValues.h,
                 saturation: hslaValues.s,
-                lightness: hslaValues.l
+                lightness: hslaValues.l,
+                white: hwbValues.w,
+                black: hwbValues.b
             };
         }
 
         case 'SET_WHITE':
         case 'SET_BLACK': {
             // Handle HWBA changes
-            return state;
-
-            //TO BE FIXED
             newState = { ...state, [action.type.slice(4).toLowerCase()]: action.payload };
-            const hwbaString = `hwb(${state.hue} ${newState.white}% ${newState.black}% / ${state.alpha}%)`;
-            computedHex = convertHWBAtoHex(hwbaString);
+            const hwbaString:ColorHWB = `hwb(${state.hue} ${newState.white} ${newState.black} / ${state.alpha / 100})`;
+            computedHex = convertHWBToHex(hwbaString);
             const rgbaValues = convertHexToRGBA(computedHex);
             const hslaValues = convertHexToHSLA(computedHex);
             return {

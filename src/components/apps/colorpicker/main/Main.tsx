@@ -61,11 +61,16 @@ export function Main() {
                     />
                 </div>
                 {/* hwba */}
-                <div className='cop-main__inputgroup' aria-label='Set HWBA' style={{ display: 'none' }}>
+                <div className='cop-main__inputgroup' aria-label='Set HWBA'>
                     <Slider type='hue' value={state.hue} setValue={(value) => dispatch({ type: 'SET_HUE', payload: value })} name='cop-hue-slider-2' id='cop-hue-slider-2' label='Hue' />
                     <Slider type='white' value={state.white} setValue={(value) => dispatch({ type: 'SET_WHITE', payload: value })} name='cop-white-slider' id='cop-white-slider' label='White' />
                     <Slider type='black' value={state.black} setValue={(value) => dispatch({ type: 'SET_BLACK', payload: value })} name='cop-black-slider' id='cop-black-slider' label='Black' />
                     <Slider type='alpha' value={state.alpha} setValue={(value) => dispatch({ type: 'SET_ALPHA', payload: value })} name='cop-alpha-slider-3' id='cop-alpha-slider-3' label='Alpha' />
+                    
+                    <Result result={state.alpha < 100
+                        ? `hwb(${state.hue} ${state.white} ${state.black} / ${state.alpha / 100})`
+                        : `hwb(${state.hue} ${state.white} ${state.black})`} 
+                    />
                 </div>
             </div>
         </div>
