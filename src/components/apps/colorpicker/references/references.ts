@@ -18,6 +18,14 @@ export const references: Reference[] = [
     link: "https://atmos.style/color-picker/hsl",
   },
   {
+    name: 'Palcon nl',
+    link: 'https://www.palcon.nl/colors/Color-hsl.htm'
+  },
+  {
+    name: 'Helpscout',
+    link: 'https://www.helpscout.com/blog/hsl-color-in-css/'
+  },
+  {
     name: "Colorhexa",
     link: "https://www.colorhexa.com/",
   },

@@ -72,6 +72,8 @@
       user-select: none;
       color: #fff;
       font-weight: 600;
+      touch-action: manipulation;
+      pointer-events: all;
     }
 
     &:hover {

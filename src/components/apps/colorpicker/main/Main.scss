@@ -5,8 +5,9 @@
     }
     &__result {
         & {
+            --_bg: red;
             border-radius: 1rem;
-            background-color: red;
+            background-color: var(--_bg);
             aspect-ratio: 1/1;
         }
         &group {

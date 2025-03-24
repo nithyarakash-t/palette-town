@@ -26,7 +26,7 @@ export function Main() {
                     '--_lightness': `${state.lightness}%`, '--_alpha': state.alpha} as React.CSSProperties}
         >
             <div className='cop-main__resultgroup'>
-                <div className='cop-main__result' style={{ backgroundColor: state.color }}> </div>
+                <div className='cop-main__result' style={{ '--_bg': state.color } as React.CSSProperties}> </div>
                 <Result result={state.color} />
 
                 {

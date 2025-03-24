@@ -13,7 +13,7 @@ export const quotes = [
     },
     {
         quote: "Blue, Yellow, Pink, keep bringing it. We're gonna check contrast for a lot of colours together",
-        by: "Tuco Salamanca (Really)"
+        by: "Tuco Salamanca (Probably)"
     },
     {
         quote: "I am Groot",
@@ -24,13 +24,9 @@ export const quotes = [
         by: "Optimus Prime"
     },
     {
-        quote: "I am Groot",
-        by: "Jake Peralta"
+        quote: "Have some more chicken, Have some more pie. It doesn't matter if it's boiled or fried",
+        by: "Charles McGill"
     },
-    // {
-    //     quote: "You think this is bad, this CHICANERY ? He's done worse",
-    //     by: "Charles McGill"
-    // },
     {
         quote: "Somehow Palpatine returned",
         by: "Disney"
@@ -56,7 +52,7 @@ export const quotes = [
     //     by: "Bruno Bucciaratti"
     // },
     {
-        quote: "~ We're vibing like crazy. I can assure you my mother is not a vibrator",
+        quote: "~ We're vibing like crazy ~. I can assure you my mother is not a vibrator",
         by: "Raymond Holt"
     },
     {
@@ -75,10 +71,6 @@ export const quotes = [
         quote: "Dance until your feet hurt, sing until your lungs hurt, act until you're William Hurt",
         by: "Phil Dunphy"
     },
-    {
-        quote: "",
-        by: "Phil Dunphy"
-    },
 
 
     {
@@ -95,7 +87,7 @@ export const quotes = [
     },
     {
         quote: "Never make fun of someone if they mispronounce a word. It means they learned it by reading",
-        by: "Anonymous"
+        by: "Unknown"
     },
 
 ]
