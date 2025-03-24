@@ -17,7 +17,7 @@
         }
         
         &[aria-selected='true'] {
-            grid-row: 1;
+            // grid-row: 1;
             word-break: break-all;
             &::before {
                 content: '';
