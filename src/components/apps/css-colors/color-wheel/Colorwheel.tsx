@@ -33,9 +33,10 @@ declare global {
 
 export function Colorwheel() {
   useLayoutEffect(() => {
-    setTimeout(() => {
-      test();
-    }, 1000);
+    const cleanup = test(); // test() should return cleanup function
+    return () => {
+      if (cleanup) cleanup();
+    };
   }, []);
   return (
     <div className="cc-cw__wrap">
@@ -183,7 +184,8 @@ function test() {
       `;
   }
 
-  svg.addEventListener("mouseover", (e) => {
+  // Store event listener references to remove them later
+  const mouseoverHandler = (e: MouseEvent) => {
     const el = e.target as SVGElement;
     if (el.tagName != "polygon") return;
     if (!el.nextElementSibling) return;
@@ -191,23 +193,21 @@ function test() {
     if (!previewLocked) {
       activateColor(el);
     }
-  });
-  svg.addEventListener("mouseout", (e) => {
+  };
+
+  const mouseoutHandler = (e: MouseEvent) => {
     const el = e.target as SVGElement;
     if (el.tagName != "polygon") return;
     if (!previewLocked) {
       renderPreview(null);
-      // Reset forced stroke from mouseover.
       el.removeAttribute("style");
     }
-  });
-  document.body.addEventListener("click", (e) => {
-    const el = e.target as HTMLElement;
+  };
 
-    // Ignore clicks, i.e. to select, in the preview.
+  const clickHandler = (e: MouseEvent) => {
+    const el = e.target as HTMLElement;
     if (document.getElementById("cc-cw-preview")?.contains(el)) return;
 
-    // Remove possible forced stroke from previously-locked color.
     document.querySelectorAll("polygon[style]").forEach((el) => {
       el.removeAttribute("style");
     });
@@ -220,5 +220,16 @@ function test() {
 
     previewLocked = true;
     activateColor(el);
-  });
+  };
+
+  svg.addEventListener("mouseover", mouseoverHandler);
+  svg.addEventListener("mouseout", mouseoutHandler);
+  document.body.addEventListener("click", clickHandler);
+
+  // Return cleanup function
+  return () => {
+    svg.removeEventListener("mouseover", mouseoverHandler);
+    svg.removeEventListener("mouseout", mouseoutHandler);
+    document.body.removeEventListener("click", clickHandler);
+  };
 }
