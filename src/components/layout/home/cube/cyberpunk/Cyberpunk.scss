@@ -83,6 +83,8 @@
         display: inline-block;
         text-decoration: none;
         text-align: center;
+        touch-action: manipulation;
+        pointer-events: auto;
 
         &.-secondary {
             --_primary-hue: 260;

@@ -10,6 +10,7 @@ import { ThemeProvider } from './components/layout/themeSwitch/Themecontext'
 import { MetaColorContextProvider } from './components/layout/metacolor/metacolorcontext/MetaColorContext'
 import { ContrastChecker } from './components/apps/contrast-checker/Contrastchecker'
 import { HelmetProvider } from 'react-helmet-async'
+import { Colorpicker } from './components/apps/colorpicker/Colorpicker'
 
 export function App() {
 
@@ -18,26 +19,27 @@ export function App() {
       <MetaColorContextProvider>
         <ThemeProvider>
           <HelmetProvider>
-            <div className="app-wrapper">
-              <Header/>
-              <main className="app-wrap" id="main">
-                  <Routes>
-                    {
-                      ['/home'].map((item, index)=>{
-                        return (
-                          <Route key={index} path={item} element={<Home/>}></Route>
-                        )
-                      })
-                    }
-                    <Route path='/csscolors/*' element={<CssColors/>}></Route>
-                    <Route path='/colorguesser/*' element={<ColorGuesser/>}></Route>
-                    <Route path='/contrastchecker/*' element={<ContrastChecker/>}></Route>
-                    <Route path='/releasenotes/*' element={<ReleaseNotes/>}></Route>
-                    <Route path='*' element={<Navigate to='/home' />} />
-                  </Routes>
-              </main>
-              <Footer/>
-            </div>
+          <div className="app-wrapper">
+            <Header/>
+            <main className="app-wrap" id="main">
+                <Routes>
+                  {
+                    ['/home'].map((item, index)=>{
+                      return (
+                        <Route key={index} path={item} element={<Home/>}></Route>
+                      )
+                    })
+                  }
+                  <Route path='/csscolors/*' element={<CssColors/>}></Route>
+                  <Route path='/colorguesser/*' element={<ColorGuesser/>}></Route>
+                  <Route path='/contrastchecker/*' element={<ContrastChecker/>}></Route>
+                  <Route path='/colorpicker/*' element={<Colorpicker/>}></Route>
+                  <Route path='/releasenotes/*' element={<ReleaseNotes/>}></Route>
+                  <Route path='*' element={<Navigate to='/home' />} />
+                </Routes>
+            </main>
+            <Footer/>
+          </div>
           </HelmetProvider>
         </ThemeProvider>
       </MetaColorContextProvider>

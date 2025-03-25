@@ -130,6 +130,18 @@ export function Simulation({simulation, setSimulation}:{simulation:ColorDeficien
         return () => document.removeEventListener('keydown', handleKeyDown);
     }, [isOpen, activeIndex, options, setSimulation]);
 
+    //watch click outside dropdown
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (isOpen && !(e.target as HTMLElement).closest('.cxc-simulation__combo')) {
+                setIsOpen(false);
+            }
+        };
+    
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [isOpen]);
+
     return (
         <div className="cxc-simulation__wrap">
             <SimulationFilters />
@@ -144,7 +156,7 @@ export function Simulation({simulation, setSimulation}:{simulation:ColorDeficien
                         aria-expanded={isOpen} 
                         aria-haspopup="listbox" 
                         tabIndex={0} 
-                        onClick={() => setIsOpen(prev => !prev)} 
+                        onClick={() => setIsOpen(prev => !prev)}
                     > 
                         {ColorDeficiencyLabels[simulation]} 
                     </button>
@@ -161,15 +173,19 @@ export function Simulation({simulation, setSimulation}:{simulation:ColorDeficien
                                 role="option"
                                 aria-selected={simulation === value}
                                 tabIndex={isOpen ? 0 : -1}
-                                onClick={() => {
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
                                     setSimulation(value);
                                     setIsOpen(false);
+                                    buttonRef.current?.focus();
                                 }}
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter' || e.key === ' ') {
                                         e.preventDefault();
                                         setSimulation(value);
                                         setIsOpen(false);
+                                        buttonRef.current?.focus();
                                     }
                                 }}
                             >

@@ -1,0 +1,69 @@
+@mixin slider-thumb {
+    --_thumb-bg: linear-gradient(120deg, light-dark(#444, #444) 30%, light-dark(#111, #111) 100%);
+    --_thumb-shadow: 0 0 0 2px light-dark(#fff, #fff), 0 0 2px 3px light-dark(#444, #444);
+    appearance: none;
+    display: block;
+    width: var(--_thumb-size);
+    height: var(--_thumb-size);
+    border-radius: 50%;
+    background: var(--_thumb-bg);
+    box-shadow: var(--_thumb-shadow);
+}
+
+//varieties
+
+//hsla
+@mixin hue-slider {
+    --_bg: linear-gradient( to right, hsl(0, 80%, 70%) 0%, hsl(30, 80%, 70%) 8.3%, hsl(60, 80%, 70%) 16.6%, hsl(90, 80%, 70%) 25%, hsl(120, 80%, 70%) 33.3%, hsl(150, 80%, 70%) 41.6%, hsl(180, 80%, 70%) 50%, hsl(210, 80%, 70%) 58.3%, hsl(240, 80%, 70%) 66.6%, hsl(270, 80%, 70%) 75%, hsl(300, 80%, 70%) 83.3%, hsl(330, 80%, 70%) 91.6%, hsl(360, 80%, 70%) 100% );
+    &:focus {
+        --_bg: linear-gradient(
+            to right, hsl(0, 100%, 50%) 0%, hsl(30, 100%, 50%) 8.3%, hsl(60, 100%, 50%) 16.6%, hsl(90, 100%, 50%) 25%,
+            hsl(120, 100%, 50%) 33.3%, hsl(150, 100%, 50%) 41.6%, hsl(180, 100%, 50%) 50%, hsl(210, 100%, 50%) 58.3%,
+            hsl(240, 100%, 50%) 66.6%, hsl(270, 100%, 50%) 75%, hsl(300, 100%, 50%) 83.3%,
+            hsl(330, 100%, 50%) 91.6%, hsl(360, 100%, 50%) 100%
+        );
+    }
+    &:focus {
+        --_thumb-bg: linear-gradient(120deg, hsl(calc(var(--_pos) * 360), 90%, 50% ) 30%, hsl( calc(var(--_pos) * 360), 100%, 40% ) 100%);
+        --_thumb-shadow: 0 0 0 3px white, 0 0 2px 4px hsl(calc(var(--_pos) * 360), 100%, 50%);
+    }
+
+}
+@mixin saturation-slider {
+    --_bg: linear-gradient(to right, hsla( var(--_hue), 0%, var(--_lightness), var(--_alpha)) 0%, 
+                                    hsla( var(--_hue), 100%, var(--_lightness), var(--_alpha)) 100%);
+}
+@mixin lightness-slider {
+    --_bg: linear-gradient(to right, hsla( var(--_hue), var(--_saturation), 0%, var(--_alpha) ) 0%,
+                                     hsla( var(--_hue), var(--_saturation), 50%, var(--_alpha) ) 50%,
+                                     hsla(var(--_hue), var(--_saturation), 100%, var(--_alpha)) 100%);
+}
+@mixin alpha-slider {
+    --_bg: linear-gradient(to right, hsla(var(--_hue), var(--_saturation), var(--_lightness), 0) 0%,
+                                    hsla(var(--_hue), var(--_saturation), var(--_lightness), 1) 100%);
+}
+
+//rgb
+@mixin red-slider {
+    --_bg: linear-gradient(to right, rgb(0, 0, 0) 0%, rgb(255, 0, 0) 100%);
+}
+@mixin green-slider {
+    --_bg: linear-gradient(to right, rgb(0, 0, 0) 0%, rgb(0, 255, 0) 100%);
+}
+@mixin blue-slider {
+    --_bg: linear-gradient(to right, rgb(0, 0, 0) 0%, rgb(0, 0, 255) 100%);
+}
+
+//wb
+@mixin white-slider {
+    --_bg: linear-gradient(to right, black 0%, white 100%);
+}
+@mixin black-slider {
+    --_bg: linear-gradient(to right, white 0%, black 100%);
+}
+
+//monochrome
+@mixin mono-slider {
+    --_bg: linear-gradient(to bottom, #444 0%, #111 100%);
+    --_shadow: none;
+}

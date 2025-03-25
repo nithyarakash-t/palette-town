@@ -3,6 +3,7 @@ import { Main } from "./main/Main";
 import { References } from "./references/References";
 import { references } from "./references/references-list";
 import './Csscolors.scss';
+import { Colorwheel } from "./color-wheel/Colorwheel";
 
 export type Tolerance = {
     min: number;
@@ -20,6 +21,7 @@ export function CssColors() {
                             <Link to={'./references'} aria-label="References for Css colors"
                                 >References</Link>
                         </div>
+                        <Colorwheel/>
                     </>
                 }></Route>
                 <Route path="/references" element={<References references={references} appname="Css Colors"/>}></Route>
