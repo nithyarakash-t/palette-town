@@ -41,7 +41,7 @@ export function Chart({hue, tolerance, setTolerance, mono}
     }
     return (
         <div className='cc-chart__wrap'>
-            <ul className={`cc-chart__container ${selectedColor && '-clip'}`}>
+            <ul className={`cc-chart__container${selectedColor ? ' -clip' : ''}`}>
                 {
                     colorList.map((item, index)=>
                     <li className='cc-chart__row' key={index}>
