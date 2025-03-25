@@ -1,0 +1,6 @@
+-- src\config\seo.config.ts
+-- src\components\seo\SEO.tsx
+-- index.html
+-- public\robots.txt
+-- scripts\generate-sitemap.ts
+-- public\sitemap.xml

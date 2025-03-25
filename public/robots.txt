@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://palettetown.com/sitemap.xml
+Sitemap: https://palettetown.nithyarakash.com/sitemap.xml

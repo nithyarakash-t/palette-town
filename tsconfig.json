@@ -6,6 +6,16 @@
   ],
   "compilerOptions": {
     "types": ["node"],
-    "moduleResolution": "node"
-  }
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "target": "ES2022",
+    "module": "CommonJS",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*"]
+    }
+  },
+  "include": ["src/**/*", "scripts/**/*"],
+  "exclude": ["node_modules"]
 }
