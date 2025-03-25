@@ -22,16 +22,23 @@
         flex-direction: column;
         gap: 2rem;
         width: 100%;
+        padding: 0 var(--_right-column-padding);
     }
     &__wrap {
+        --_right-column-padding: 0;
         --_result-width: 9.5rem;
         display: grid;
         gap: 2rem;
         grid-template-columns: var(--_result-width) 1fr;
 
         @media (max-width: 600px) {
+            --_right-column-padding: 2rem;
             grid-template-columns: 1fr;
             place-items: center;
+        }
+
+        @media (max-width: 400px) {
+            --_right-column-padding: 1.5rem;
         }
     }
 }
