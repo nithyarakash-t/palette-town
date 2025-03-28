@@ -128,7 +128,7 @@
         }
         &__hero {
             padding: var(--app-wrap-padding-v) 0;
-            height: 100vh;
+            height: min(100vh, 800px);
             min-height: 18.75rem; //fallback
             background: url('/hero-light.png') no-repeat center;
             background-size: clamp(40rem, 43.75rem, 100%) 100%;
