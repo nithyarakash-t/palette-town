@@ -13,6 +13,7 @@ export function CssColors() {
     return (
         <div className="app-grid cc-app__wrap">
             <h1 className="cc-app__title">CSS Colors</h1>
+            <p className="cc-app__subtitle">Colors defined in the CSS color module</p>
             <Routes>
                 <Route path="/" element={
                     <>

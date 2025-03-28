@@ -21,6 +21,7 @@ export function Slider({hueValue, setHueValue, toggle, setToggle, tolerance}
                 </label>
                 <input type='checkbox' className='cc-slider__toggle' name='hue_toggle' id='hue_toggle' 
                 aria-label='Toggle between monochrome and hsl color range'
+                title={toggle ? 'Turn OFF Monochrome' : 'Turn ON Monochrome'}
                 value={`${toggle}`} onInput={()=>{setToggle(!toggle)}}/>
             </div>
             <p className='cc-slider__tolerance'>Hue Tolerance: {tolerance.val}</p>
