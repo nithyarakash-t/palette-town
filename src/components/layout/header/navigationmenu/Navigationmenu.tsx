@@ -24,6 +24,12 @@ export function NavigationMenu() {
     const optionRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
     useEffect(() => {
+        const currentPath = location.pathname;
+        const currentItem = menuItems.find(item => item.path === currentPath);
+        setSelected(currentItem?.label || 'Home');
+    }, [location.pathname]); // Re-run the effect when the pathname changes
+
+    useEffect(() => {
         // Reset focus when menu closes
         if (!isOpen) {
             setFocusedIndex(-1);
