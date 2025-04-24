@@ -17,7 +17,14 @@ export function NavigationMenu() {
     const menuRef = useRef<HTMLDivElement>(null);
     const [selected, setSelected] = useState(() => {
         const currentPath = location.pathname;
-        const currentItem = menuItems.find(item => item.path === currentPath);
+        // Special case for root path
+        if (currentPath === '/') {
+            return 'Home';
+        }
+        // Find menu item where the current path starts with the item's path
+        const currentItem = menuItems.find(item => 
+            item.path !== '/' && currentPath.startsWith(item.path)
+        );
         return currentItem?.label || 'Home';
     });
     const [focusedIndex, setFocusedIndex] = useState(-1);
@@ -25,7 +32,15 @@ export function NavigationMenu() {
 
     useEffect(() => {
         const currentPath = location.pathname;
-        const currentItem = menuItems.find(item => item.path === currentPath);
+        // Special case for root path
+        if (currentPath === '/') {
+            setSelected('Home');
+            return;
+        }
+        // Find menu item where the current path starts with the item's path
+        const currentItem = menuItems.find(item => 
+            item.path !== '/' && currentPath.startsWith(item.path)
+        );
         setSelected(currentItem?.label || 'Home');
     }, [location.pathname]); // Re-run the effect when the pathname changes
 

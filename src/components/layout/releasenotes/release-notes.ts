@@ -1,9 +1,10 @@
 export const releaseNotes = [
     {
-        version: "0.5.0",
+        version: "0.5.1",
         date: "24.03.2025",
         desc: [
-            "Initial release of Color picker / converter"
+            "Initial release of Color picker / converter",
+            "0.5.1 - 25.04.25 - Bug fixes in contraat checker faq and navigation menu"
         ]
     },
     {

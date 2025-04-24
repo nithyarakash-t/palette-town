@@ -146,6 +146,13 @@ fieldset {
   display: none !important;
 }
 
+// prevent zoom in on mobiles on double tap
+button,
+input,
+textarea {
+  touch-action: manipulation;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   :has(:target) {
     scroll-behavior: smooth;

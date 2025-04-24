@@ -7,7 +7,7 @@
             border: none;
             padding: 0;
             background-color: transparent;
-            padding: 0.125rem 0;
+            padding: 1rem 0;
             text-align: left;
             display: grid;
             grid-template-columns: 1fr auto;
@@ -42,14 +42,13 @@
                 overflow: hidden;
 
                 > p {
-                    padding-top: 0.875rem;
+                    padding-top: 0;
                     max-width: none;
                 }
             }
         }
         & {
             display: block;
-            padding: 0.875rem 0;
             width: min(100%, 950px);
 
             &:not(:last-child) {
@@ -60,6 +59,7 @@
                 > div {
                     grid-template-rows: 1fr;
                 }
+                padding-bottom: 1rem;
             }
 
         }
