@@ -30,6 +30,7 @@
         display: grid;
         gap: 2rem;
         grid-template-columns: var(--_result-width) 1fr;
+        width: min(100%, 900px);
 
         @media (max-width: 600px) {
             --_right-column-padding: 2rem;
