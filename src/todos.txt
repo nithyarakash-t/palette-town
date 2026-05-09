@@ -13,6 +13,7 @@
 -- Shuffle carousel
 -- flip/drag carousel lume / loom ?
 -- gradient, box shadow, drop shadow generators ? -- gradient.style
+-- https://bennettfeely.com/csspiechart/
 -------------------potential inspirations-------------------------
 -- https://webdesigninspiration.io/
 -- https://www.whirrls.com/
