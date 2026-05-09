@@ -27,5 +27,6 @@
     }
     &__wrap {
         padding-top: var(--app-wrap-padding-v);
+        place-items: center;
     }
 }
