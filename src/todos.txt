@@ -51,7 +51,14 @@ https://toolfolio.io/
     - https://cubic-bezier.com/
     - https://linear-easing-generator.netlify.app/
     - https://originui.com/easings
+    - https://easings.net/#
     - Easing wizard
+    - https://matthewlein.com/tools/ceaser
+    - https://www.joshwcomeau.com/shadow-palette/
+    - https://easingwizard.com/
+    - https://www.joshwcomeau.com/gradient-generator/
+    - josh comeau animation generator
+    - https://collections.designzig.com/ 
 = https://corner-inverter.douiri.org/
 -- Custom SVG Path Editor,
 -- CSS Clip-Path Generator,
