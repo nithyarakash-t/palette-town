@@ -1,2 +1,5 @@
 https://yoksel.github.io/tema/
 https://yoksel.github.io/handy-colors/
+https://cssgradient.io/shades-of-blue/
+https://coolors.co/ - paltette visualizer
+https://mycolor.space/

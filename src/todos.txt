@@ -27,6 +27,7 @@
 -- https://codepen.io/Nithyarakash-t/pen/gbOgNOo
 -- https://flatuicolors.com/
 -- https://hareesh.web.app/work (color)
+-- https://coolors.co/image-picker
 ------------------YTD-------------------
 — UI - add the color picker logo
 — After dark - dark mode
@@ -45,7 +46,8 @@ upload pic and get colours / wrapper to create art
 other ideas----------------------------------------------------------------------------------
 https://toolfolio.io/
 
-
+- box shadow generator
+- border radius generator / corner shape generator
 - https://photogradient.com/
 - Easing visualizer
     - https://cubic-bezier.com/
