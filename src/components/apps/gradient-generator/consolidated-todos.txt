@@ -1,0 +1,9 @@
+- Linear, Radial and Conic
+- Easing curve, angle, precision
+- stack multiple gradients
+- Atleast 10 color inputs
+- RGB, HSL, HSV, HCL, LAB
+- Allow for start stop
+- Pie chart with conic gradient
+- degree (should the three gradients be separated ?)
+- presets
