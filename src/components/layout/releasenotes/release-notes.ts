@@ -1,5 +1,12 @@
 export const releaseNotes = [
     {
+        version: "0.6.0",
+        date: "23.05.2026",
+        desc: [
+            "Yarn migration and UI updated on css colors",
+        ]
+    },
+    {
         version: "0.5.1",
         date: "24.03.2025",
         desc: [

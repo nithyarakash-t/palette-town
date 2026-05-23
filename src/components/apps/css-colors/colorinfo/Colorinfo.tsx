@@ -13,15 +13,15 @@ export function ColorInfo({selectedColor, setSelectedColor}
                 </h2>
                 <p>
                     <span>{selectedColor.hex}</span>
-                    <CopyToClipboard textToCopy={selectedColor.hex}/>
+                    {/* <CopyToClipboard textToCopy={selectedColor.hex}/> */}
                 </p>
                 <p>
                     <span>{formatHSL(selectedColor.hsl)}</span>
-                    <CopyToClipboard textToCopy={formatHSL(selectedColor.hsl)}/>
+                    {/* <CopyToClipboard textToCopy={formatHSL(selectedColor.hsl)}/> */}
                 </p>
                 <p>
                     <span>{formatRGB(selectedColor.rgb)}</span>
-                    <CopyToClipboard textToCopy={formatRGB(selectedColor.rgb)}/>
+                    {/* <CopyToClipboard textToCopy={formatRGB(selectedColor.rgb)}/> */}
                 </p>
                 {
                     selectedColor.alternativeName 
