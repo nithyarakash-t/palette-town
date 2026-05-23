@@ -100,6 +100,7 @@
 
     @media(max-width: 600px) {
       width: calc(var(--_content-width) - var(--_addition-space));
+      aspect-ratio: 1/1.5;
     }
     // padding-right: var(--_addition-space);
     // padding-bottom: var(--_addition-space);
