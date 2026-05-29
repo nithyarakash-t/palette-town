@@ -195,7 +195,14 @@ export function Simulation({simulation, setSimulation}:{simulation:ColorDeficien
                     </ul>
                 </div>
             </label>
-            <Tooltip content="Color simulations show an approximation of how selected colors might appear to users with different forms of color visual deficiency." position="top" delay={300}> 
+            <Tooltip content={<>Normal Vision — full color perception.<br />Protanopia — no red (severe).<br />Protanomaly — reduced red (~18% here).<br />Deuteranopia — no green (severe).<br />Deuteranomaly — reduced green (~26% here).<br />Tritanopia — no blue (severe).<br />Tritanomaly — reduced blue (~18% here).<br />Achromatopsia — full grayscale (severe).<br />Achromatomaly — partial desaturation (~54% here).</>} position="left" delay={300}> 
+                <button type="button"  className='cxc-simulation__info' aria-label="Color simulations show an approximation of how selected colors might appear to users with different forms of color visual deficiency.">
+                    <svg aria-hidden='true' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><line x1="12" x2="12" y1="16" y2="12"/><line x1="12" x2="12.01" y1="8" y2="8"/>
+                    </svg>
+                </button>                                                
+            </Tooltip>
+            <Tooltip content="Color simulations show an approximation of how selected colors might appear to users with different forms of color visual deficiency." position="left" delay={300}> 
                 <button type="button"  className='cxc-simulation__info' aria-label="Color simulations show an approximation of how selected colors might appear to users with different forms of color visual deficiency.">
                     <svg aria-hidden='true' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
