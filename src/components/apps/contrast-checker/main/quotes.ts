@@ -40,14 +40,6 @@ export const quotes = [
         by: "Tatsuki Fujimoto"
     },
     // {
-    //     quote: "My soldiers scream, My soldiers rage",
-    //     by: "Jotaro Kujo"
-    // },
-    // {
-    //     quote: "Wrrrriiiii",
-    //     by: "Dio Brando"
-    // },
-    // {
     //     quote: "Arrividerci",
     //     by: "Bruno Bucciaratti"
     // },
@@ -71,12 +63,10 @@ export const quotes = [
         quote: "Dance until your feet hurt, sing until your lungs hurt, act until you're William Hurt",
         by: "Phil Dunphy"
     },
-
-
-    {
-        quote: "If poor people knew how rich rich people are, there would be riots in the streets",
-        by: "Chris Rock"
-    },
+    // {
+    //     quote: "If poor people knew how rich rich people are, there would be riots in the streets",
+    //     by: "Chris Rock"
+    // },
     {
         quote: "Call me crazy, but if I threw a party and a bunch of nazis showed up, it might inspire a little self inspection",
         by: "Anthony Bourdain"
