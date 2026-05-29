@@ -244,6 +244,20 @@
 }
 
 .cxc-simulation {
+  &__severity {
+    display: flex;
+    gap: 1rem;
+    span {
+      flex: 0 0 auto;
+    }
+    input {
+      flex: 1;
+      max-width: 16rem;
+    }
+    output {
+      flex: 0 0 auto;
+    }
+  }
   &__info {
     background-color: transparent;
     border: none;
@@ -345,20 +359,30 @@
         outline: 1px solid;
     }
   }
-
+  &__inner {
+    display: flex;
+    gap: 1rem;
+  }
   &__wrap {
     display: flex;
     gap: 1rem;
     align-items: center;
+    justify-content: space-between;
     position: relative;
     flex-wrap: wrap;
+  }
+  &__outer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    flex: 1 1 auto;
   }
 }
 
 [data-simulation] {
   &[data-simulation="protanopia"] {
     // filter: brightness(0.97) contrast(0.93) saturate(0.83) hue-rotate(-3deg);
-    //filter: sepia(100%) hue-rotate(170deg) saturate(0.6);
+    // filter: sepia(100%) hue-rotate(170deg) saturate(0.6);
     filter: sepia(100%) hue-rotate(160deg) saturate(0.4);
     filter: url("#protanopia");
   }

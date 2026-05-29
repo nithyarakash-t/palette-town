@@ -87,6 +87,9 @@ export function Simulation({simulation, setSimulation}:{simulation:ColorDeficien
     const optionRefs = useRef<(HTMLLIElement | null)[]>([]);
     const buttonRef = useRef<HTMLButtonElement>(null);
     const options = Object.values(ColorDeficiencyEnum);
+    const [severity, setSeverity] = useState(50);
+    const anomalyTypes = [ColorDeficiencyEnum.Protanomaly, ColorDeficiencyEnum.Deuteranomaly, ColorDeficiencyEnum.Tritanomaly, ColorDeficiencyEnum.Achromatomaly];
+    const isAnomaly = anomalyTypes.includes(simulation);
 
     //useeffect handling the dropdown
     useEffect(() => {
@@ -143,73 +146,90 @@ export function Simulation({simulation, setSimulation}:{simulation:ColorDeficien
     }, [isOpen]);
 
     return (
-        <div className="cxc-simulation__wrap">
-            <SimulationFilters />
-            <label className="cxc-simulation__select">
-                <span>Simulation - experimental</span>
-                <div className={`cxc-simulation__combo`}>
-                    <button 
-                        ref={buttonRef}
-                        type='button' 
-                        role="combobox" 
-                        aria-controls="color-deficiency-simulation" 
-                        aria-expanded={isOpen} 
-                        aria-haspopup="listbox" 
-                        tabIndex={0} 
-                        onClick={() => setIsOpen(prev => !prev)}
-                    > 
-                        {ColorDeficiencyLabels[simulation]} 
-                    </button>
-                    <ul 
-                        className={isOpen ? '-open' : ''}
-                        id="color-deficiency-simulation"
-                        role="listbox"
-                        aria-label="Color simulation options"
-                    >
-                        {options.map((value, index) => (
-                            <li
-                                key={value}
-                                ref={el => optionRefs.current[index] = el}
-                                role="option"
-                                aria-selected={simulation === value}
-                                tabIndex={isOpen ? 0 : -1}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    setSimulation(value);
-                                    setIsOpen(false);
-                                    buttonRef.current?.focus();
-                                }}
-                                onKeyDown={(e) => {
-                                    if (e.key === 'Enter' || e.key === ' ') {
+        <div className='cxc-simulation__outer'>
+            <div className="cxc-simulation__wrap">
+                <SimulationFilters severity={severity} />
+                <label className="cxc-simulation__select">
+                    <span>Simulation - experimental</span>
+                    <div className={`cxc-simulation__combo`}>
+                        <button 
+                            ref={buttonRef}
+                            type='button' 
+                            role="combobox" 
+                            aria-controls="color-deficiency-simulation" 
+                            aria-expanded={isOpen} 
+                            aria-haspopup="listbox" 
+                            tabIndex={0} 
+                            onClick={() => setIsOpen(prev => !prev)}
+                        > 
+                            {ColorDeficiencyLabels[simulation]} 
+                        </button>
+                        <ul 
+                            className={isOpen ? '-open' : ''}
+                            id="color-deficiency-simulation"
+                            role="listbox"
+                            aria-label="Color simulation options"
+                        >
+                            {options.map((value, index) => (
+                                <li
+                                    key={value}
+                                    ref={el => optionRefs.current[index] = el}
+                                    role="option"
+                                    aria-selected={simulation === value}
+                                    tabIndex={isOpen ? 0 : -1}
+                                    onClick={(e) => {
                                         e.preventDefault();
+                                        e.stopPropagation();
                                         setSimulation(value);
                                         setIsOpen(false);
                                         buttonRef.current?.focus();
-                                    }
-                                }}
-                            >
-                                {ColorDeficiencyLabels[value]}
-                            </li>
-                        ))}
-                    </ul>
+                                    }}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            setSimulation(value);
+                                            setIsOpen(false);
+                                            buttonRef.current?.focus();
+                                        }
+                                    }}
+                                >
+                                    {ColorDeficiencyLabels[value]}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </label>
+                <div className='cxc-simulation__inner'>
+                    <Tooltip content={<>Unaffected Vision — full color perception.<br />Protanopia — no red.<br />Protanomaly — reduced red.<br />Deuteranopia — no green.<br />Deuteranomaly — reduced green.<br />Tritanopia — no blue.<br />Tritanomaly — reduced blue.<br />Achromatopsia — full grayscale.<br />Achromatomaly — partial desaturation.</>} position="left" delay={300}> 
+                        <button type="button"  className='cxc-simulation__info' aria-label="Color simulations show an approximation of how selected colors might appear to users with different forms of color visual deficiency.">
+                            <svg aria-hidden='true' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><line x1="12" x2="12" y1="16" y2="12"/><line x1="12" x2="12.01" y1="8" y2="8"/>
+                            </svg>
+                        </button>                                                
+                    </Tooltip>
+                    <Tooltip content="DISCLAIMER: Color simulations show an approximation of how selected colors might appear to users with different forms of color visual deficiency." position="left" delay={300}> 
+                        <button type="button"  className='cxc-simulation__info' aria-label="Color simulations show an approximation of how selected colors might appear to users with different forms of color visual deficiency.">
+                            <svg aria-hidden='true' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
+                            </svg>
+                        </button>                                                
+                    </Tooltip> 
                 </div>
-            </label>
-            <Tooltip content={<>Normal Vision — full color perception.<br />Protanopia — no red (severe).<br />Protanomaly — reduced red (~18% here).<br />Deuteranopia — no green (severe).<br />Deuteranomaly — reduced green (~26% here).<br />Tritanopia — no blue (severe).<br />Tritanomaly — reduced blue (~18% here).<br />Achromatopsia — full grayscale (severe).<br />Achromatomaly — partial desaturation (~54% here).</>} position="left" delay={300}> 
-                <button type="button"  className='cxc-simulation__info' aria-label="Color simulations show an approximation of how selected colors might appear to users with different forms of color visual deficiency.">
-                    <svg aria-hidden='true' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><line x1="12" x2="12" y1="16" y2="12"/><line x1="12" x2="12.01" y1="8" y2="8"/>
-                    </svg>
-                </button>                                                
-            </Tooltip>
-            <Tooltip content="Color simulations show an approximation of how selected colors might appear to users with different forms of color visual deficiency." position="left" delay={300}> 
-                <button type="button"  className='cxc-simulation__info' aria-label="Color simulations show an approximation of how selected colors might appear to users with different forms of color visual deficiency.">
-                    <svg aria-hidden='true' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
-                    </svg>
-                </button>                                                
-            </Tooltip>
-            
+            </div>
+            {isAnomaly && (
+                <label className="cxc-simulation__severity">
+                    <span>Severity</span>
+                    <input
+                        type="range"
+                        min={0}
+                        max={100}
+                        value={severity}
+                        onChange={e => setSeverity(Number(e.target.value))}
+                        aria-label={`Simulation severity: ${severity}%`}
+                    />
+                    <output>{severity}%</output>
+                </label>
+            )}
         </div>
     );
 }
@@ -234,19 +254,26 @@ export function Quote({simulation}:{simulation:ColorDeficiencyEnum}) {
     )
 }
 
-function SimulationFilters() {
+function SimulationFilters({ severity }: { severity: number }) {
+    const t = severity / 100;
+    const identity     = [1,0,0,0,0, 0,1,0,0,0, 0,0,1,0,0, 0,0,0,1,0];
+    const protanopiaM  = [0.567,0.433,0,0,0, 0.558,0.442,0,0,0, 0,0.242,0.758,0,0, 0,0,0,1,0];
+    const deuteranopiaM= [0.625,0.375,0,0,0, 0.7,0.3,0,0,0, 0,0.3,0.7,0,0, 0,0,0,1,0];
+    const tritanopiaM  = [0.95,0.05,0,0,0, 0,0.433,0.567,0,0, 0,0.475,0.525,0,0, 0,0,0,1,0];
+    const achromatopsiaM=[0.299,0.587,0.114,0,0, 0.299,0.587,0.114,0,0, 0.299,0.587,0.114,0,0, 0,0,0,1,0];
+
+    function lerp(from: number[], to: number[]): string {
+        return from.map((v, i) => +(v * (1 - t) + to[i] * t).toFixed(4)).join(' ');
+    }
+
     return (
         <svg className='sr-only' aria-hidden="true">
             <defs>
-                {/* Protoanomaly - mild red weak */}
+                {/* Protanomaly - dynamic red weakness (slider: 0=normal, 100=protanopia) */}
                 <filter id="protanomaly">
-                    <feColorMatrix type="matrix" values="
-                        0.817, 0.183, 0.000, 0, 0
-                        0.333, 0.667, 0.000, 0, 0
-                        0.000, 0.125, 0.875, 0, 0
-                        0, 0, 0, 1, 0"/>
+                    <feColorMatrix type="matrix" values={lerp(identity, protanopiaM)} />
                 </filter>
-                {/* protanopia - no red / severe */}
+                {/* Protanopia - no red / severe */}
                 <filter id="protanopia">
                     <feColorMatrix
                     type="matrix"
@@ -255,16 +282,12 @@ function SimulationFilters() {
                             0,     0.242, 0.758, 0, 0
                             0,     0,     0,     1, 0"/>
                 </filter>
-                
-                {/* mild green weak */}
+
+                {/* Deuteranomaly - dynamic green weakness (slider: 0=normal, 100=deuteranopia) */}
                 <filter id="deuteranomaly">
-                    <feColorMatrix type="matrix" values="
-                        0.800, 0.200, 0.000, 0, 0
-                        0.258, 0.742, 0.000, 0, 0
-                        0.000, 0.142, 0.858, 0, 0
-                        0, 0, 0, 1, 0"/>
+                    <feColorMatrix type="matrix" values={lerp(identity, deuteranopiaM)} />
                 </filter>
-                {/* no green / severe */}
+                {/* Deuteranopia - no green / severe */}
                 <filter id="deutranopia">
                     <feColorMatrix
                     type="matrix"
@@ -273,16 +296,12 @@ function SimulationFilters() {
                             0,     0.3,   0.7, 0, 0
                             0,     0,     0,   1, 0"/>
                 </filter>
-                
-                {/* mild blue weak */}
-                    <filter id="tritanomaly">
-                    <feColorMatrix type="matrix" values="
-                        0.967, 0.033, 0.000, 0, 0
-                        0.000, 0.733, 0.267, 0, 0
-                        0.000, 0.183, 0.817, 0, 0
-                        0, 0, 0, 1, 0"/>
+
+                {/* Tritanomaly - dynamic blue weakness (slider: 0=normal, 100=tritanopia) */}
+                <filter id="tritanomaly">
+                    <feColorMatrix type="matrix" values={lerp(identity, tritanopiaM)} />
                 </filter>
-                {/* no blue / severe */}
+                {/* Tritanopia - no blue / severe */}
                 <filter id="tritanopia">
                     <feColorMatrix
                     type="matrix"
@@ -292,15 +311,11 @@ function SimulationFilters() {
                             0,    0,     0,     1, 0"/>
                 </filter>
 
-                {/* Achromatomaly (Partial Color vision challenges - Desaturated) */}
+                {/* Achromatomaly - dynamic partial desaturation (slider: 0=normal, 100=achromatopsia) */}
                 <filter id="achromatomaly">
-                    <feColorMatrix type="matrix" values="
-                        0.618, 0.320, 0.062, 0, 0
-                        0.163, 0.775, 0.062, 0, 0
-                        0.163, 0.320, 0.516, 0, 0
-                        0, 0, 0, 1, 0"/>
+                    <feColorMatrix type="matrix" values={lerp(identity, achromatopsiaM)} />
                 </filter>
-                {/* Achromatopsia (Total Color vision challenges - Grayscale) */}
+                {/* Achromatopsia - total grayscale / severe */}
                 <filter id="achromatopsia">
                     <feColorMatrix type="matrix" values="
                         0.299, 0.587, 0.114, 0, 0
