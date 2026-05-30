@@ -275,7 +275,7 @@
     }
     input {
       --_pos: 0;
-      --_fillcolor: light-dark(#f50, mediumpurple);
+      --_fillcolor: light-dark(mediumvioletred, mediumpurple);
       --_trackcolor: light-dark(#ccc, #eee);
       flex: 1;
       max-width: 16rem;
@@ -283,7 +283,6 @@
       outline: none;
       position: relative;
       height: 0.5rem;
-      margin-left: 2vmin;
       border-radius: 0.3125rem;
       transition: all 0.3s;
       border: 1px solid #000;
