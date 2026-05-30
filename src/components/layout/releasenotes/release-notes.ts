@@ -1,5 +1,12 @@
 export const releaseNotes = [
     {
+        version: "0.7.0",
+        date: "29.05.2026",
+        desc: [
+            "Updated contrast checker - Added a slider to choose the threshold for anomalies",
+        ]
+    },
+    {
         version: "0.6.0",
         date: "23.05.2026",
         desc: [
