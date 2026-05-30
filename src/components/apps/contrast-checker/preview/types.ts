@@ -11,7 +11,7 @@ export enum ColorDeficiencyEnum {
 }
 
 export const ColorDeficiencyLabels: Record<ColorDeficiencyEnum, string> = {
-    [ColorDeficiencyEnum.None]: 'Normal Vision',
+    [ColorDeficiencyEnum.None]: 'Unaffected Vision',
     [ColorDeficiencyEnum.Protanopia]: 'Protanopia', // (No Red)
     [ColorDeficiencyEnum.Protanomaly]: 'Protanomaly', // (Partial Red weakness)
     [ColorDeficiencyEnum.Deutranopia]: 'Deuteranopia', // (No Green)
