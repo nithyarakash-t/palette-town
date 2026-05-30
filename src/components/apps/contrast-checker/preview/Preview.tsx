@@ -226,6 +226,7 @@ export function Simulation({simulation, setSimulation}:{simulation:ColorDeficien
                         value={severity}
                         onChange={e => setSeverity(Number(e.target.value))}
                         aria-label={`Simulation severity: ${severity}%`}
+                        style={{'--_pos': (severity)} as React.CSSProperties}
                     />
                     <output>{severity}%</output>
                 </label>
