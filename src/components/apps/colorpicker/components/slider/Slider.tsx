@@ -13,7 +13,7 @@ const sliderRanges: Record<SliderType, { min: number; max: number }> = {
     white: { min: 0, max: 100 },
     black: { min: 0, max: 100 }
 };
-interface SliderProps {
+interface ISliderProps {
     readonly customclass?: string;
     readonly showValue?: boolean;
     readonly value: number;
@@ -23,33 +23,33 @@ interface SliderProps {
     readonly label: string;
     readonly disabled?: boolean;
     readonly type?: SliderType;
-    readonly step?:number;
+    readonly step?: number;
     readonly min?: number;
     readonly max?: number;
 }
 
 export function Slider({
     customclass, showValue = true,
-    value=50, setValue, 
-    id, name, label, disabled, step=1,
-    type='hue', min: minOverride, max: maxOverride
-    }:SliderProps) {
+    value = 50, setValue,
+    id, name, label, disabled, step = 1,
+    type = 'hue', min: minOverride, max: maxOverride
+}: ISliderProps) {
 
     const defaultRange = sliderRanges[type];
     const min = minOverride ?? defaultRange.min;
     const max = maxOverride ?? defaultRange.max;
-    function handleInput(e:FormEvent) {
+    function handleInput(e: FormEvent) {
         setValue(+(e.currentTarget as HTMLInputElement).value);
     }
-    
+
     return (
         <label className={`cop-slider__label ${customclass}`}>
             <input type='range' className={'-' + type}
-            id={id} name={name} aria-label={label} disabled={disabled ? true : undefined}
-            value={value} min={min} max={max} step={step}
-            onInput={handleInput} style={{'--_pos': (value / max)} as React.CSSProperties} />
-        
+                id={id} name={name} aria-label={label} disabled={disabled ? true : undefined}
+                value={value} min={min} max={max} step={step}
+                onInput={handleInput} style={{ '--_pos': (value / max) } as React.CSSProperties} />
+
             {showValue && <span>{value}</span>}
-        </label> 
+        </label>
     )
 }
