@@ -1,7 +1,7 @@
 import { ReactNode, useState } from 'react';
 import './Tooltip.scss';
 
-interface TooltipProps {
+interface ITooltipProps {
     children: ReactNode;
     content: ReactNode;
     position?: 'top' | 'bottom' | 'left' | 'right';
@@ -15,7 +15,7 @@ export function Tooltip({
     position = 'top', 
     delay = 200,
     cusomClass = '' 
-}: TooltipProps) {
+}: ITooltipProps) {
     const [isVisible, setIsVisible] = useState(false);
     const [timeoutId, setTimeoutId] = useState<number>();
 

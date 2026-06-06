@@ -2,7 +2,7 @@ import { Suspense, lazy } from 'react';
 import './Home.scss';
 // import { Carousel } from './carousel/Carousel';
 import { Link } from 'react-router-dom';
-import { menuItems } from '../header/navigationmenu/Navigationmenu';
+import { menuItems } from '../header/navigationmenu/menuItems';
 // import { Stringbulb } from '../themeSwitch/stringbulb/Stringbulb';
 
 const Cube = lazy(() => import('./cube/Cube').then(module => ({ default: module.Cube })));

@@ -1,14 +1,7 @@
 import { useState, useRef, KeyboardEvent, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { menuItems } from './menuItems';
 import './Navigationmenu.scss';
-
-export const menuItems = [
-    { label: 'Home', path: '/' },
-    { label: 'Colorguesser', path: '/colorguesser' },
-    { label: 'Csscolors', path: '/csscolors' },
-    { label: 'Contrastchecker', path: '/contrastchecker' },
-    { label: 'Colorpicker', path: '/colorpicker' },
-];
 
 export function NavigationMenu() {
     const location = useLocation();
