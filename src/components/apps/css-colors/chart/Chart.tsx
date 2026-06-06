@@ -29,7 +29,7 @@ export function Chart({ hue, tolerance, setTolerance, mono, selectedColor, setSe
         return () => {
 
         }
-    }, [hue, mono]);
+    }, [hue, mono, setTolerance, tolerance.min]);
 
     useEffect(() => {
         document.addEventListener('keydown', handleKeydown);
@@ -42,7 +42,7 @@ export function Chart({ hue, tolerance, setTolerance, mono, selectedColor, setSe
         return () => {
             document.removeEventListener('keydown', handleKeydown);
         }
-    }, [])
+    }, [setSelectedColor])
 
     function handleSelection(color: ColorListItem) {
         setSelectedColor(color);
