@@ -15,6 +15,7 @@
 -- gradient, box shadow, drop shadow generators ? -- gradient.style
 -- https://bennettfeely.com/csspiechart/
 -------------------potential inspirations-------------------------
+-- https://kigen.design/color
 -- https://webdesigninspiration.io/
 -- https://www.whirrls.com/
 -- https://x.com/heysatya_/status/1889927821390385223
